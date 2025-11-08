@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingénieur Logiciel - Spécialiste en Systèmes de Gestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* VARIABLES ET RESET */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2980b9;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 180px 0 120px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+
+        /* SPECIALITES */
+        .specialites {
+            background-color: white;
+        }
+
+        .specialites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .specialite-card {
+            background-color: var(--light);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .specialite-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .specialite-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .specialite-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .specialite-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* COMPETENCES */
+        .competences {
+            background-color: #f5f7fa;
+        }
+
+        .competences-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .competence-category {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .competence-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .competence-category h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .competence-list {
+            list-style: none;
+        }
+
+        .competence-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .competence-list li:last-child {
+            border-bottom: none;
+        }
+
+        .competence-list li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        /* PROJETS */
+        .projets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .projet-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .projet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .projet-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projet-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .projet-info {
+            padding: 1.5rem;
+        }
+
+        .projet-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .projet-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .projet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .projet-tag {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* CONTACT */
+        .contact {
+            background-color: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after,
+        .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Ingénieur Logiciel</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#specialites">Spécialités</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SECTION HERO -->
+    <section id="accueil" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Ingénieur Logiciel Spécialisé en Systèmes de Gestion</h1>
+                <p>Conception et développement de solutions logicielles sur mesure pour optimiser la gestion d'entreprise</p>
+                <div class="hero-btns">
+                    <a href="#projets" class="btn">Voir mes réalisations</a>
+                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SPECIALITES -->
+    <section id="specialites" class="specialites">
+        <div class="container">
+            <h2 class="section-title">Mes Domaines de Spécialisation</h2>
+            <div class="specialites-grid">
+                <div class="specialite-card fade-in">
+                    <div class="specialite-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Analyste Programmeur</h3>
+                    <p>Analyse des besoins métier et développement de solutions logicielles adaptées aux processus de gestion d'entreprise.</p>
+                </div>
+                <div class="specialite-card fade-in delay-1">
+                    <div class="specialite-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Manager des SI de Gestion</h3>
+                    <p>Conception et gestion des systèmes d'information pour optimiser les flux de données et les processus décisionnels.</p>
+                </div>
+                <div class="specialite-card fade-in delay-2">
+                    <div class="specialite-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Conseil en Logiciels de Gestion</h3>
+                    <p>Accompagnement dans le choix et la mise en œuvre de solutions logicielles adaptées à votre entreprise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION COMPETENCES -->
+    <section id="competences" class="competences">
+        <div class="container">
+            <h2 class="section-title">Mes Compétences Techniques</h2>
+            <div class="competences-container">
+                <div class="competence-category fade-in">
+                    <h3><i class="fas fa-laptop-code"></i> Développement Logiciel</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Conception et développement d'applications de gestion</li>
+                        <li><i class="fas fa-check"></i> Programmation orientée objet (Java, C#, Python)</li>
+                        <li><i class="fas fa-check"></i> Bases de données (SQL Server, MySQL, Oracle)</li>
+                        <li><i class="fas fa-check"></i> Développement web (HTML, CSS, JavaScript, PHP)</li>
+                        <li><i class="fas fa-check"></i> Frameworks (.NET, Spring, Django)</li>
+                    </ul>
+                </div>
+                <div class="competence-category fade-in delay-1">
+                    <h3><i class="fas fa-chart-line"></i> Domaines de Gestion</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Comptabilité et gestion financière</li>
+                        <li><i class="fas fa-check"></i> Gestion des stocks et logistique</li>
+                        <li><i class="fas fa-check"></i> Ressources humaines et paie</li>
+                        <li><i class="fas fa-check"></i> Gestion de la relation client (CRM)</li>
+                        <li><i class="fas fa-check"></i> Gestion de production et supply chain</li>
+                    </ul>
+                </div>
+                <div class="competence-category fade-in delay-2">
+                    <h3><i class="fas fa-tools"></i> Outils et Méthodologies</h3>
+                    <ul class="competence-list">
+                        <li><i class="fas fa-check"></i> Progiciels de Gestion Intégrés (ERP)</li>
+                        <li><i class="fas fa-check"></i> Méthodes agiles (Scrum, Kanban)</li>
+                        <li><i class="fas fa-check"></i> Modélisation UML et Merise</li>
+                        <li><i class="fas fa-check"></i> Gestion de projet (Jira, Trello)</li>
+                        <li><i class="fas fa-check"></i> Tests et assurance qualité</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PROJETS -->
+    <section id="projets" class="projets">
+        <div class="container">
+            <h2 class="section-title">Mes Réalisations</h2>
+            <div class="projets-grid">
+                <div class="projet-card fade-in">
+                    <div class="projet-image">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="projet-info">
+                        <h3>Système de Gestion Comptable</h3>
+                        <p>Application complète de gestion comptable avec génération de bilans, journaux et états financiers.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">C#</span>
+                            <span class="projet-tag">SQL Server</span>
+                            <span class="projet-tag">WinForms</span>
+                        </div>
+                        <a href="#" class="btn">Voir les détails</a>
+                    </div>
+                </div>
+                <div class="projet-card fade-in delay-1">
+                    <div class="projet-image">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <div class="projet-info">
+                        <h3>Logiciel de Gestion des Stocks</h3>
+                        <p>Solution de gestion d'entrepôt avec suivi en temps réel, alertes de réapprovisionnement et analyse des rotations.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">Java</span>
+                            <span class="projet-tag">Spring Boot</span>
+                            <span class="projet-tag">React</span>
+                        </div>
+                        <a href="#" class="btn">Voir les détails</a>
+                    </div>
+                </div>
+                <div class="projet-card fade-in delay-2">
+                    <div class="projet-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="projet-info">
+                        <h3>Plateforme RH et Paie</h3>
+                        <p>Système intégré de gestion des ressources humaines avec module de paie, congés et évaluations.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">Python</span>
+                            <span class="projet-tag">Django</span>
+                            <span class="projet-tag">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="btn">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Adresse</h3>
+                            <p>123 Rue de l'Innovation, 75000 Paris</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>contact@ingenieur-logiciel.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Disponibilité</h3>
+                            <p>Lun - Ven: 9h00 - 18h00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in delay-1">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Sujet</label>
+                            <select id="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="devis">Demande de devis</option>
+                                <option value="conseil">Conseil en logiciel</option>
+                                <option value="development">Développement sur mesure</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Ingénieur Logiciel</span>
+                    </div>
+                    <p>Spécialiste en développement de solutions logicielles pour optimiser la gestion d'entreprise et améliorer la performance organisationnelle.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-medium-m"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#specialites">Spécialités</a></li>
+                        <li><a href="#competences">Compétences</a></li>
+                        <li><a href="#projets">Projets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de l'Innovation, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@ingenieur-logiciel.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Ingénieur Logiciel Spécialisé en Gestion. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu en cliquant sur un lien
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Animation au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les éléments à animer
+            document.querySelectorAll('.specialite-card, .competence-category, .projet-card, .contact-info, .contact-form').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Gestion du formulaire de contact
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Simulation d'envoi
+                alert(`Merci ${name} ! Votre message a été envoyé. Je vous répondrai dans les plus brefs délais.`);
+                contactForm.reset();
+            });
+
+            // Navigation fluide
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
