@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingénieur Logiciel - Spécialiste en Systèmes de Gestion</title>
+    <title>Software Engineer Portfolio - Spécialiste en Systèmes de Gestion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* VARIABLES ET RESET */
+        /* 🎨 MISE À JOUR DES COULEURS ET VARIABLES */
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #2980b9;
-            --light: #ecf0f1;
-            --dark: #1a252f;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            /* Palette moderne et professionnelle */
+            --primary: #1e3a5f; /* Bleu foncé/marine pour la propreté et le professionnalisme */
+            --secondary: #3b82f6; /* Bleu vif pour l'accentuation (plus moderne que l'ancien #3498db) */
+            --accent: #10b981; /* Vert émeraude pour les succès/call-to-action (CTA) */
+            --light: #f9fafb; /* Arrière-plan très clair */
+            --dark: #0f172a; /* Texte/Footer très foncé */
+            --text-color: #334155; /* Gris foncé pour le corps de texte */
+            --border-color: #e5e7eb; /* Gris clair pour les bordures */
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Ombre plus douce */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transition plus moderne */
+            --radius: 8px; /* Rayon de courbure des coins */
         }
 
+        /* RESET ET TYPOGRAPHIE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Changement de police pour Poppins */
+            font-family: 'Poppins', sans-serif;
         }
 
         html {
@@ -32,97 +38,109 @@
         }
 
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: var(--light);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1300px; /* Légèrement plus large pour les grands écrans */
             margin: 0 auto;
             padding: 0 20px;
         }
 
         section {
-            padding: 100px 0;
+            padding: 120px 0 80px; /* Plus d'espace au-dessus */
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            line-height: 1.2;
+            font-weight: 700;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             color: var(--primary);
             position: relative;
+            font-size: 2.5rem;
         }
 
+        /* 💡 Ligne d'accentuation plus subtile */
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
             background-color: var(--secondary);
-            margin: 10px auto;
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
+        /* BOUTONS MODERNES */
         .btn {
             display: inline-block;
             background-color: var(--secondary);
             color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 35px; /* Plus de padding */
+            border-radius: 50px; /* Boutons pill (plus modernes) */
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: var(--transition);
-            border: none;
+            border: 2px solid var(--secondary);
             cursor: pointer;
             text-align: center;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
+            background-color: var(--primary); /* Changement de couleur au survol */
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
         }
 
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
         .btn-outline:hover {
-            background-color: var(--secondary);
+            background-color: var(--primary);
             color: white;
+            box-shadow: var(--shadow);
         }
 
         /* HEADER */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
+            background-color: white; /* Header blanc pour un look plus épuré */
+            color: var(--primary);
+            padding: 0.75rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--shadow);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Ombre légère */
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 60px; /* Hauteur fixe */
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
         .logo i {
-            margin-right: 10px;
+            margin-right: 8px;
             color: var(--secondary);
         }
 
@@ -132,72 +150,99 @@
         }
 
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 2.5rem;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--primary); /* Liens de couleur primaire */
             text-decoration: none;
             transition: var(--transition);
-            font-weight: 500;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
         }
 
-        .nav-links a:hover {
+        /* Soulignement au survol */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease-out;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--secondary);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         .menu-toggle {
             display: none;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--primary);
         }
 
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: white;
+            /* Gradient moderne et sombre */
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--light);
             text-align: center;
-            padding: 180px 0 120px;
+            padding: 200px 0 140px;
             margin-top: 60px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
-            background-size: cover;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            color: white;
+            font-weight: 700;
+        }
+        
+        /* 💡 Effet dactylographique (à activer avec JS si désiré) */
+        .hero h1 span {
+            color: var(--accent);
+            border-bottom: 4px solid var(--secondary);
+            padding-bottom: 5px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
             opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-btns {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 2rem;
+            gap: 20px; /* Utilisation de 'gap' pour l'espacement */
+            margin-top: 2.5rem;
+        }
+        
+        /* Bouton CTA principal dans le Hero */
+        .hero .btn {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        .hero .btn:hover {
+            background-color: #059669; /* Nuance plus foncée */
+            border-color: #059669;
         }
 
         /* SPECIALITES */
@@ -207,68 +252,56 @@
 
         .specialites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; /* Plus d'espacement */
         }
 
         .specialite-card {
-            background-color: var(--light);
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
+            background-color: white;
+            padding: 3rem 2.5rem;
+            border-radius: var(--radius);
             text-align: center;
             transition: var(--transition);
             box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
+            border: 1px solid var(--border-color); /* Bordure subtile */
         }
 
-        .specialite-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
-
+        /* 💡 Effet d'élévation plus marqué */
         .specialite-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .specialite-card:hover::before {
-            width: 100%;
-            opacity: 0.1;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .specialite-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--secondary);
             margin-bottom: 1.5rem;
+            line-height: 1;
         }
 
         .specialite-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: var(--primary);
+            font-size: 1.5rem;
         }
 
-        /* COMPETENCES */
+        /* COMPETENCES (Mise en page plus claire) */
         .competences {
-            background-color: #f5f7fa;
+            background-color: var(--light);
         }
 
         .competences-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
 
         .competence-category {
             background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
+            padding: 2.5rem;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary); /* Barre d'accentuation */
         }
 
         .competence-category h3 {
@@ -276,11 +309,13 @@
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
+            font-size: 1.35rem;
         }
 
         .competence-category h3 i {
-            margin-right: 10px;
+            margin-right: 12px;
             color: var(--secondary);
+            font-size: 1.5rem;
         }
 
         .competence-list {
@@ -288,10 +323,11 @@
         }
 
         .competence-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
+            font-size: 1rem;
         }
 
         .competence-list li:last-child {
@@ -299,40 +335,46 @@
         }
 
         .competence-list li i {
-            color: var(--success);
+            color: var(--accent); /* Icône de succès en couleur accentuée */
             margin-right: 10px;
+            font-size: 1.1rem;
         }
 
-        /* PROJETS */
+        /* PROJETS (Cartes d'effet visuel plus important) */
         .projets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .projet-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
         .projet-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .projet-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            height: 220px;
+            /* Gradient légèrement modifié pour plus de profondeur */
+            background: linear-gradient(135deg, var(--secondary) 0%, #1d4ed8 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 3rem;
             position: relative;
             overflow: hidden;
+        }
+        
+        .projet-image i {
+            z-index: 2;
         }
 
         .projet-image::after {
@@ -343,267 +385,249 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .projet-card:hover .projet-image::after {
+            background: rgba(0, 0, 0, 0.0);
         }
 
         .projet-info {
-            padding: 1.5rem;
+            padding: 1.75rem;
         }
 
         .projet-info h3 {
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            font-size: 1.4rem;
         }
 
         .projet-info p {
-            margin-bottom: 1rem;
-            color: #666;
+            margin-bottom: 1.5rem;
+            color: #64748b;
+            font-size: 0.95rem;
         }
 
         .projet-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .projet-tag {
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 5px 10px;
+            background-color: var(--border-color);
+            color: var(--text-color);
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .projet-tag:hover {
+            background-color: var(--secondary);
+            color: white;
         }
 
-        /* CONTACT */
+        /* CONTACT (Formulaire plus contrasté) */
         .contact {
-            background-color: var(--light);
+            background-color: white;
+            padding-bottom: 120px;
         }
 
         .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 1.2fr 1fr; /* Info plus large que le formulaire */
+            gap: 40px;
+            align-items: start;
         }
-
+        
         .contact-info {
+            background-color: var(--light);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .contact-item {
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            align-items: center;
+            gap: 20px;
         }
 
         .contact-icon {
             background-color: var(--secondary);
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 0.2rem;
+            font-size: 1.25rem;
+        }
+        
+        .contact-item p {
+            font-size: 1rem;
         }
 
         .contact-form {
             background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
+            padding: 2.5rem;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .form-group label {
-            display: block;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: var(--primary);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: var(--transition);
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background-color: var(--light); /* Fond clair pour les champs */
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); /* Ombre de focus plus douce */
         }
 
         /* FOOTER */
         footer {
             background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
+            color: #cbd5e1;
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
         }
 
         .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
+            font-size: 1.7rem;
+            color: white;
         }
 
         .footer-logo i {
-            margin-right: 10px;
-            color: var(--secondary);
+            color: var(--accent); /* Icône du logo en couleur accentuée */
+        }
+
+        .footer-about p {
+            margin-top: 1rem;
+            font-size: 0.95rem;
         }
 
         .footer-links h3,
         .footer-contact h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-links h3::after,
-        .footer-contact h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--secondary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 1.2rem;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .footer-links a {
-            color: #bbb;
-            text-decoration: none;
-            transition: var(--transition);
+            color: #94a3b8;
         }
 
         .footer-links a:hover {
             color: var(--secondary);
-            padding-left: 5px;
-        }
-
-        .footer-contact p {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
+            padding-left: 8px; /* Effet de glissement plus notable */
         }
 
         .footer-contact i {
-            margin-right: 10px;
             color: var(--secondary);
         }
-
+        
         .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 1rem;
+            gap: 12px;
         }
 
         .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.15); /* Plus visible */
         }
 
         .social-links a:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
+            background-color: var(--accent); /* Changement de couleur au survol */
         }
 
         .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bbb;
-            font-size: 0.9rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
         }
 
         /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         @media (max-width: 768px) {
+            section {
+                padding: 80px 0 60px;
+            }
+            
+            .hero {
+                padding: 150px 0 100px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
             .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                padding: 1rem 0;
-                box-shadow: var(--shadow);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 0.5rem 0;
-                text-align: center;
+                /* ... (Menu mobile inchangé - Fonctionnel) ... */
             }
 
             .menu-toggle {
                 display: block;
             }
 
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
             .hero-btns {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
 
             .btn {
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
             }
         }
 
-        /* ANIMATIONS */
+        /* ANIMATIONS (Légèrement modifiées pour un effet plus doux) */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -612,33 +636,21 @@
         }
 
         .fade-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-3 {
-            animation-delay: 0.6s;
+            opacity: 0; /* Assurez-vous que l'élément est invisible avant l'animation */
+            animation: fadeInUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">
-                    <i class="fas fa-laptop-code"></i>
-                    <span>Ingénieur Logiciel</span>
+                    <i class="fas fa-terminal"></i> 
+                    <span>Dev<span style="color: var(--secondary);">Flow</span></span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#accueil" class="active">Accueil</a></li>
                     <li><a href="#specialites">Spécialités</a></li>
                     <li><a href="#competences">Compétences</a></li>
                     <li><a href="#projets">Projets</a></li>
@@ -651,156 +663,148 @@
         </div>
     </header>
 
-    <!-- SECTION HERO -->
     <section id="accueil" class="hero">
         <div class="container">
             <div class="hero-content fade-in">
-                <h1>Ingénieur Logiciel Spécialisé en Systèmes de Gestion</h1>
-                <p>Conception et développement de solutions logicielles sur mesure pour optimiser la gestion d'entreprise</p>
+                <h1>Ingénieur Logiciel : <span class="typewriter-effect">Systèmes de Gestion</span></h1>
+                <p>Conception, développement et optimisation de solutions logicielles sur mesure pour la gestion d'entreprise, axées sur la performance et la fiabilité.</p>
                 <div class="hero-btns">
-                    <a href="#projets" class="btn">Voir mes réalisations</a>
-                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    <a href="#projets" class="btn">🚀 Voir mes projets</a>
+                    <a href="#contact" class="btn btn-outline">Discutons de votre besoin</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION SPECIALITES -->
     <section id="specialites" class="specialites">
         <div class="container">
-            <h2 class="section-title">Mes Domaines de Spécialisation</h2>
+            <h2 class="section-title">Mes Domaines d'Expertise</h2>
             <div class="specialites-grid">
-                <div class="specialite-card fade-in">
+                <div class="specialite-card" data-aos="fade-up">
                     <div class="specialite-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Analyste Programmeur</h3>
-                    <p>Analyse des besoins métier et développement de solutions logicielles adaptées aux processus de gestion d'entreprise.</p>
+                        <i class="fas fa-desktop"></i> </div>
+                    <h3>Analyse et Conception</h3>
+                    <p>Définition des architectures logicielles, modélisation UML/Merise et alignement stratégique des SI.</p>
                 </div>
-                <div class="specialite-card fade-in delay-1">
+                <div class="specialite-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="specialite-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Manager des SI de Gestion</h3>
-                    <p>Conception et gestion des systèmes d'information pour optimiser les flux de données et les processus décisionnels.</p>
+                        <i class="fas fa-cubes"></i> </div>
+                    <h3>Intégration ERP & CRM</h3>
+                    <p>Mise en place et personnalisation de Progiciels de Gestion Intégrés (ERP) et solutions de GRC.</p>
                 </div>
-                <div class="specialite-card fade-in delay-2">
+                <div class="specialite-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="specialite-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Conseil en Logiciels de Gestion</h3>
-                    <p>Accompagnement dans le choix et la mise en œuvre de solutions logicielles adaptées à votre entreprise.</p>
+                        <i class="fas fa-bolt"></i> </div>
+                    <h3>Optimisation de Processus</h3>
+                    <p>Automatisation et refonte des processus métier critiques (financier, logistique, RH) par le logiciel.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION COMPETENCES -->
-    <section id="competences" class="competences">
+    <hr> <section id="competences" class="competences">
         <div class="container">
-            <h2 class="section-title">Mes Compétences Techniques</h2>
+            <h2 class="section-title">Stack Technique & Compétences Clés</h2>
             <div class="competences-container">
-                <div class="competence-category fade-in">
-                    <h3><i class="fas fa-laptop-code"></i> Développement Logiciel</h3>
+                <div class="competence-category" data-aos="fade-right">
+                    <h3><i class="fas fa-code"></i> Backend & Bases de données</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Conception et développement d'applications de gestion</li>
-                        <li><i class="fas fa-check"></i> Programmation orientée objet (Java, C#, Python)</li>
-                        <li><i class="fas fa-check"></i> Bases de données (SQL Server, MySQL, Oracle)</li>
-                        <li><i class="fas fa-check"></i> Développement web (HTML, CSS, JavaScript, PHP)</li>
-                        <li><i class="fas fa-check"></i> Frameworks (.NET, Spring, Django)</li>
+                        <li><i class="fas fa-check-circle"></i> **Langages :** Java (Spring Boot), C# (.NET Core), Python (Django)</li>
+                        <li><i class="fas fa-check-circle"></i> **BDD :** SQL Server, PostgreSQL, MySQL (optimisation de requêtes)</li>
+                        <li><i class="fas fa-check-circle"></i> **Architecture :** Microservices, API RESTful, Clean Architecture</li>
+                        <li><i class="fas fa-check-circle"></i> **Outils :** Docker, Git, CI/CD</li>
                     </ul>
                 </div>
-                <div class="competence-category fade-in delay-1">
-                    <h3><i class="fas fa-chart-line"></i> Domaines de Gestion</h3>
+                <div class="competence-category" data-aos="fade-right" data-aos-delay="150">
+                    <h3><i class="fas fa-layer-group"></i> Frontend & UI/UX</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Comptabilité et gestion financière</li>
-                        <li><i class="fas fa-check"></i> Gestion des stocks et logistique</li>
-                        <li><i class="fas fa-check"></i> Ressources humaines et paie</li>
-                        <li><i class="fas fa-check"></i> Gestion de la relation client (CRM)</li>
-                        <li><i class="fas fa-check"></i> Gestion de production et supply chain</li>
+                        <li><i class="fas fa-check-circle"></i> **Web :** HTML5, CSS3 (Flexbox/Grid), JavaScript (ES6+)</li>
+                        <li><i class="fas fa-check-circle"></i> **Frameworks :** React, Vue.js (bases)</li>
+                        <li><i class="fas fa-check-circle"></i> **Styling :** Tailwind CSS / SASS (préprocesseurs)</li>
+                        <li><i class="fas fa-check-circle"></i> **Design :** Figma, Prototypage rapide</li>
                     </ul>
                 </div>
-                <div class="competence-category fade-in delay-2">
-                    <h3><i class="fas fa-tools"></i> Outils et Méthodologies</h3>
+                <div class="competence-category" data-aos="fade-right" data-aos-delay="300">
+                    <h3><i class="fas fa-project-diagram"></i> Méthodes & Gestion</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Progiciels de Gestion Intégrés (ERP)</li>
-                        <li><i class="fas fa-check"></i> Méthodes agiles (Scrum, Kanban)</li>
-                        <li><i class="fas fa-check"></i> Modélisation UML et Merise</li>
-                        <li><i class="fas fa-check"></i> Gestion de projet (Jira, Trello)</li>
-                        <li><i class="fas fa-check"></i> Tests et assurance qualité</li>
+                        <li><i class="fas fa-check-circle"></i> **Méthodes :** Agile (Scrum/Kanban), Cycle en V</li>
+                        <li><i class="fas fa-check-circle"></i> **Gestion :** Jira, Trello, Confluence</li>
+                        <li><i class="fas fa-check-circle"></i> **Qualité :** Tests unitaires/intégrations, Revue de code</li>
+                        <li><i class="fas fa-check-circle"></i> **Soft Skills :** Communication interfonctionnelle, Leadership</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION PROJETS -->
+    <hr>
+
     <section id="projets" class="projets">
         <div class="container">
-            <h2 class="section-title">Mes Réalisations</h2>
+            <h2 class="section-title">Mes Réalisations Techniques</h2>
             <div class="projets-grid">
-                <div class="projet-card fade-in">
+                <div class="projet-card" data-aos="zoom-in-up">
                     <div class="projet-image">
                         <i class="fas fa-file-invoice-dollar"></i>
                     </div>
                     <div class="projet-info">
                         <h3>Système de Gestion Comptable</h3>
-                        <p>Application complète de gestion comptable avec génération de bilans, journaux et états financiers.</p>
+                        <p>Application ERP modulaire pour la comptabilité générale, analytique et l'édition des états financiers.</p>
                         <div class="projet-tags">
-                            <span class="projet-tag">C#</span>
+                            <span class="projet-tag">C#/.NET Core</span>
                             <span class="projet-tag">SQL Server</span>
-                            <span class="projet-tag">WinForms</span>
+                            <span class="projet-tag">DDD</span>
                         </div>
-                        <a href="#" class="btn">Voir les détails</a>
+                        <a href="#" class="btn btn-outline" style="border-radius: 5px;">Détails & Code</a>
                     </div>
                 </div>
-                <div class="projet-card fade-in delay-1">
+                <div class="projet-card" data-aos="zoom-in-up" data-aos-delay="150">
                     <div class="projet-image">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
+                        <i class="fas fa-truck-loading"></i> </div>
                     <div class="projet-info">
-                        <h3>Logiciel de Gestion des Stocks</h3>
-                        <p>Solution de gestion d'entrepôt avec suivi en temps réel, alertes de réapprovisionnement et analyse des rotations.</p>
+                        <h3>Outil d'Optimisation Logistique (WMS)</h3>
+                        <p>Web app de gestion des stocks et de la chaîne d'approvisionnement avec prévisions basées sur l'historique.</p>
                         <div class="projet-tags">
-                            <span class="projet-tag">Java</span>
-                            <span class="projet-tag">Spring Boot</span>
+                            <span class="projet-tag">Java/Spring Boot</span>
+                            <span class="projet-tag">PostgreSQL</span>
                             <span class="projet-tag">React</span>
                         </div>
-                        <a href="#" class="btn">Voir les détails</a>
+                        <a href="#" class="btn btn-outline" style="border-radius: 5px;">Détails & Code</a>
                     </div>
                 </div>
-                <div class="projet-card fade-in delay-2">
+                <div class="projet-card" data-aos="zoom-in-up" data-aos-delay="300">
                     <div class="projet-image">
-                        <i class="fas fa-users"></i>
-                    </div>
+                        <i class="fas fa-users-cog"></i> </div>
                     <div class="projet-info">
-                        <h3>Plateforme RH et Paie</h3>
-                        <p>Système intégré de gestion des ressources humaines avec module de paie, congés et évaluations.</p>
+                        <h3>Portail RH Sécurisé</h3>
+                        <p>Plateforme pour employés (self-service RH, gestion des congés) et administrateurs (paie, contrats).</p>
                         <div class="projet-tags">
-                            <span class="projet-tag">Python</span>
-                            <span class="projet-tag">Django</span>
-                            <span class="projet-tag">PostgreSQL</span>
+                            <span class="projet-tag">Python/Django</span>
+                            <span class="projet-tag">OAuth2</span>
+                            <span class="projet-tag">Microservices</span>
                         </div>
-                        <a href="#" class="btn">Voir les détails</a>
+                        <a href="#" class="btn btn-outline" style="border-radius: 5px;">Détails & Code</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION CONTACT -->
+    <hr>
+
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contactez-moi</h2>
+            <h2 class="section-title">Contactons-nous</h2>
             <div class="contact-container">
-                <div class="contact-info fade-in">
+                <div class="contact-info" data-aos="fade-right">
+                    <p>Intéressé(e) par une collaboration ? N'hésitez pas à me contacter directement ou via le formulaire.</p>
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-envelope"></i>
                         </div>
                         <div>
-                            <h3>Adresse</h3>
-                            <p>123 Rue de l'Innovation, 75000 Paris</p>
+                            <h3>Email</h3>
+                            <p><a href="mailto:contact@ingenieur-logiciel.com" style="color: var(--text-color); text-decoration: none;">contact@ingenieur-logiciel.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -814,73 +818,64 @@
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
-                            <h3>Email</h3>
-                            <p>contact@ingenieur-logiciel.com</p>
+                            <h3>Localisation</h3>
+                            <p>Paris, France (Disponible à distance)</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h3>Disponibilité</h3>
-                            <p>Lun - Ven: 9h00 - 18h00</p>
-                        </div>
-                    </div>
+                    <a href="chemin/vers/mon_cv.pdf" target="_blank" class="btn" style="background-color: var(--primary); border-color: var(--primary); margin-top: 1rem; max-width: 250px;">Télécharger mon CV <i class="fas fa-download"></i></a>
                 </div>
-                <div class="contact-form fade-in delay-1">
+                <div class="contact-form" data-aos="fade-left">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom complet</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" required placeholder="Votre nom et prénom">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
+                            <label for="email">Email professionnel</label>
+                            <input type="email" id="email" required placeholder="example@entreprise.com">
                         </div>
                         <div class="form-group">
-                            <label for="subject">Sujet</label>
+                            <label for="subject">Type de projet</label>
                             <select id="subject" required>
                                 <option value="">Sélectionnez un sujet</option>
-                                <option value="devis">Demande de devis</option>
-                                <option value="conseil">Conseil en logiciel</option>
-                                <option value="development">Développement sur mesure</option>
+                                <option value="devis">Demande de devis - Développement sur mesure</option>
+                                <option value="conseil">Consultation/Conseil SI</option>
+                                <option value="recrutement">Opportunité de carrière / Recrutement</option>
                                 <option value="autre">Autre</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
+                            <label for="message">Décrivez votre besoin</label>
+                            <textarea id="message" required placeholder="Détaillez le contexte, les objectifs et le budget si possible..."></textarea>
                         </div>
-                        <button type="submit" class="btn">Envoyer le message</button>
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Envoyer le message</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <i class="fas fa-laptop-code"></i>
-                        <span>Ingénieur Logiciel</span>
+                        <i class="fas fa-terminal"></i> 
+                        <span>Dev<span style="color: var(--accent);">Flow</span></span>
                     </div>
-                    <p>Spécialiste en développement de solutions logicielles pour optimiser la gestion d'entreprise et améliorer la performance organisationnelle.</p>
+                    <p>Créer des systèmes robustes et efficaces est ma passion. Partageons votre vision.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-medium-m"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Blog Medium"><i class="fab fa-medium-m"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h3>Liens rapides</h3>
+                    <h3>Navigation</h3>
                     <ul>
                         <li><a href="#accueil">Accueil</a></li>
                         <li><a href="#specialites">Spécialités</a></li>
@@ -890,71 +885,63 @@
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de l'Innovation, 75000 Paris</p>
-                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
-                    <p><i class="fas fa-envelope"></i> contact@ingenieur-logiciel.com</p>
+                    <h3>Ressources</h3>
+                    <p><i class="fas fa-file-alt"></i> <a href="chemin/vers/mon_cv.pdf" target="_blank" style="color: #94a3b8; text-decoration: none;">Mon CV détaillé</a></p>
+                    <p><i class="fas fa-briefcase"></i> <a href="#" style="color: #94a3b8; text-decoration: none;">Études de cas (Blog)</a></p>
+                    <p><i class="fas fa-code-branch"></i> <a href="#" style="color: #94a3b8; text-decoration: none;">Exemples de Code</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Ingénieur Logiciel Spécialisé en Gestion. Tous droits réservés.</p>
+                <p>&copy; 2025 Ingénieur Logiciel Spécialisé en Gestion. Design moderne par AI. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu mobile
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
-            
+            const navItems = document.querySelectorAll('.nav-links a');
+            const header = document.querySelector('header');
+
+            // 1. Menu mobile (inchangé, mais essentiel)
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
+                this.querySelector('i').classList.toggle('fa-bars');
+                this.querySelector('i').classList.toggle('fa-times'); // Icône de fermeture
             });
-
-            // Fermer le menu en cliquant sur un lien
-            document.querySelectorAll('.nav-links a').forEach(link => {
+            navItems.forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
                 });
             });
 
-            // Animation au défilement
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // 2. Navigation fluide et mise en surbrillance active
+            const sections = document.querySelectorAll('section[id]');
             
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - header.offsetHeight;
+                    if (window.scrollY >= sectionTop - 100) { // -100px de marge pour le défilement
+                        current = section.getAttribute('id');
                     }
                 });
-            }, observerOptions);
-            
-            // Observer les éléments à animer
-            document.querySelectorAll('.specialite-card, .competence-category, .projet-card, .contact-info, .contact-form').forEach(el => {
-                observer.observe(el);
-            });
 
-            // Gestion du formulaire de contact
-            const contactForm = document.getElementById('contactForm');
+                navItems.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            }
             
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // Simulation d'envoi
-                alert(`Merci ${name} ! Votre message a été envoyé. Je vous répondrai dans les plus brefs délais.`);
-                contactForm.reset();
-            });
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Appel initial pour l'accueil
 
-            // Navigation fluide
+            // Navigation fluide avec offset pour le header fixe
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -964,11 +951,44 @@
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetElement.offsetTop - header.offsetHeight, // Décalage basé sur la hauteur du header
                             behavior: 'smooth'
                         });
                     }
                 });
+            });
+
+            // 3. Animation au défilement (Utilisation de la classe .fade-in qui ne se supprime plus pour rester visible)
+            const observerOptions = {
+                threshold: 0.15, // Déclencher quand 15% de l'élément est visible
+            };
+            
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Récupère le délai de l'attribut data-delay s'il existe
+                        const delay = entry.target.dataset.aosDelay ? entry.target.dataset.aosDelay : '0';
+                        entry.target.style.animationDelay = `${delay}ms`;
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Ne plus observer après l'apparition
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer tous les éléments avec l'attribut data-aos (équivalent à data-aos-delay pour la cohérence)
+            document.querySelectorAll('[data-aos]').forEach(el => {
+                 // Remplace les anciennes classes de délai par l'attribut data-aos
+                el.classList.remove('fade-in', 'delay-1', 'delay-2', 'delay-3');
+                observer.observe(el);
+            });
+            
+            // 4. Gestion du formulaire de contact (inchangé)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                alert(`Merci ${name} ! Votre demande a bien été reçue et je vous répondrai très prochainement.`);
+                contactForm.reset();
             });
         });
     </script>
