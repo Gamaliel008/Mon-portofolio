@@ -1,36 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingénieur Logiciel - Spécialiste en Systèmes de Gestion</title>
+    <title>Ingénieur Logiciel - Systèmes de Gestion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         /* ========================================= */
-        /* == STYLES CSS AMÉLIORÉS == */
+        /* == STYLES CSS MINIMALISTES ET MODERNES == */
         /* ========================================= */
 
         /* VARIABLES ET RESET */
         :root {
-            /* Palette inspirée de la vidéo (Noir et Orange) */
-            --primary: #1A1A1A; /* Noir Profond pour le fond et les titres */
-            --secondary: #FF5722; /* Orange Vif pour l'Accent */
-            --accent: #E64A19; /* Orange un peu plus foncé */
-            --light: #f9f9f9;
+            /* Nouvelle Palette: Sombre, clair et accent moderne (Cyan Électrique) */
+            --primary: #1c1c1c; /* Noir très foncé pour le fond et les titres */
+            --secondary: #00bcd4; /* Cyan Électrique moderne pour l'Accent */
+            --accent: #0097a7; /* Cyan un peu plus foncé */
+            --light: #f4f4f4; /* Blanc cassé / Gris très clair pour le fond des sections */
             --dark: #0d0d0d;
             --text-color: #333;
             --text-light: #ecf0f1;
-            --shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transition plus douce */
+            --card-bg: white;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Ombre très légère */
+            --transition: all 0.3s ease-out;
+            --font-main: 'Poppins', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-main);
         }
 
         html {
@@ -40,7 +42,7 @@
         body {
             background-color: var(--light);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
@@ -53,392 +55,365 @@
 
         section {
             padding: 100px 0;
+            opacity: 0; /* Pour l'animation JS */
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             color: var(--primary);
-            position: relative;
-            font-size: 2.5rem; /* Taille de titre plus imposante */
+            font-size: 2.8rem;
             font-weight: 700;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background-color: var(--secondary);
-            margin: 10px auto;
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
         .btn {
             display: inline-block;
             background-color: var(--secondary);
-            color: white;
+            color: var(--primary); /* Texte sombre sur le bouton clair */
             padding: 14px 40px;
-            border-radius: 50px; /* Boutons arrondis */
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
         }
 
         .btn:hover {
             background-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.5); /* Ombre colorée au survol */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.5);
+            color: white; /* Texte blanc au survol */
         }
 
         .btn-outline {
             background-color: transparent;
             border: 2px solid var(--secondary);
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .btn-outline:hover {
             background-color: var(--secondary);
-            color: var(--primary); /* Texte sombre au survol */
+            color: white;
         }
 
         /* HEADER */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
+            background-color: var(--card-bg); /* En-tête blanc/clair */
+            padding: 0.8rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        .logo i {
-            margin-right: 10px;
-            color: var(--secondary);
+            color: var(--primary);
         }
         .logo span {
-            color: var(--secondary); /* Logo en orange */
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
+            color: var(--secondary);
         }
 
         .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 500;
+            color: var(--primary);
         }
 
         .nav-links a:hover {
             color: var(--secondary);
-            text-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
-        }
-
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
         }
 
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            color: var(--text-light);
-            text-align: center;
-            padding: 200px 0 140px; /* Plus d'espace */
-            margin-top: 60px;
+            background: var(--card-bg); /* Section Hero blanche */
+            color: var(--primary);
+            padding: 200px 0 160px;
+            margin-top: 0;
+            text-align: left;
             position: relative;
-            overflow: hidden;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 900px;
         }
-
+        
         .hero h1 {
-            font-size: 4rem; /* Grosse typographie comme dans l'exemple */
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            font-size: 3.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 900;
-            text-transform: uppercase;
-            opacity: 0; /* Pour l'animation JS/CSS */
+            line-height: 1.1;
+        }
+        .hero h1 span {
+            color: var(--secondary); /* Mise en évidence du rôle */
         }
 
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            opacity: 0; /* Pour l'animation JS/CSS */
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #555;
             font-weight: 300;
         }
         
-        /* Les boutons dans .hero-btns auront aussi opacity: 0 au début */
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 2rem;
-        }
-        .hero-btns .btn {
-            opacity: 0; /* Pour l'animation JS/CSS */
-        }
-
         /* SPECIALITES & PROJETS - CARTES */
         .specialites {
-            background-color: white;
+            background-color: var(--light);
         }
-        .specialites-grid, .projets-grid {
+        .specialites-grid, .projets-grid, .competences-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        .specialite-card, .projet-card {
-            background-color: white;
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            text-align: center;
+        .specialite-card, .projet-card, .competence-category {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
+            box-shadow: var(--shadow);
             border: 1px solid rgba(0, 0, 0, 0.05);
             opacity: 0; /* Pour l'animation JS */
+            transform: translateY(20px);
         }
 
-        .specialite-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        .specialite-card:hover {
-            transform: translateY(-8px) scale(1.02); /* Effet de profondeur plus visible */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .specialite-card:hover::before {
-            width: 100%;
-            opacity: 0.2; /* L'effet de couleur passe subtilement */
+        .specialite-card:hover, .projet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary); /* Bordure accentuée au survol */
         }
 
         .specialite-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--secondary);
-            margin-bottom: 1.5rem;
-            transition: transform 0.5s ease;
-        }
-        
-        .specialite-card:hover .specialite-icon {
-            transform: rotateY(180deg); /* Rotation 3D au survol */
+            margin-bottom: 1rem;
+            line-height: 1;
         }
 
         .specialite-card h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--primary);
+            font-weight: 600;
+        }
+        .specialite-card p {
+            color: #666;
+            font-size: 0.95rem;
         }
 
         /* COMPETENCES */
         .competences {
-            background-color: #f5f7fa;
+            background-color: var(--card-bg);
         }
-
+        
         .competence-category {
-            background-color: white;
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            opacity: 0; /* Pour l'animation JS */
+            text-align: left;
         }
         .competence-category h3 {
             color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
         }
         .competence-category h3 i {
             color: var(--secondary);
+            margin-right: 10px;
+        }
+        .competence-list {
+            list-style: none;
+        }
+        .competence-list li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
         }
         .competence-list li i {
-            color: var(--secondary); /* Icône de validation orange */
+            color: var(--secondary);
+            margin-right: 8px;
         }
 
         /* PROJETS */
         .projet-card {
-            padding: 0; /* Enlever le padding pour que l'image occupe toute la largeur */
+            padding: 0;
+            overflow: hidden;
             text-align: left;
-        }
-        .projet-card:hover {
-            /* Garde l'effet de survol défini plus haut */
         }
 
         .projet-image {
-            height: 200px;
-            background: linear-gradient(45deg, var(--secondary) 0%, var(--accent) 100%);
-            /* Ajout de la couleur d'accent dans l'image pour le branding */
+            height: 220px;
+            /* Gradient subtil pour la modernité */
+            background: linear-gradient(135deg, var(--secondary) 0%, #a5f3e4 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 2rem; /* Icône plus grande */
-            position: relative;
+            color: var(--primary);
+            font-size: 3rem;
             overflow: hidden;
-            border-radius: 8px 8px 0 0;
+            border-bottom: 3px solid var(--accent);
         }
 
         .projet-info {
             padding: 1.5rem;
         }
         .projet-info h3 {
-            color: var(--secondary);
+            color: var(--primary);
+            margin-bottom: 0.5rem;
         }
-
         .projet-tags {
             margin-top: 10px;
+            margin-bottom: 15px;
         }
         .projet-tag {
-            background-color: var(--secondary);
-            color: white;
+            background-color: var(--light);
+            color: var(--secondary);
             font-weight: 500;
             border-radius: 4px;
             padding: 4px 8px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             transition: var(--transition);
-        }
-        .projet-tag:hover {
-             opacity: 0.8;
-        }
-        .projet-info .btn {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 0.9rem;
+            border: 1px solid var(--secondary);
+            margin-right: 5px;
+            display: inline-block;
         }
 
         /* CONTACT */
-        .contact-icon {
-            background-color: var(--secondary);
+        .contact {
+            background-color: var(--light);
         }
-        .contact-form {
-            opacity: 0; /* Pour l'animation JS */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: flex-start;
         }
         .contact-info {
-            opacity: 0; /* Pour l'animation JS */
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .contact-icon {
+            background-color: var(--secondary);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        .contact-item h3 {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+        .contact-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+            font-size: 1rem;
+            background-color: var(--light); /* Fond de champ clair */
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
         }
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             border-color: var(--secondary);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.2); /* Ombre d'accentuation */
+            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1);
+            background-color: white;
         }
 
         /* FOOTER */
         footer {
             background-color: var(--primary);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
         }
         .footer-logo i {
             color: var(--secondary);
         }
-        .footer-links h3::after,
-        .footer-contact h3::after {
-            background-color: var(--secondary);
+        .footer-logo span {
+            color: var(--text-light);
         }
-        .social-links a:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
-        }
+
+        /* Les styles du footer ont été simplifiés dans le code ci-dessous */
         
         /* RESPONSIVE */
         @media (max-width: 768px) {
             /* ... (Styles responsives inchangés) ... */
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                padding: 1rem 0;
-                box-shadow: var(--shadow);
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .nav-links li {
-                margin: 0.5rem 0;
-                text-align: center;
-            }
-            .menu-toggle {
-                display: block;
-            }
             .hero h1 {
                 font-size: 2.5rem;
             }
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
+            .hero p {
+                font-size: 1.1rem;
             }
-            .btn {
-                width: 100%;
-                max-width: 250px;
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 2rem;
             }
         }
 
-        /* ANIMATIONS CLÉS */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
-        }
-        
-        /* Animation pour le Hero Title (Zoom et Stagger) */
-        @keyframes heroZoom {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .hero-content h1 {
-            animation: heroZoom 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
-        }
-        .hero-content p {
-            animation: heroZoom 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) 0.3s forwards;
-        }
-        .hero-btns .btn:first-child {
-            animation: heroZoom 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) 0.6s forwards;
-        }
-        .hero-btns .btn:last-child {
-            animation: heroZoom 1.2s cubic-bezier(0.17, 0.84, 0.44, 1) 0.8s forwards;
+        /* Animations spécifiques (utilisées par JS) */
+        .card-staggered {
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
     </style>
@@ -446,33 +421,33 @@
 <body>
     <header>
         <div class="container">
-            <nav>
+            <nav style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="logo">
                     <i class="fas fa-laptop-code"></i>
-                    <span>Ingénieur Logiciel</span>
+                    <span>Ingénieur </span><span style="color: var(--secondary);">Logiciel</span>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#specialites">Spécialités</a></li>
-                    <li><a href="#competences">Compétences</a></li>
-                    <li><a href="#projets">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul class="nav-links" style="display: flex; list-style: none;">
+                    <li><a href="#accueil" style="margin-left: 2rem; text-decoration: none;">Accueil</a></li>
+                    <li><a href="#specialites" style="margin-left: 2rem; text-decoration: none;">Spécialités</a></li>
+                    <li><a href="#competences" style="margin-left: 2rem; text-decoration: none;">Compétences</a></li>
+                    <li><a href="#projets" style="margin-left: 2rem; text-decoration: none;">Projets</a></li>
+                    <li><a href="#contact" style="margin-left: 2rem; text-decoration: none;">Contact</a></li>
                 </ul>
-                <div class="menu-toggle">
+                <div class="menu-toggle" style="display: none; cursor: pointer; font-size: 1.5rem;">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section id="accueil" class="hero">
+    <section id="accueil" class="hero visible" style="padding-top: 140px; opacity: 1; transform: translateY(0);">
         <div class="container">
             <div class="hero-content">
-                <h1>Ingénieur Logiciel Spécialisé en Systèmes de Gestion</h1>
-                <p>Conception et développement de solutions logicielles sur mesure pour optimiser la gestion d'entreprise</p>
+                <h1>Conception et Optimisation de <span>Systèmes de Gestion</span> d'Entreprise.</h1>
+                <p>Ingénieur Logiciel expérimenté, spécialisé dans la transformation numérique des processus métier critiques (ERP, CRM, Finance).</p>
                 <div class="hero-btns">
-                    <a href="#projets" class="btn">Voir mes réalisations</a>
-                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    <a href="#projets" class="btn">Voir mes projets <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+                    <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Discutons de votre projet</a>
                 </div>
             </div>
         </div>
@@ -480,28 +455,28 @@
 
     <section id="specialites" class="specialites">
         <div class="container">
-            <h2 class="section-title">Mes Domaines de Spécialisation</h2>
+            <h2 class="section-title">Domaines d'Expertise</h2>
             <div class="specialites-grid">
-                <div class="specialite-card">
+                <div class="specialite-card card-staggered">
                     <div class="specialite-icon">
-                        <i class="fas fa-code"></i>
+                        <i class="fas fa-cubes"></i>
                     </div>
-                    <h3>Analyste Programmeur</h3>
-                    <p>Analyse des besoins métier et développement de solutions logicielles adaptées aux processus de gestion d'entreprise.</p>
+                    <h3>Intégration ERP & PGI</h3>
+                    <p>Mise en place, personnalisation et intégration de Progiciels de Gestion Intégrés (SAP, Odoo, Dynamics 365) pour unifier les opérations.</p>
                 </div>
-                <div class="specialite-card">
+                <div class="specialite-card card-staggered">
                     <div class="specialite-icon">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Manager des SI de Gestion</h3>
-                    <p>Conception et gestion des systèmes d'information pour optimiser les flux de données et les processus décisionnels.</p>
+                    <h3>Business Intelligence (BI)</h3>
+                    <p>Développement de tableaux de bord, d'outils de reporting et d'analyse de données pour éclairer la prise de décision stratégique.</p>
                 </div>
-                <div class="specialite-card">
+                <div class="specialite-card card-staggered">
                     <div class="specialite-icon">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-user-tie"></i>
                     </div>
-                    <h3>Conseil en Logiciels de Gestion</h3>
-                    <p>Accompagnement dans le choix et la mise en œuvre de solutions logicielles adaptées à votre entreprise.</p>
+                    <h3>Développement sur Mesure</h3>
+                    <p>Création d'applications métier spécifiques (facturation, RH, logistique) adaptées aux besoins uniques de votre entreprise.</p>
                 </div>
             </div>
         </div>
@@ -509,36 +484,30 @@
 
     <section id="competences" class="competences">
         <div class="container">
-            <h2 class="section-title">Mes Compétences Techniques</h2>
+            <h2 class="section-title">Compétences Techniques</h2>
             <div class="competences-container">
-                <div class="competence-category">
-                    <h3><i class="fas fa-laptop-code"></i> Développement Logiciel</h3>
+                <div class="competence-category card-staggered">
+                    <h3><i class="fas fa-code"></i> Langages & Frameworks</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Conception et développement d'applications de gestion</li>
-                        <li><i class="fas fa-check"></i> Programmation orientée objet (Java, C#, Python)</li>
-                        <li><i class="fas fa-check"></i> Bases de données (SQL Server, MySQL, Oracle)</li>
-                        <li><i class="fas fa-check"></i> Développement web (HTML, CSS, JavaScript, PHP)</li>
-                        <li><i class="fas fa-check"></i> Frameworks (.NET, Spring, Django)</li>
+                        <li><i class="fas fa-check-circle"></i> **C# (.NET)**, Java (Spring Boot)</li>
+                        <li><i class="fas fa-check-circle"></i> Python (Django, Pandas)</li>
+                        <li><i class="fas fa-check-circle"></i> JavaScript (React, Node.js)</li>
                     </ul>
                 </div>
-                <div class="competence-category">
-                    <h3><i class="fas fa-chart-line"></i> Domaines de Gestion</h3>
+                <div class="competence-category card-staggered">
+                    <h3><i class="fas fa-database"></i> Bases de Données & Cloud</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Comptabilité et gestion financière</li>
-                        <li><i class="fas fa-check"></i> Gestion des stocks et logistique</li>
-                        <li><i class="fas fa-check"></i> Ressources humaines et paie</li>
-                        <li><i class="fas fa-check"></i> Gestion de la relation client (CRM)</li>
-                        <li><i class="fas fa-check"></i> Gestion de production et supply chain</li>
+                        <li><i class="fas fa-check-circle"></i> SQL Server, PostgreSQL, MongoDB</li>
+                        <li><i class="fas fa-check-circle"></i> Modélisation OLAP et DWH</li>
+                        <li><i class="fas fa-check-circle"></i> Cloud (Azure, AWS) & Docker</li>
                     </ul>
                 </div>
-                <div class="competence-category">
-                    <h3><i class="fas fa-tools"></i> Outils et Méthodologies</h3>
+                <div class="competence-category card-staggered">
+                    <h3><i class="fas fa-tools"></i> Méthodes & Outils</h3>
                     <ul class="competence-list">
-                        <li><i class="fas fa-check"></i> Progiciels de Gestion Intégrés (ERP)</li>
-                        <li><i class="fas fa-check"></i> Méthodes agiles (Scrum, Kanban)</li>
-                        <li><i class="fas fa-check"></i> Modélisation UML et Merise</li>
-                        <li><i class="fas fa-check"></i> Gestion de projet (Jira, Trello)</li>
-                        <li><i class="fas fa-check"></i> Tests et assurance qualité</li>
+                        <li><i class="fas fa-check-circle"></i> Méthodologies Agiles (Scrum/Kanban)</li>
+                        <li><i class="fas fa-check-circle"></i> UML, Merise, BPMN</li>
+                        <li><i class="fas fa-check-circle"></i> Git, CI/CD, JIRA</li>
                     </ul>
                 </div>
             </div>
@@ -547,51 +516,51 @@
 
     <section id="projets" class="projets">
         <div class="container">
-            <h2 class="section-title">Mes Réalisations</h2>
+            <h2 class="section-title">Dernières Réalisations</h2>
             <div class="projets-grid">
-                <div class="projet-card">
+                <div class="projet-card card-staggered">
                     <div class="projet-image">
-                        <i class="fas fa-file-invoice-dollar"></i>
+                        <i class="fas fa-money-check-alt"></i>
                     </div>
                     <div class="projet-info">
-                        <h3>Système de Gestion Comptable</h3>
-                        <p>Application complète de gestion comptable avec génération de bilans, journaux et états financiers.</p>
+                        <h3>Module de Paiement Sécurisé</h3>
+                        <p>Refonte d'un système de transactions financières en microservices C# pour la conformité PSD2.</p>
                         <div class="projet-tags">
-                            <span class="projet-tag">C#</span>
-                            <span class="projet-tag">SQL Server</span>
-                            <span class="projet-tag">WinForms</span>
+                            <span class="projet-tag">C#/.NET</span>
+                            <span class="projet-tag">Microservices</span>
+                            <span class="projet-tag">Azure</span>
                         </div>
-                        <a href="#" class="btn">Voir les détails</a>
+                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
                     </div>
                 </div>
-                <div class="projet-card">
+                <div class="projet-card card-staggered">
                     <div class="projet-image">
-                        <i class="fas fa-warehouse"></i>
+                        <i class="fas fa-truck-loading"></i>
                     </div>
                     <div class="projet-info">
-                        <h3>Logiciel de Gestion des Stocks</h3>
-                        <p>Solution de gestion d'entrepôt avec suivi en temps réel, alertes de réapprovisionnement et analyse des rotations.</p>
-                        <div class="projet-tags">
-                            <span class="projet-tag">Java</span>
-                            <span class="projet-tag">Spring Boot</span>
-                            <span class="projet-tag">React</span>
-                        </div>
-                        <a href="#" class="btn">Voir les détails</a>
-                    </div>
-                </div>
-                <div class="projet-card">
-                    <div class="projet-image">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="projet-info">
-                        <h3>Plateforme RH et Paie</h3>
-                        <p>Système intégré de gestion des ressources humaines avec module de paie, congés et évaluations.</p>
+                        <h3>Optimiseur de Chaîne Logistique</h3>
+                        <p>Application Python qui utilise l'IA pour prédire les besoins en stock et optimiser les trajets de livraison.</p>
                         <div class="projet-tags">
                             <span class="projet-tag">Python</span>
-                            <span class="projet-tag">Django</span>
+                            <span class="projet-tag">TensorFlow</span>
                             <span class="projet-tag">PostgreSQL</span>
                         </div>
-                        <a href="#" class="btn">Voir les détails</a>
+                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
+                    </div>
+                </div>
+                <div class="projet-card card-staggered">
+                    <div class="projet-image">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div class="projet-info">
+                        <h3>Portail Client RH (SaaS)</h3>
+                        <p>Plateforme web moderne (React/Node) permettant aux PME de gérer les dossiers et les demandes de congés des employés.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">React</span>
+                            <span class="projet-tag">Node.js</span>
+                            <span class="projet-tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
                     </div>
                 </div>
             </div>
@@ -600,16 +569,16 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Contactez-moi</h2>
+            <h2 class="section-title">Me Contacter</h2>
             <div class="contact-container">
-                <div class="contact-info">
+                <div class="contact-info card-staggered">
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
-                            <h3>Adresse</h3>
-                            <p>123 Rue de l'Innovation, 75000 Paris</p>
+                            <h3>Localisation</h3>
+                            <p>Paris, France (Disponible en remote)</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -618,7 +587,7 @@
                         </div>
                         <div>
                             <h3>Téléphone</h3>
-                            <p>+33 1 23 45 67 89</p>
+                            <p>+33 6 XX XX XX XX</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -626,45 +595,36 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div>
-                            <h3>Email</h3>
-                            <p>contact@ingenieur-logiciel.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h3>Disponibilité</h3>
-                            <p>Lun - Ven: 9h00 - 18h00</p>
+                            <h3>Email Professionnel</h3>
+                            <p>prenom.nom@professionnel.fr</p>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form card-staggered">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Nom complet</label>
+                            <label for="name">Votre Nom</label>
                             <input type="text" id="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Votre Email</label>
                             <input type="email" id="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Sujet</label>
+                            <label for="subject">Votre Projet Concerne...</label>
                             <select id="subject" required>
-                                <option value="">Sélectionnez un sujet</option>
-                                <option value="devis">Demande de devis</option>
-                                <option value="conseil">Conseil en logiciel</option>
-                                <option value="development">Développement sur mesure</option>
+                                <option value="">Sélectionnez un domaine</option>
+                                <option value="devis">Intégration ERP/PGI</option>
+                                <option value="conseil">Développement sur Mesure</option>
+                                <option value="development">Consulting BI/Reporting</option>
                                 <option value="autre">Autre</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
+                            <label for="message">Message détaillé</label>
                             <textarea id="message" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Envoyer le message</button>
+                        <button type="submit" class="btn">Envoyer la demande</button>
                     </form>
                 </div>
             </div>
@@ -672,41 +632,19 @@
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <i class="fas fa-laptop-code"></i>
-                        <span>Ingénieur Logiciel</span>
-                    </div>
-                    <p>Spécialiste en développement de solutions logicielles pour optimiser la gestion d'entreprise et améliorer la performance organisationnelle.</p>
-                    <div class="social-links">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Medium"><i class="fab fa-medium-m"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#specialites">Spécialités</a></li>
-                        <li><a href="#competences">Compétences</a></li>
-                        <li><a href="#projets">Projets</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de l'Innovation, 75000 Paris</p>
-                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
-                    <p><i class="fas fa-envelope"></i> contact@ingenieur-logiciel.com</p>
-                </div>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div class="footer-logo">
+                <i class="fas fa-laptop-code"></i>
+                <span>Ingénieur </span><span style="color: var(--secondary);">Logiciel</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Ingénieur Logiciel Spécialisé en Gestion. Tous droits réservés.</p>
+            <div class="social-links" style="margin-top: 15px;">
+                <a href="#" title="LinkedIn" style="color: white; margin-left: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub" style="color: white; margin-left: 15px;"><i class="fab fa-github"></i></a>
+                <a href="#" title="Twitter" style="color: white; margin-left: 15px;"><i class="fab fa-twitter"></i></a>
             </div>
+        </div>
+        <div class="footer-bottom" style="text-align: center; margin-top: 30px; font-size: 0.85rem; color: #aaa;">
+            <p>&copy; 2024 Portfolio IT. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -715,68 +653,11 @@
             // 1. Gestion du menu mobile (inchangé)
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
-            
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
             });
 
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
-
-            // 2. Animation au défilement (IntersectionObserver avec "Stagger" pour les grilles)
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            // Éléments à animer (cartes de grille + catégories de compétences + contact)
-            const elementsToAnimate = document.querySelectorAll('.specialite-card, .competence-category, .projet-card, .contact-info, .contact-form');
-
-            const observer = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        
-                        // Si c'est un élément de grille (cartes)
-                        if (target.classList.contains('specialite-card') || target.classList.contains('projet-card')) {
-                            // Calculer l'index dans la grille pour un décalage (stagger)
-                            const parentGrid = target.closest('.specialites-grid, .projets-grid');
-                            const children = Array.from(parentGrid.children);
-                            const index = children.indexOf(target);
-                            target.style.animationDelay = `${index * 0.15}s`; // Délai entre les cartes
-                            target.classList.add('fade-in');
-                        } 
-                        // Si ce sont les autres blocs (compétences, contact)
-                        else {
-                            target.classList.add('fade-in');
-                        }
-                        
-                        observer.unobserve(target); // Arrêter d'observer une fois animé
-                    }
-                });
-            }, observerOptions);
-            
-            // Initialisation de l'observation
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
-
-
-            // 3. Gestion du formulaire de contact (Simulation)
-            const contactForm = document.getElementById('contactForm');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                alert(`Merci ${name} ! Votre message a été envoyé. Je vous répondrai dans les plus brefs délais.`);
-                contactForm.reset();
-            });
-
-            // 4. Navigation fluide (Scroll)
+            // 2. Navigation fluide (Scroll)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -786,11 +667,60 @@
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Décalage pour le header fixe
+                            top: targetElement.offsetTop - 80, 
                             behavior: 'smooth'
                         });
+                        navLinks.classList.remove('active'); // Fermer le menu après le clic
                     }
                 });
+            });
+
+            // 3. Animation au défilement (IntersectionObserver pour un "fade-in" général et "staggered" pour les cartes)
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const sections = document.querySelectorAll('section');
+            
+            const sectionObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Appliquer l'animation "staggered" uniquement aux cartes dans cette section
+                        const cards = entry.target.querySelectorAll('.card-staggered');
+                        cards.forEach((card, index) => {
+                            // S'assurer que les cartes commencent masquées pour l'effet
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            
+                            // Appliquer l'animation après un délai basé sur l'index
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, index * 150 + 50); // Délai de 150ms entre les cartes
+                        });
+
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+            
+            // Observez toutes les sections (sauf la section 'accueil' qui est déjà visible)
+            sections.forEach(el => {
+                if(el.id !== 'accueil') {
+                    sectionObserver.observe(el);
+                }
+            });
+
+            // 4. Gestion du formulaire de contact (Simulation)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                alert(`Message envoyé ! Merci, ${name}. Je vous recontacterai rapidement.`);
+                contactForm.reset();
             });
         });
     </script>
