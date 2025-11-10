@@ -1,1 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactez-moi - Ingénieur Logiciel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [COLLER ICI TOUT LE CONTENU DE LA BALISE <style> DU FICHIER ORIGINAL] */
+        /* ... Inclure toutes les variables, resets, styles de header, footer, etc. ... */
+        :root {
+            --primary: #FF5722;
+            --secondary: #E64A19;
+            --dark-bg: #111111;
+            --dark-card: #1c1c1c;
+            --text-light: #f4f4f4;
+            --text-muted: #aaaaaa;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-main: 'Poppins', sans-serif;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 80px; 
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* BOUTONS */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--dark-card); 
+            padding: 14px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.6);
+            color: white; 
+        }
+
+        /* CONTACT (Minimaliste et Centré) */
+        section {
+            padding: 100px 0;
+            background-color: var(--dark-card);
+            text-align: center;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text-light);
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--dark-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            transition: border-color 0.3s;
+            font-size: 1rem;
+            background-color: #222;
+            color: var(--text-light);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.2);
+            background-color: #111;
+        }
+        
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--dark-card);
+            padding: 0.8rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .logo { color: var(--text-light); font-size: 1.8rem; font-weight: 700; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; margin-left: 2rem; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark-bg);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        .footer-logo { margin-bottom: 1rem; }
+        .social-links a { color: var(--text-muted); font-size: 1.5rem; margin: 0 10px; transition: all 0.3s; }
+        .social-links a:hover { color: var(--primary); }
+        .footer-bottom { margin-top: 20px; font-size: 0.8rem; color: #666; }
+
+        /* RESPONSIVE (inclure le menu mobile complet) */
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+        .menu-toggle i { color: var(--primary); }
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 60px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-card);
+                border-top: 1px solid #333;
+                padding: 1rem 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { text-align: center; margin: 0; }
+            .nav-links a { display: block; padding: 10px 0; margin: 0; border-bottom: 1px solid #222; }
+            .nav-links li:last-child a { border-bottom: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="flex-between">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>MON </span><span>PORTFOLIO</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="specialites.html">Services</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet de la demande</label>
+                        <select id="subject" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="devis">Projet ERP/Intégration</option>
+                            <option value="conseil">Consulting / Architecture</option>
+                            <option value="development">Développement Sur Mesure</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">ENVOYER</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-laptop-code"></i>
+                <span>MON </span><span>PORTFOLIO</span>
+            </div>
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="Dribbble (pour l'inspiration!)"><i class="fab fa-dribbble"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 [Votre Nom]. Inspiré par le design graphique.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du menu mobile (Hamburger)
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Gestion du formulaire de contact (Simulation)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                alert(`Message envoyé ! Merci, ${name}. Je vous recontacterai rapidement.`);
+                contactForm.reset();
+            });
+            
+            // Active le lien de navigation correspondant à cette page
+            const currentPath = window.location.pathname.split('/').pop();
+            const navLinksList = document.querySelectorAll('.nav-links a');
+            navLinksList.forEach(link => {
+                if (link.getAttribute('href').includes(currentPath)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
