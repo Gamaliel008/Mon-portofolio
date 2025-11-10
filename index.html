@@ -138,7 +138,7 @@
             z-index: 1001;
         }
 
-        /* Hero Section */
+        /* Hero Section avec Carrousel */
         .hero {
             background: var(--gradient-light);
             padding: 180px 0 120px;
@@ -170,8 +170,14 @@
             opacity: 0.1;
         }
 
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
         .hero-content {
-            max-width: 800px;
             position: relative;
             z-index: 1;
         }
@@ -201,6 +207,128 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        /* Carrousel */
+        .carousel-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            height: 500px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--card-bg);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide:nth-child(1) {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .carousel-content {
+            max-width: 90%;
+        }
+
+        .carousel-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .carousel-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
         }
 
         .btn {
@@ -687,8 +815,17 @@
                 grid-template-columns: 1fr;
             }
             
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
             .hero h1 {
                 font-size: 3rem;
+            }
+            
+            .carousel-container {
+                height: 400px;
             }
         }
 
@@ -754,6 +891,14 @@
             .footer-social {
                 justify-content: center;
             }
+            
+            .carousel-container {
+                height: 350px;
+            }
+            
+            .carousel-content h2 {
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -770,6 +915,18 @@
             .hero-btns {
                 flex-direction: column;
             }
+            
+            .carousel-container {
+                height: 300px;
+            }
+            
+            .carousel-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-content p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -782,10 +939,10 @@
             <div class="logo"><i class="fas fa-laptop-code"></i> Ingénieur <span>Logiciel</span></div>
             <ul class="nav-links">
                 <li><a href="#accueil" class="active">Accueil</a></li>
-                <li><a href="#specialites">Spécialités</a></li>
-                <li><a href="#competences">Compétences</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="specialites/index.html">Spécialités</a></li>
+                <li><a href="competences/index.html">Compétences</a></li>
+                <li><a href="projets/index.html">Projets</a></li>
+                <li><a href="contacts/index.html">Contact</a></li>
             </ul>
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </nav>
@@ -794,12 +951,54 @@
 
 <section id="accueil" class="hero visible">
     <div class="container">
-        <div class="hero-content">
-            <h1>Conception et Optimisation de <span>Systèmes de Gestion</span></h1>
-            <p>Ingénieur Logiciel spécialisé dans la transformation numérique et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
-            <div class="hero-btns">
-                <a href="#projets" class="btn">Voir mes projets <i class="fas fa-arrow-right"></i></a>
-                <a href="#contact" class="btn btn-outline">Discutons de votre projet</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Conception et Optimisation de <span>Systèmes de Gestion</span></h1>
+                <p>Ingénieur Logiciel spécialisé dans la transformation numérique et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
+                <div class="hero-btns">
+                    <a href="projets/index.html" class="btn">Voir mes projets <i class="fas fa-arrow-right"></i></a>
+                    <a href="contacts/index.html" class="btn btn-outline">Discutons de votre projet</a>
+                </div>
+            </div>
+            
+            <!-- Carrousel de présentation -->
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <div class="carousel-content">
+                        <h2>Expérience & Expertise</h2>
+                        <p>Plus de 8 ans d'expérience dans le développement de solutions logicielles d'entreprise. Spécialiste des systèmes ERP, CRM et des plateformes de gestion intégrée.</p>
+                        <p>J'accompagne les entreprises dans leur transformation digitale avec des solutions sur mesure et évolutives.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <h2>Approche & Méthodologie</h2>
+                        <p>Je privilégie une approche agile centrée sur l'utilisateur final. Chaque projet est l'occasion de créer une solution qui répond parfaitement aux besoins métier.</p>
+                        <p>De l'analyse des besoins à la mise en production, je garantis un processus transparent et collaboratif.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-content">
+                        <h2>Valeurs & Engagement</h2>
+                        <p>Qualité, performance et maintenabilité sont au cœur de mon travail. Je m'engage à fournir un code propre, documenté et testé.</p>
+                        <p>Je suis constamment à la pointe des nouvelles technologies pour proposer les solutions les plus adaptées et innovantes.</p>
+                    </div>
+                </div>
+                
+                <!-- Indicateurs du carrousel -->
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active" data-slide="0"></div>
+                    <div class="carousel-indicator" data-slide="1"></div>
+                    <div class="carousel-indicator" data-slide="2"></div>
+                </div>
+                
+                <!-- Navigation du carrousel -->
+                <button class="carousel-nav carousel-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav carousel-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -815,6 +1014,7 @@
                 </div>
                 <h3>Intégration ERP & PGI</h3>
                 <p>Mise en place, personnalisation et intégration de Progiciels de Gestion Intégrés (SAP, Odoo, Dynamics 365) pour unifier les opérations.</p>
+                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
             </div>
             <div class="specialite-card card-staggered">
                 <div class="specialite-icon">
@@ -822,6 +1022,7 @@
                 </div>
                 <h3>Business Intelligence (BI)</h3>
                 <p>Développement de tableaux de bord, d'outils de reporting et d'analyse de données pour éclairer la prise de décision stratégique.</p>
+                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
             </div>
             <div class="specialite-card card-staggered">
                 <div class="specialite-icon">
@@ -829,6 +1030,7 @@
                 </div>
                 <h3>Développement sur Mesure</h3>
                 <p>Création d'applications métier spécifiques (facturation, RH, logistique) adaptées aux besoins uniques de votre entreprise.</p>
+                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
             </div>
         </div>
     </div>
@@ -846,6 +1048,7 @@
                     <li><i class="fas fa-check-circle"></i> JavaScript (React, Node.js, Vue.js)</li>
                     <li><i class="fas fa-check-circle"></i> TypeScript, HTML5, CSS3/SASS</li>
                 </ul>
+                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
             </div>
             <div class="competence-category card-staggered">
                 <h3><i class="fas fa-database"></i> Bases de Données & Cloud</h3>
@@ -855,6 +1058,7 @@
                     <li><i class="fas fa-check-circle"></i> Modélisation OLAP et Data Warehouse</li>
                     <li><i class="fas fa-check-circle"></i> Cloud (Azure, AWS) & Docker</li>
                 </ul>
+                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
             </div>
             <div class="competence-category card-staggered">
                 <h3><i class="fas fa-tools"></i> Méthodes & Outils</h3>
@@ -864,6 +1068,7 @@
                     <li><i class="fas fa-check-circle"></i> Git, CI/CD, JIRA, Confluence</li>
                     <li><i class="fas fa-check-circle"></i> Tests unitaires et d'intégration</li>
                 </ul>
+                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
             </div>
         </div>
     </div>
@@ -886,7 +1091,7 @@
                         <span class="projet-tag">Azure</span>
                         <span class="projet-tag">SQL Server</span>
                     </div>
-                    <a href="#" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
+                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="projet-card card-staggered">
@@ -902,7 +1107,7 @@
                         <span class="projet-tag">PostgreSQL</span>
                         <span class="projet-tag">Django</span>
                     </div>
-                    <a href="#" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
+                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="projet-card card-staggered">
@@ -918,9 +1123,12 @@
                         <span class="projet-tag">MongoDB</span>
                         <span class="projet-tag">AWS</span>
                     </div>
-                    <a href="#" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
+                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="projets/index.html" class="btn btn-outline">Voir tous mes projets</a>
         </div>
     </div>
 </section>
@@ -966,6 +1174,7 @@
                         <p>Réponse sous 24h</p>
                     </div>
                 </div>
+                <a href="contacts/index.html" class="btn" style="width: 100%; justify-content: center; margin-top: 1rem;">Page de contact complète</a>
             </div>
             <div class="contact-form card-staggered">
                 <form id="contactForm">
@@ -1014,10 +1223,10 @@
             <div class="footer-links">
                 <h4>Navigation</h4>
                 <a href="#accueil">Accueil</a>
-                <a href="#specialites">Spécialités</a>
-                <a href="#competences">Compétences</a>
-                <a href="#projets">Projets</a>
-                <a href="#contact">Contact</a>
+                <a href="specialites/index.html">Spécialités</a>
+                <a href="competences/index.html">Compétences</a>
+                <a href="projets/index.html">Projets</a>
+                <a href="contacts/index.html">Contact</a>
             </div>
             <div class="footer-contact">
                 <h4>Contact</h4>
@@ -1133,6 +1342,64 @@
         document.querySelectorAll('.card-staggered').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
+        });
+
+        // Carrousel functionality
+        const carouselSlides = document.querySelectorAll('.carousel-slide');
+        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+        const prevButton = document.querySelector('.carousel-prev');
+        const nextButton = document.querySelector('.carousel-next');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            // Masquer toutes les slides
+            carouselSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Désactiver tous les indicateurs
+            carouselIndicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Afficher la slide courante
+            carouselSlides[index].classList.add('active');
+            carouselIndicators[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % carouselSlides.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            let prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
+            showSlide(prevIndex);
+        }
+
+        // Événements pour les boutons de navigation
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        // Événements pour les indicateurs
+        carouselIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        // Défilement automatique
+        let carouselInterval = setInterval(nextSlide, 5000);
+
+        // Arrêter le défilement automatique au survol
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextSlide, 5000);
         });
     });
 </script>
