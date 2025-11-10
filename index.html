@@ -29,7 +29,6 @@
             --gradient-primary: linear-gradient(135deg, #1a56db, #3f83f8);
             --gradient-secondary: linear-gradient(135deg, #1f2937, #4b5563);
             --gradient-accent: linear-gradient(135deg, #f59e0b, #fbbf24);
-            --gradient-purple: linear-gradient(135deg, #8b5cf6, #a78bfa);
         }
 
         * {
@@ -161,7 +160,6 @@
             background: linear-gradient(rgba(31, 41, 55, 0.9), rgba(31, 41, 55, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
             color: var(--white);
             padding: 180px 0 100px;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -178,28 +176,22 @@
             z-index: 0;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjAuNSIgZmlsbD0iIzFhNTZkYiIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
-            opacity: 0.3;
-            z-index: 0;
-        }
-
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
             position: relative;
             z-index: 1;
+        }
+
+        .hero-text {
+            text-align: left;
         }
 
         .hero-subtitle {
@@ -222,19 +214,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeInUp 1s ease-out 0.2s both;
-            position: relative;
-        }
-
-        .hero-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--gradient-accent);
-            border-radius: 2px;
         }
 
         .hero-description {
@@ -242,15 +221,12 @@
             margin-bottom: 40px;
             color: #d1d5db;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         .hero-buttons {
             display: flex;
             gap: 20px;
-            justify-content: center;
             flex-wrap: wrap;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
@@ -316,6 +292,100 @@
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
         }
 
+        /* --- CAROUSEL --- */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
         /* --- SECTIONS COMMON STYLES --- */
         .section {
             padding: 100px 0;
@@ -346,27 +416,12 @@
         /* --- EXPERTISE SECTION --- */
         .expertise {
             background-color: var(--white);
-            position: relative;
-        }
-
-        .expertise::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjAuNSIgZmlsbD0iIzFhNTZkYiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
-            opacity: 0.1;
-            z-index: 0;
         }
 
         .expertise-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            position: relative;
-            z-index: 1;
         }
 
         .expertise-card {
@@ -423,26 +478,6 @@
             color: var(--primary-color);
             margin-bottom: 20px;
             transition: var(--transition);
-            position: relative;
-            display: inline-block;
-        }
-
-        .expertise-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.5s ease;
-            z-index: -1;
-        }
-
-        .expertise-card:hover .expertise-icon::after {
-            transform: translate(-50%, -50%) scale(1);
         }
 
         .expertise-card h3 {
@@ -462,27 +497,12 @@
         /* --- APPROACH SECTION --- */
         .approach {
             background-color: var(--light-bg);
-            position: relative;
-        }
-
-        .approach::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjAuNSIgZmlsbD0iIzFmMjkzNyIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
-            opacity: 0.1;
-            z-index: 0;
         }
 
         .approach-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 40px;
-            position: relative;
-            z-index: 1;
         }
 
         .approach-card {
@@ -537,9 +557,6 @@
 
         .approach-card h3 i {
             color: var(--primary-color);
-            background: linear-gradient(135deg, #1a56db, #3f83f8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .approach-card p {
@@ -621,19 +638,6 @@
             background-color: var(--secondary-color);
             color: var(--white);
             padding: 60px 0 30px;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjMwIiBjeT0iMzAiIHI9IjAuNSIgZmlsbD0iI2ZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
-            opacity: 0.05;
-            z-index: 0;
         }
 
         .footer-content {
@@ -641,8 +645,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
         }
 
         .footer-column h3 {
@@ -704,29 +706,11 @@
             color: var(--white);
             transition: var(--transition);
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
         }
 
         .social-link:hover {
+            background: var(--gradient-primary);
             transform: translateY(-5px);
-        }
-
-        .social-link:hover::before {
-            opacity: 1;
         }
 
         .copyright {
@@ -735,8 +719,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #9ca3af;
             font-size: 0.9rem;
-            position: relative;
-            z-index: 1;
         }
 
         /* --- ANIMATIONS --- */
@@ -766,27 +748,23 @@
             }
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
         .pulse-animation {
             animation: pulse 2s infinite;
         }
 
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .carousel-container {
+                height: 400px;
+                order: -1;
+            }
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -810,6 +788,38 @@
 
             .approach-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .carousel-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-container {
+                height: 300px;
             }
         }
     </style>
@@ -837,19 +847,59 @@
     <!-- Hero Section -->
     <section id="accueil" class="hero">
         <div class="container hero-content">
-            <p class="hero-subtitle">Ingénieur Logiciel en Gestion</p>
-            <h1 class="hero-title">Gamaliel KALAMBO</h1>
-            <p class="hero-description">
-                Spécialisé dans la conception et l'optimisation de systèmes de gestion intelligents, 
-                performants et évolutifs pour les entreprises modernes.
-            </p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary pulse-animation">
-                    <i class="fas fa-comment"></i> Me contacter
-                </a>
-                <a href="#expertise" class="btn btn-secondary">
-                    <i class="fas fa-briefcase"></i> Mes compétences
-                </a>
+            <div class="hero-text">
+                <p class="hero-subtitle">Ingénieur Logiciel en Gestion</p>
+                <h1 class="hero-title">Gamaliel KALAMBO</h1>
+                <p class="hero-description">
+                    Spécialisé dans la conception et l'optimisation de systèmes de gestion intelligents, 
+                    performants et évolutifs pour les entreprises modernes.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-comment"></i> Me contacter
+                    </a>
+                    <a href="#expertise" class="btn btn-secondary">
+                        <i class="fas fa-briefcase"></i> Mes compétences
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Carousel -->
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="gam.jpeg" alt="Photo professionnelle de Gamaliel KALAMBO">
+                        <div class="carousel-caption">
+                            <h3>Gamaliel KALAMBO</h3>
+                            <p>Ingénieur Logiciel en Gestion</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="gam2.jpeg" alt="Gamaliel au travail">
+                        <div class="carousel-caption">
+                            <h3>Expert en Systèmes de Gestion</h3>
+                            <p>Solutions sur mesure pour votre entreprise</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="gam3.jpeg" alt="Gamaliel en réunion">
+                        <div class="carousel-caption">
+                            <h3>Consultant Technique</h3>
+                            <p>Accompagnement personnalisé</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active"></div>
+                    <div class="carousel-indicator"></div>
+                    <div class="carousel-indicator"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -860,27 +910,27 @@
             <h2 class="section-title">Mon Expertise</h2>
             <div class="expertise-grid">
                 <div class="expertise-card">
-                    <i class="expertise-icon fas fa-laptop-code float-animation"></i>
-                    <h3>Développement Web</h3>
+                    <i class="expertise-icon fas fa-code"></i>
+                    <h3>Analyste Programmeur</h3>
                     <p>
-                        Création d'applications web modernes avec les dernières technologies 
-                        front-end et back-end pour des solutions robustes et évolutives.
+                        Conception et développement de logiciels de gestion dans tout domaine (Comptabilité, RH, Stocks). 
+                        Utilisation d'outils avancés et code de qualité.
                     </p>
                 </div>
                 <div class="expertise-card">
-                    <i class="expertise-icon fas fa-database float-animation"></i>
-                    <h3>Architecture Systèmes</h3>
+                    <i class="expertise-icon fas fa-project-diagram"></i>
+                    <h3>Manager SIG</h3>
                     <p>
-                        Conception d'architectures logicielles optimisées pour la performance, 
-                        la sécurité et l'évolutivité des systèmes d'entreprise.
+                        Exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). 
+                        Conseil stratégique sur l'emploi optimal des solutions logicielles.
                     </p>
                 </div>
                 <div class="expertise-card">
-                    <i class="expertise-icon fas fa-cogs float-animation"></i>
-                    <h3>Transformation Numérique</h3>
+                    <i class="expertise-icon fas fa-cogs"></i>
+                    <h3>Architecture Logicielle</h3>
                     <p>
-                        Accompagnement des entreprises dans leur transition numérique avec 
-                        des solutions sur mesure adaptées à leurs besoins spécifiques.
+                        Définition de l'architecture technique, modélisation (UML) et garantie de l'évolutivité 
+                        des systèmes pour la croissance de l'entreprise.
                     </p>
                 </div>
             </div>
@@ -893,31 +943,15 @@
             <h2 class="section-title">Mon Approche</h2>
             <div class="approach-content">
                 <div class="approach-card">
-                    <h3><i class="fas fa-lightbulb"></i> Analyse & Conception</h3>
+                    <h3><i class="fas fa-bullseye"></i> Valeur Métier avant tout</h3>
                     <p>
-                        Étude approfondie des besoins clients pour concevoir des solutions 
-                        techniques adaptées et innovantes qui répondent aux objectifs métiers.
+                        Je ne code pas seulement ; je résous des problèmes de business complexes. Mon processus commence par une analyse stratégique approfondie pour garantir que chaque ligne de code contribue directement à vos objectifs de gestion et d'efficacité.
                     </p>
                 </div>
                 <div class="approach-card">
-                    <h3><i class="fas fa-code"></i> Développement Agile</h3>
+                    <h3><i class="fas fa-balance-scale"></i> Alignement parfait</h3>
                     <p>
-                        Méthodologie agile pour un développement itératif, des livraisons 
-                        fréquentes et une adaptation rapide aux évolutions des besoins.
-                    </p>
-                </div>
-                <div class="approach-card">
-                    <h3><i class="fas fa-sync-alt"></i> Optimisation Continue</h3>
-                    <p>
-                        Surveillance et amélioration continue des performances pour garantir 
-                        des systèmes toujours plus efficaces et réactifs.
-                    </p>
-                </div>
-                <div class="approach-card">
-                    <h3><i class="fas fa-shield-alt"></i> Sécurité & Fiabilité</h3>
-                    <p>
-                        Intégration de bonnes pratiques de sécurité dès la conception pour 
-                        des solutions fiables, robustes et résistantes aux cybermenaces.
+                        Je suis ébloui par la qualité du code, la sécurité et l'alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
                     </p>
                 </div>
             </div>
@@ -929,25 +963,25 @@
         <div class="container">
             <h2 class="section-title">Contactez-moi</h2>
             <div class="contact-grid">
-                <a href="mailto:gamaliel@example.com" class="contact-card">
+                <a href="mailto:gamalielkb011@gmail.com" class="contact-card">
                     <i class="contact-icon fas fa-envelope"></i>
                     <h3>Email</h3>
-                    <p>gamaliel@example.com</p>
+                    <p>gamalielkb011@gmail.com</p>
                 </a>
-                <a href="tel:+33123456789" class="contact-card">
-                    <i class="contact-icon fas fa-phone"></i>
-                    <h3>Téléphone</h3>
-                    <p>+33 1 23 45 67 89</p>
+                <a href="https://wa.me/243978390622" target="_blank" class="contact-card">
+                    <i class="contact-icon fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>0978390622</p>
                 </a>
-                <a href="#" class="contact-card">
-                    <i class="contact-icon fas fa-map-marker-alt"></i>
-                    <h3>Localisation</h3>
-                    <p>Paris, France</p>
+                <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-card">
+                    <i class="contact-icon fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Gamaliel KALAMBO</p>
                 </a>
-                <a href="#" class="contact-card">
-                    <i class="contact-icon fas fa-file-alt"></i>
-                    <h3>CV</h3>
-                    <p>Télécharger mon CV</p>
+                <a href="https://www.facebook.com/gamaliel.kalambo" target="_blank" class="contact-card">
+                    <i class="contact-icon fab fa-facebook-f"></i>
+                    <h3>Facebook</h3>
+                    <p>Gamaliel KALAMBO</p>
                 </a>
             </div>
         </div>
@@ -964,9 +998,15 @@
                         de systèmes de gestion pour les entreprises.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/gamaliel.kalambo" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/243978390622" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -981,15 +1021,21 @@
                 <div class="footer-column">
                     <h3>Services</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Développement Web</a></li>
-                        <li><a href="#">Architecture Systèmes</a></li>
-                        <li><a href="#">Transformation Numérique</a></li>
-                        <li><a href="#">Optimisation de Performance</a></li>
+                        <li><a href="#">Développement Logiciel</a></li>
+                        <li><a href="#">Conseil en SIG</a></li>
+                        <li><a href="#">Architecture Logicielle</a></li>
+                        <li><a href="#">Intégration ERP/PGI</a></li>
                     </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> gamalielkb011@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +243 97 839 0622</p>
+                    <p><i class="fas fa-map-marker-alt"></i> République Démocratique du Congo</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Gamaliel KALAMBO. Tous droits réservés.</p>
+                <p>&copy; 2025 Gamaliel KALAMBO. Ingénieur Logiciel en Gestion. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -1004,6 +1050,47 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            const carousel = document.querySelector('.carousel');
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Carousel navigation
+        document.querySelector('.carousel-next').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        document.querySelector('.carousel-prev').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        // Indicator clicks
+        indicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => {
+                showSlide(i);
+            });
+        });
+
+        // Auto-advance carousel
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1116,34 +1203,6 @@
                     ripple.remove();
                 }, 600);
             });
-        });
-
-        // Add animation to social links
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-            });
-            
-            link.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Add typing effect to hero title
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroTitle = document.querySelector('.hero-title');
-            const text = heroTitle.textContent;
-            heroTitle.textContent = '';
-            
-            let i = 0;
-            const typing = setInterval(() => {
-                if (i < text.length) {
-                    heroTitle.textContent += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typing);
-                }
-            }, 100);
         });
     </script>
 </body>
