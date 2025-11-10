@@ -5,44 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES & BASE --- */
         :root {
             --primary-color: #3498db;   /* Bleu accentué */
+            --primary-dark: #2980b9;
             --secondary-color: #2c3e50; /* Bleu marine/sombre */
+            --secondary-light: #34495e;
             --text-color: #444;
+            --text-light: #777;
             --light-bg: #f4f6f9;
             --white: #ffffff;
             --gradient-main: linear-gradient(135deg, #ecf0f1 0%, #dcdde1 100%); /* Dégradé de fond subtil */
+            --gradient-dark: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
             --font-main: 'Roboto', sans-serif;
             --font-title: 'Montserrat', sans-serif;
             --transition-time: 0.4s;
             --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.2);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-main);
             color: var(--text-color);
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
             background: var(--gradient-main);
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         /* --- NAVIGATION BAR --- */
         .navbar {
             background-color: var(--white);
             box-shadow: var(--shadow-light);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            width: 100%;
             padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all var(--transition-time);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 50px;
+            box-shadow: var(--shadow-medium);
         }
 
         .logo {
@@ -51,29 +73,68 @@
             font-weight: 800;
             color: var(--secondary-color);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-dot {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
 
         .nav-links a {
             color: var(--text-color);
             text-decoration: none;
-            margin-left: 25px;
             font-weight: 600;
             transition: color var(--transition-time);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width var(--transition-time);
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
         }
 
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
         /* --- CONTENEURS GÉNERAUX --- */
         .section {
-            padding: 80px 50px;
-            min-height: 80vh;
+            padding: 100px 50px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            width: 100%;
         }
 
         .section-title {
@@ -84,18 +145,15 @@
             text-align: center;
             font-weight: 800;
             position: relative;
-            /* Animation d'apparition des titres */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
         
-        /* Titre une fois visible */
         .section-title.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
 
         .section-title::after {
             content: '';
@@ -112,9 +170,21 @@
         /* --- SECTION ACCUEIL (HERO) --- */
         #accueil {
             background-color: var(--white);
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #accueil::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: var(--gradient-main);
+            z-index: 0;
+            transform: skewX(-10deg);
+            transform-origin: top right;
         }
 
         .hero-content {
@@ -122,11 +192,21 @@
             justify-content: space-between;
             align-items: center;
             gap: 40px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-text {
             flex: 2;
             text-align: left;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-text.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .hero-subtitle {
@@ -134,6 +214,8 @@
             color: var(--primary-color);
             margin-bottom: 10px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .hero-title {
@@ -142,53 +224,103 @@
             font-weight: 800;
             color: var(--secondary-color);
             margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            max-width: 600px;
         }
 
         .hero-cta {
             margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
             background-color: var(--primary-color);
             color: var(--white);
             padding: 12px 25px;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: 700;
-            transition: background-color var(--transition-time), transform var(--transition-time);
-            margin-right: 15px;
-            display: inline-block;
+            transition: all var(--transition-time);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-light);
         }
 
         .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
         }
 
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
-            animation: fadeIn 1.5s ease-out;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-image.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .profile-img {
-            width: 250px;
-            height: 250px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             object-fit: cover;
-            /* Bordure dégradée (simulation) */
             border: 5px solid transparent; 
             background-image: linear-gradient(var(--white), var(--white)), linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             background-origin: border-box;
             background-clip: content-box, border-box;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            z-index: 1;
         }
 
         /* --- SECTION EXPERTISE --- */
         #expertise {
             background: var(--gradient-main);
             padding-bottom: 100px;
+        }
+
+        .expertise-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.1em;
+            color: var(--text-light);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .expertise-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .expertise-grid {
@@ -200,15 +332,28 @@
 
         .expertise-card {
             background-color: var(--white);
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
-            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            transition: all var(--transition-time);
             text-align: center;
             border-top: 5px solid var(--primary-color);
-             /* Styles d'animation initiaux */
             opacity: 0;
             transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expertise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, rgba(52, 152, 219, 0.1), transparent);
+            transition: height var(--transition-time);
+            z-index: 0;
         }
 
         .expertise-card.visible {
@@ -217,8 +362,17 @@
         }
 
         .expertise-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .expertise-card:hover::before {
+            height: 100%;
+        }
+
+        .expertise-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .expertise-card i {
@@ -235,11 +389,33 @@
             margin-bottom: 15px;
         }
 
+        .expertise-card p {
+            color: var(--text-light);
+        }
+
         /* --- SECTION VALEUR AJOUTÉE --- */
         #valeur-ajoutee {
-            background-color: var(--secondary-color);
+            background: var(--gradient-dark);
             color: var(--white);
-            background-image: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(44, 62, 80, 0.9) 100%);
+            position: relative;
+        }
+
+        #valeur-ajoutee::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+        }
+
+        #valeur-ajoutee .container {
+            position: relative;
+            z-index: 1;
         }
 
         #valeur-ajoutee .section-title {
@@ -258,11 +434,12 @@
 
         .valeur-box {
             flex: 1;
-            padding: 30px;
-            border-radius: 8px;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
             background-color: rgba(255, 255, 255, 0.08);
-            transition: transform var(--transition-time), background-color var(--transition-time);
-             /* Styles d'animation initiaux */
+            transition: all var(--transition-time);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0;
             transform: translateY(20px);
         }
@@ -273,8 +450,9 @@
         }
 
         .valeur-box:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
             background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .valeur-box h4 {
@@ -283,24 +461,33 @@
             margin-bottom: 15px;
             font-family: var(--font-title);
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .valeur-box h4 i {
+            font-size: 1.2em;
         }
 
         .valeur-box p {
             color: #ddd;
+            line-height: 1.7;
         }
 
         /* --- FOOTER / CONTACT --- */
         #contact {
             background-color: var(--white);
             text-align: center;
+            padding-bottom: 50px;
         }
 
         .contact-grid {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
             margin-top: 50px;
-            flex-wrap: wrap; /* Assure le responsive */
+            flex-wrap: wrap;
         }
 
         .contact-item {
@@ -309,61 +496,313 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 25px;
-            border-radius: 8px;
-            transition: color var(--transition-time), transform var(--transition-time), background-color var(--transition-time);
+            padding: 25px 20px;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-time);
             background-color: var(--light-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-light);
+            width: 200px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .contact-item:hover {
             color: var(--primary-color);
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-8px) scale(1.05);
             background-color: #e8f0f7;
+            box-shadow: var(--shadow-medium);
         }
 
         .contact-item i {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .contact-item span {
-            font-size: 0.9em;
+            font-size: 0.95em;
             font-weight: 600;
         }
 
+        /* --- FOOTER --- */
         footer {
             background-color: var(--secondary-color);
             color: #aaa;
-            padding: 20px 0;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-family: var(--font-title);
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color var(--transition-time);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            text-decoration: none;
+            transition: all var(--transition-time);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
             text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.9em;
         }
 
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* --- SCROLL TO TOP BUTTON --- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-time);
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
         /* --- Media Queries (Responsive) --- */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 80px 30px;
+            }
+            
+            .navbar {
+                padding: 15px 30px;
+            }
+            
+            .hero-title {
+                font-size: 3em;
+            }
+        }
+
         @media (max-width: 900px) {
-            .navbar { padding: 15px 20px; }
-            .nav-links { display: none; } 
-            .hero-content { flex-direction: column; text-align: center; }
-            .hero-image { order: -1; margin-bottom: 30px; }
-            .section { padding: 60px 20px; }
-            .hero-title { font-size: 2.5em; }
-            .hero-cta { text-align: center; }
-            .valeur-content { flex-direction: column; }
-            .contact-item { width: 45%; margin-bottom: 20px; }
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-medium);
+                gap: 15px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: -1;
+                margin-bottom: 30px;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .valeur-content {
+                flex-direction: column;
+            }
+            
+            .contact-item {
+                width: 45%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section {
+                padding: 60px 20px;
+            }
+            
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .contact-item {
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="#accueil" class="logo">Gamaliel KALAMBO.</a>
+        <a href="#accueil" class="logo">Gamaliel KALAMBO<span class="logo-dot">.</span></a>
         <div class="nav-links">
             <a href="#accueil">Accueil</a>
             <a href="#expertise">Expertise</a>
             <a href="#valeur-ajoutee">Processus</a>
             <a href="#contact">Contact</a>
         </div>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
     <section id="accueil" class="section">
@@ -373,12 +812,18 @@
                 <h1 class="hero-title">
                     Je suis Gamaliel KALAMBO, j'œuvre pour toutes vos solutions de gestion numérique.
                 </h1>
-                <p>
+                <p class="hero-description">
                     De l'analyse des besoins métiers à la conception d'architectures logicielles (Analyste Programmeur), je construis des Systèmes d'Information (SIG) robustes, sécurisés et alignés sur vos objectifs stratégiques (Manager SIG).
                 </p>
                 <div class="hero-cta">
-                    <a href="#expertise" class="btn">Voir mon Expertise</a>
-                    <a href="#contact" class="btn" style="background-color: var(--secondary-color);">Discutons d'un Projet</a>
+                    <a href="#expertise" class="btn">
+                        <i class="fas fa-chart-line"></i>
+                        Voir mon Expertise
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-comments"></i>
+                        Discutons d'un Projet
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
@@ -390,7 +835,7 @@
     <section id="expertise" class="section">
         <div class="container">
             <h2 class="section-title">Mon Expertise</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+            <p class="expertise-intro">
                 Une Maîtrise Complète de la Pile Technique et Métier. Mon profil hybride assure l'intégration parfaite de la technologie avec les processus de gestion.
             </p>
 
@@ -402,7 +847,7 @@
                 </div>
                 <div class="expertise-card">
                     <i class="fas fa-project-diagram"></i>
-                    <h3>Manager des Systèmes d’Information de Gestion (SIG)</h3>
+                    <h3>Manager des Systèmes d'Information de Gestion (SIG)</h3>
                     <p>Exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). Conseil stratégique sur l'emploi optimal des solutions logicielles.</p>
                 </div>
                 <div class="expertise-card">
@@ -420,14 +865,14 @@
             
             <div class="valeur-content">
                 <div class="valeur-box">
-                    <h4>Processus : Valeur Métier avant tout.</h4>
+                    <h4><i class="fas fa-bullseye"></i>Processus : Valeur Métier avant tout.</h4>
                     <p>
                         Je ne code pas seulement ; je résous des problèmes de business complexes. Mon processus commence par une analyse stratégique approfondie pour garantir que chaque ligne de code contribue directement à vos objectifs de gestion et d'efficacité.
                     </p>
                 </div>
 
                 <div class="valeur-box">
-                    <h4>Philosophie : Alignement parfait.</h4>
+                    <h4><i class="fas fa-balance-scale"></i>Philosophie : Alignement parfait.</h4>
                     <p>
                         Je suis ébloui par la qualité du code, la sécurité et l'alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
                     </p>
@@ -466,14 +911,86 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Gamaliel KALAMBO. Ingénieur Logiciel en Gestion.</p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>À propos</h3>
+                    <p>Ingénieur Logiciel spécialisé en systèmes de gestion, je conçois des solutions numériques robustes et alignées avec vos objectifs métier pour optimiser vos processus et améliorer votre efficacité.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.facebook.com/gamaliel.kalambo" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/243978390622" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                        <li><a href="#expertise"><i class="fas fa-chevron-right"></i> Expertise</a></li>
+                        <li><a href="#valeur-ajoutee"><i class="fas fa-chevron-right"></i> Processus</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Développement Logiciel</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Conseil en SIG</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Architecture Logicielle</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Intégration ERP/PGI</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> gamalielkb011@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +243 97 839 0622</p>
+                    <p><i class="fas fa-map-marker-alt"></i> République Démocratique du Congo</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gamaliel KALAMBO. Ingénieur Logiciel en Gestion. Tous droits réservés.</p>
+            </div>
         </div>
     </footer>
 
+    <a href="#" class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Gestion du menu mobile
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Fermer le menu mobile en cliquant sur un lien
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Observer pour les animations au défilement
             const observerOptions = {
-                threshold: 0.1 
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
@@ -485,10 +1002,50 @@
                 });
             }, observerOptions);
 
-            // Cibles pour l'animation (titres, cartes, boîtes de valeur)
-            const targets = document.querySelectorAll('.section-title, .expertise-card, .valeur-box');
+            // Cibles pour l'animation
+            const targets = document.querySelectorAll(
+                '.section-title, .expertise-intro, .expertise-card, .valeur-box, .contact-item, .hero-text, .hero-image'
+            );
             targets.forEach(target => {
                 observer.observe(target);
+            });
+            
+            // Navbar au défilement
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Bouton de retour en haut
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            // Animation fluide pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
