@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion</title>
+    <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABLES & BASE --- */
+        /* ========================================= */
+        /* --- VARIABLES & BASE ---        */
+        /* ========================================= */
         :root {
-            --primary-color: #3498db;   /* Bleu accentué */
-            --primary-dark: #2980b9;
-            --secondary-color: #2c3e50; /* Bleu marine/sombre */
-            --secondary-light: #34495e;
-            --text-color: #444;
-            --text-light: #777;
-            --light-bg: #f4f6f9;
+            --primary-color: #007bff;     /* Bleu Professionnel */
+            --primary-dark: #0056b3;
+            --secondary-color: #212529;   /* Noir/Gris très foncé */
+            --secondary-light: #343a40;
+            --text-color: #495057;
+            --text-light: #6c757d;
+            --light-bg: #f8f9fa;          /* Fond très clair */
+            --mid-bg: #e9ecef;
             --white: #ffffff;
-            --gradient-main: linear-gradient(135deg, #ecf0f1 0%, #dcdde1 100%); /* Dégradé de fond subtil */
+            --gradient-main: linear-gradient(135deg, var(--white) 0%, var(--mid-bg) 100%); 
             --gradient-dark: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
             --font-main: 'Roboto', sans-serif;
             --font-title: 'Montserrat', sans-serif;
-            --transition-time: 0.4s;
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.2);
-            --border-radius: 8px;
+            --transition-time: 0.3s;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
+            --border-radius: 10px;
         }
 
         * {
@@ -42,93 +44,19 @@
             font-family: var(--font-main);
             color: var(--text-color);
             line-height: 1.6;
-            background: var(--gradient-main);
+            background: var(--light-bg);
             overflow-x: hidden;
-        }
-
-        /* --- NAVIGATION BAR --- */
-        .navbar {
-            background-color: var(--white);
-            box-shadow: var(--shadow-light);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all var(--transition-time);
-        }
-
-        .navbar.scrolled {
-            padding: 10px 50px;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .logo {
-            font-family: var(--font-title);
-            font-size: 1.5em;
-            font-weight: 800;
-            color: var(--secondary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-dot {
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition-time);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width var(--transition-time);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            color: var(--secondary-color);
-            cursor: pointer;
         }
 
         /* --- CONTENEURS GÉNERAUX --- */
         .section {
-            padding: 100px 50px;
+            padding: 120px 50px; /* Plus d'espace vertical pour la propreté */
+            /* min-height: 100vh; */ /* Retiré pour plus de flexibilité, sauf sur #accueil */
+        }
+
+        #accueil {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding-top: 80px; /* Ajustement pour la barre de navigation fixe */
         }
 
         .container {
@@ -139,15 +67,15 @@
 
         .section-title {
             font-family: var(--font-title);
-            font-size: 2.5em;
+            font-size: 3em;
             color: var(--secondary-color);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             text-align: center;
             font-weight: 800;
             position: relative;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         
         .section-title.visible {
@@ -157,19 +85,132 @@
 
         .section-title::after {
             content: '';
-            width: 80px;
-            height: 4px;
+            width: 100px;
+            height: 5px;
             background-color: var(--primary-color);
             position: absolute;
-            bottom: -15px;
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        /* --- SECTION ACCUEIL (HERO) --- */
-        #accueil {
+        /* --- BOUTONS --- */
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 14px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all var(--transition-time);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Ombre colorée */
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(33, 37, 41, 0.2);
+        }
+
+        /* ========================================= */
+        /* --- NAVIGATION BAR ---          */
+        /* ========================================= */
+        .navbar {
             background-color: var(--white);
+            box-shadow: var(--shadow-medium);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-time);
+        }
+
+        .navbar.scrolled {
+            padding: 12px 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .logo-dot {
+            color: var(--primary-color);
+            font-size: 1.2em; /* Point plus visible */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--secondary-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 5px 0;
+            position: relative;
+            transition: color var(--transition-time);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px; /* Soulignement plus épais */
+            background-color: var(--primary-color);
+            transition: width var(--transition-time);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            /* Reste inchangé */
+        }
+
+        /* ========================================= */
+        /* --- SECTION ACCUEIL (HERO) ---  */
+        /* ========================================= */
+        #accueil {
+            background: var(--gradient-main);
             position: relative;
             overflow: hidden;
         }
@@ -179,19 +220,20 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 40%;
+            width: 45%; /* Zone d'accentuation */
             height: 100%;
-            background: var(--gradient-main);
+            background-color: var(--white); 
             z-index: 0;
-            transform: skewX(-10deg);
+            transform: skewX(-8deg); /* Angle léger */
             transform-origin: top right;
+            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.05);
         }
 
         .hero-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            gap: 60px;
             position: relative;
             z-index: 1;
         }
@@ -200,8 +242,8 @@
             flex: 2;
             text-align: left;
             opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateX(-50px);
+            transition: opacity 1s 0.2s ease-out, transform 1s 0.2s ease-out;
         }
 
         .hero-text.visible {
@@ -210,67 +252,40 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2em;
+            font-size: 1.25em;
             color: var(--primary-color);
-            margin-bottom: 10px;
-            font-weight: 600;
+            margin-bottom: 15px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .hero-title {
             font-family: var(--font-title);
-            font-size: 3.5em;
+            font-size: 4em; /* Titre plus percutant */
             font-weight: 800;
             color: var(--secondary-color);
-            margin-bottom: 20px;
-            line-height: 1.2;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .hero-title strong {
+            color: var(--primary-color);
+            text-shadow: 1px 1px 3px rgba(0, 123, 255, 0.1);
         }
 
         .hero-description {
-            font-size: 1.1em;
-            margin-bottom: 30px;
+            font-size: 1.15em;
+            margin-bottom: 40px;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 650px;
         }
 
         .hero-cta {
             margin-top: 30px;
             display: flex;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
-        }
-
-        .btn {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 12px 25px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 700;
-            transition: all var(--transition-time);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid transparent;
-            box-shadow: var(--shadow-light);
-        }
-
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--secondary-color);
-            border: 2px solid var(--secondary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-color);
-            color: var(--white);
         }
 
         .hero-image {
@@ -278,8 +293,8 @@
             display: flex;
             justify-content: center;
             opacity: 0;
-            transform: translateX(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateX(50px);
+            transition: opacity 1s 0.4s ease-out, transform 1s 0.4s ease-out;
         }
 
         .hero-image.visible {
@@ -288,58 +303,53 @@
         }
 
         .profile-img {
-            width: 300px;
-            height: 300px;
+            width: 320px; /* Taille légèrement augmentée */
+            height: 320px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid transparent; 
-            background-image: linear-gradient(var(--white), var(--white)), linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            box-shadow: var(--shadow-heavy);
+            border: 8px solid var(--white); /* Bordure blanche plus prononcée */
+            box-shadow: var(--shadow-medium);
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            transition: transform var(--transition-time);
         }
 
-        /* --- SECTION EXPERTISE --- */
+        .profile-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* ========================================= */
+        /* --- SECTION EXPERTISE ---       */
+        /* ========================================= */
         #expertise {
-            background: var(--gradient-main);
-            padding-bottom: 100px;
+            background-color: var(--white);
+            padding-bottom: 120px;
         }
-
+        
         .expertise-intro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            font-size: 1.1em;
-            color: var(--text-light);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            /* Reste inchangé */
         }
-
+        
         .expertise-intro.visible {
-            opacity: 1;
-            transform: translateY(0);
+            /* Reste inchangé */
         }
 
         .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cartes légèrement plus larges */
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .expertise-card {
-            background-color: var(--white);
-            padding: 40px 30px;
+            background-color: var(--light-bg); /* Changement de fond */
+            padding: 40px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
             transition: all var(--transition-time);
-            text-align: center;
-            border-top: 5px solid var(--primary-color);
+            text-align: left; /* Aligné à gauche pour un look plus pro */
+            border-left: 5px solid var(--primary-color); /* Bordure latérale */
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             position: relative;
             overflow: hidden;
         }
@@ -348,11 +358,11 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background: linear-gradient(to bottom, rgba(52, 152, 219, 0.1), transparent);
-            transition: height var(--transition-time);
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(0, 123, 255, 0.05); /* Effet de couleur subtil */
+            transition: width var(--transition-time);
             z-index: 0;
         }
 
@@ -362,403 +372,185 @@
         }
 
         .expertise-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-medium);
+            border-color: var(--primary-dark);
         }
 
         .expertise-card:hover::before {
-            height: 100%;
-        }
-
-        .expertise-card > * {
-            position: relative;
-            z-index: 1;
+            width: 100%;
         }
 
         .expertise-card i {
-            font-size: 3em;
+            font-size: 2.5em;
             color: var(--primary-color);
-            margin-bottom: 20px;
-            transition: color var(--transition-time);
+            margin-bottom: 15px;
+            float: left; /* Icône à gauche du titre */
+            margin-right: 15px;
         }
 
         .expertise-card h3 {
             font-family: var(--font-title);
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: var(--secondary-color);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            overflow: hidden; /* Nettoie le float */
         }
 
         .expertise-card p {
             color: var(--text-light);
+            clear: both; /* Assure que le paragraphe commence sous l'icône */
         }
 
-        /* --- SECTION VALEUR AJOUTÉE --- */
-        #valeur-ajoutee {
-            background: var(--gradient-dark);
-            color: var(--white);
-            position: relative;
+        /* ========================================= */
+        /* --- SECTION COMPÉTENCES ---     */
+        /* ========================================= */
+        #competences {
+            background-color: var(--mid-bg);
+            padding-top: 60px;
+            padding-bottom: 120px;
         }
 
-        #valeur-ajoutee::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.5;
-        }
-
-        #valeur-ajoutee .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        #valeur-ajoutee .section-title {
-            color: var(--white);
-        }
-
-        #valeur-ajoutee .section-title::after {
-            background-color: var(--primary-color);
-        }
-
-        .valeur-content {
-            display: flex;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .valeur-box {
-            flex: 1;
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            background-color: rgba(255, 255, 255, 0.08);
-            transition: all var(--transition-time);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .valeur-box.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .valeur-box:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .valeur-box h4 {
-            color: var(--primary-color);
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            font-family: var(--font-title);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .valeur-box h4 i {
-            font-size: 1.2em;
-        }
-
-        .valeur-box p {
-            color: #ddd;
-            line-height: 1.7;
-        }
-
-        /* --- FOOTER / CONTACT --- */
-        #contact {
-            background-color: var(--white);
-            text-align: center;
-            padding-bottom: 50px;
-        }
-
-        .contact-grid {
-            display: flex;
-            justify-content: center;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
-            margin-top: 50px;
-            flex-wrap: wrap;
         }
 
-        .contact-item {
-            text-decoration: none;
-            color: var(--secondary-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 20px;
+        .skill-category {
+            background-color: var(--white);
+            padding: 30px;
             border-radius: var(--border-radius);
-            transition: all var(--transition-time);
-            background-color: var(--light-bg);
             box-shadow: var(--shadow-light);
-            width: 200px;
+            border-top: 4px solid var(--primary-color);
             opacity: 0;
             transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
-        .contact-item.visible {
+        
+        .skill-category.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .contact-item:hover {
-            color: var(--primary-color);
-            transform: translateY(-8px) scale(1.05);
-            background-color: #e8f0f7;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .contact-item i {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-        
-        .contact-item span {
-            font-size: 0.95em;
-            font-weight: 600;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--secondary-color);
-            color: #aaa;
-            padding: 50px 0 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-column h3 {
-            color: var(--white);
+        .skill-category h4 {
             font-family: var(--font-title);
-            font-size: 1.3em;
+            font-size: 1.4em;
+            color: var(--secondary-color);
             margin-bottom: 20px;
-            position: relative;
+            font-weight: 700;
+            border-bottom: 1px solid var(--mid-bg);
             padding-bottom: 10px;
         }
 
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-
-        .footer-column p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
-        .footer-links {
+        .skill-list {
             list-style: none;
         }
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color var(--transition-time);
+        .skill-list li {
+            font-size: 1em;
+            color: var(--text-color);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 500;
         }
 
-        .footer-links a:hover {
+        .skill-list li i {
             color: var(--primary-color);
+            font-size: 1.1em;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
+
+        /* ========================================= */
+        /* --- SECTION VALEUR AJOUTÉE ---     */
+        /* ========================================= */
+        /* Reste largement inchangé car le design est déjà bon (contraste élevé, effet de verre) */
+        #valeur-ajoutee {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+        
+        #valeur-ajoutee .section-title::after {
+            background-color: var(--white); /* Surligneur blanc sur fond sombre */
+        }
+        
+        /* ========================================= */
+        /* --- FOOTER / CONTACT ---          */
+        /* ========================================= */
+        #contact {
+            background-color: var(--light-bg);
+            padding-bottom: 120px; /* Plus d'espace au-dessus du footer */
         }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            text-decoration: none;
-            transition: all var(--transition-time);
+        .contact-grid {
+            gap: 40px; /* Espace augmenté */
         }
 
-        .social-link:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9em;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* --- SCROLL TO TOP BUTTON --- */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+        .contact-item {
+            width: 250px; /* Taille fixée pour l'uniformité */
+            padding: 30px 20px;
+            background-color: var(--white);
             box-shadow: var(--shadow-medium);
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-time);
-            z-index: 999;
+            border-bottom: 5px solid var(--primary-color);
         }
 
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
+        .contact-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            background-color: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .scroll-to-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-5px);
+        .contact-item i {
+            font-size: 3em;
+            color: var(--primary-dark);
         }
-
-        /* --- Media Queries (Responsive) --- */
+        
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--secondary-color);
+            /* Reste inchangé */
+        }
+        
+        /* ========================================= */
+        /* --- Media Queries (Responsive) ---  */
+        /* ========================================= */
         @media (max-width: 1024px) {
-            .section {
-                padding: 80px 30px;
-            }
-            
-            .navbar {
-                padding: 15px 30px;
-            }
-            
             .hero-title {
-                font-size: 3em;
+                font-size: 3.5em;
             }
         }
 
         @media (max-width: 900px) {
-            .navbar {
-                padding: 15px 20px;
+            .section {
+                padding: 80px 30px;
             }
-            
-            .navbar.scrolled {
-                padding: 10px 20px;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: var(--shadow-medium);
-                gap: 15px;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
             .hero-content {
                 flex-direction: column;
-                text-align: center;
+                gap: 40px;
             }
-            
+            #accueil::before {
+                width: 100%;
+                height: 50%;
+                transform: skewX(0);
+                bottom: 0;
+                top: auto;
+                box-shadow: none;
+            }
+            .hero-text {
+                text-align: center;
+                flex: none;
+            }
             .hero-image {
                 order: -1;
-                margin-bottom: 30px;
+                margin-bottom: 0;
             }
-            
             .hero-cta {
                 justify-content: center;
             }
-            
-            .valeur-content {
-                flex-direction: column;
-            }
-            
             .contact-item {
-                width: 45%;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
+                width: 48%; /* Deux colonnes sur tablette */
             }
         }
 
@@ -766,26 +558,27 @@
             .section {
                 padding: 60px 20px;
             }
-            
+            .section-title {
+                font-size: 2.2em;
+            }
             .hero-title {
                 font-size: 2.5em;
             }
-            
-            .section-title {
-                font-size: 2em;
+            .hero-subtitle {
+                font-size: 1.1em;
             }
-            
+            .expertise-card {
+                text-align: center;
+                padding-left: 20px;
+                border-left: none;
+                border-top: 5px solid var(--primary-color);
+            }
+            .expertise-card i {
+                float: none;
+                margin-right: 0;
+            }
             .contact-item {
                 width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
             }
         }
     </style>
@@ -795,10 +588,10 @@
     <nav class="navbar">
         <a href="#accueil" class="logo">Gamaliel KALAMBO<span class="logo-dot">.</span></a>
         <div class="nav-links">
-            <a href="#accueil">Accueil</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#valeur-ajoutee">Processus</a>
-            <a href="#contact">Contact</a>
+            <a href="#accueil" class="nav-link">Accueil</a>
+            <a href="#expertise" class="nav-link">Expertise</a>
+            <a href="#competences" class="nav-link">Compétences</a> <a href="#valeur-ajoutee" class="nav-link">Approche</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
@@ -810,28 +603,28 @@
             <div class="hero-text">
                 <p class="hero-subtitle">Ingénieur Logiciel en Gestion | Consultant Technique</p>
                 <h1 class="hero-title">
-                    Je suis Gamaliel KALAMBO, j'œuvre pour toutes vos solutions de gestion numérique.
+                    Je suis <strong>Gamaliel KALAMBO</strong>, Architecte de vos solutions de gestion numérique.
                 </h1>
                 <p class="hero-description">
                     De l'analyse des besoins métiers à la conception d'architectures logicielles (Analyste Programmeur), je construis des Systèmes d'Information (SIG) robustes, sécurisés et alignés sur vos objectifs stratégiques (Manager SIG).
                 </p>
                 <div class="hero-cta">
                     <a href="#expertise" class="btn">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-rocket"></i>
                         Voir mon Expertise
                     </a>
                     <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-paper-plane"></i>
                         Discutons d'un Projet
                     </a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://placehold.co/300x300/3498db/ffffff?text=GK" alt="Portrait professionnel de Gamaliel KALAMBO" class="profile-img">
+                <img src="https://placehold.co/320x320/007bff/ffffff?text=G+K" alt="Portrait professionnel de Gamaliel KALAMBO" class="profile-img"> 
             </div>
         </div>
     </section>
-
+    
     <section id="expertise" class="section">
         <div class="container">
             <h2 class="section-title">Mon Expertise</h2>
@@ -841,19 +634,54 @@
 
             <div class="expertise-grid">
                 <div class="expertise-card">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-database"></i>
                     <h3>Analyste Programmeur</h3>
-                    <p>Conception et développement de logiciels de gestion dans tout domaine (Comptabilité, RH, Stocks). Utilisation d'outils avancés et code de qualité.</p>
+                    <p>Conception et développement de logiciels de gestion sur mesure (Comptabilité, RH, Stocks). Je garantis un code de qualité, performant et optimisé.</p>
                 </div>
                 <div class="expertise-card">
-                    <i class="fas fa-project-diagram"></i>
+                    <i class="fas fa-sitemap"></i>
                     <h3>Manager des Systèmes d'Information de Gestion (SIG)</h3>
-                    <p>Exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). Conseil stratégique sur l'emploi optimal des solutions logicielles.</p>
+                    <p>Conseil stratégique, exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). Je maximise la valeur de vos systèmes existants.</p>
                 </div>
                 <div class="expertise-card">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Architecture Logicielle</h3>
-                    <p>Définition de l'architecture technique, modélisation (UML) et garantie de l'évolutivité des systèmes pour la croissance de l'entreprise.</p>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Architecture Logicielle & Sécurité</h3>
+                    <p>Définition de l'architecture technique, modélisation (UML) et mise en place de systèmes sécurisés, évolutifs et robustes pour une croissance durable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences" class="section">
+        <div class="container">
+            <h2 class="section-title">Compétences Techniques</h2>
+            <div class="skills-grid">
+                <div class="skill-category visible" style="transition-delay: 0.1s;">
+                    <h4><i class="fas fa-laptop-code"></i> Langages & Frameworks</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> **PHP / Laravel** (Back-end)</li>
+                        <li><i class="fas fa-check-circle"></i> **JavaScript / Vue.js** (Front-end)</li>
+                        <li><i class="fas fa-check-circle"></i> Python, C#, Java (Notions avancées)</li>
+                        <li><i class="fas fa-check-circle"></i> HTML5, CSS3, SASS/LESS</li>
+                    </ul>
+                </div>
+                <div class="skill-category visible" style="transition-delay: 0.2s;">
+                    <h4><i class="fas fa-database"></i> Bases de Données & Outils</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> **SQL / MySQL & PostgreSQL**</li>
+                        <li><i class="fas fa-check-circle"></i> Modélisation de données (Merise, UML)</li>
+                        <li><i class="fas fa-check-circle"></i> **Git / GitHub** (Gestion de version)</li>
+                        <li><i class="fas fa-check-circle"></i> Docker (Conteneurisation)</li>
+                    </ul>
+                </div>
+                <div class="skill-category visible" style="transition-delay: 0.3s;">
+                    <h4><i class="fas fa-chart-line"></i> Gestion & Méthodologies</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check-circle"></i> **ERP/PGI** (Intégration et Consulting)</li>
+                        <li><i class="fas fa-check-circle"></i> Méthodes Agiles (Scrum, Kanban)</li>
+                        <li><i class="fas fa-check-circle"></i> Analyse Fonctionnelle et Technique</li>
+                        <li><i class="fas fa-check-circle"></i> Gestion de Projet (Cycle en V)</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -861,20 +689,20 @@
 
     <section id="valeur-ajoutee" class="section">
         <div class="container">
-            <h2 class="section-title">Mon Approche</h2>
+            <h2 class="section-title">Mon Approche : Le Secret de la Réussite</h2>
             
             <div class="valeur-content">
-                <div class="valeur-box">
-                    <h4><i class="fas fa-bullseye"></i>Processus : Valeur Métier avant tout.</h4>
+                <div class="valeur-box visible" style="transition-delay: 0.1s;">
+                    <h4><i class="fas fa-bullseye"></i> Processus : Valeur Métier avant tout.</h4>
                     <p>
                         Je ne code pas seulement ; je résous des problèmes de business complexes. Mon processus commence par une analyse stratégique approfondie pour garantir que chaque ligne de code contribue directement à vos objectifs de gestion et d'efficacité.
                     </p>
                 </div>
 
-                <div class="valeur-box">
-                    <h4><i class="fas fa-balance-scale"></i>Philosophie : Alignement parfait.</h4>
+                <div class="valeur-box visible" style="transition-delay: 0.3s;">
+                    <h4><i class="fas fa-balance-scale"></i> Philosophie : Alignement parfait.</h4>
                     <p>
-                        Je suis ébloui par la qualité du code, la sécurité et l'alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
+                        J'allie qualité du code, sécurité et alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
                     </p>
                 </div>
             </div>
@@ -886,24 +714,28 @@
             <h2 class="section-title">Contactez-moi</h2>
             
             <div class="contact-grid">
-                <a href="mailto:gamalielkb011@gmail.com" class="contact-item">
+                <a href="mailto:gamalielkb011@gmail.com" class="contact-item visible" style="transition-delay: 0.1s;">
                     <i class="fas fa-envelope"></i>
-                    <span>gamalielkb011@gmail.com</span>
+                    <span>E-mail professionnel</span>
+                    <p style="margin-top: 10px; color: var(--text-light);">gamalielkb011@gmail.com</p>
                 </a>
                 
-                <a href="https://wa.me/243978390622" target="_blank" class="contact-item">
+                <a href="https://wa.me/243978390622" target="_blank" class="contact-item visible" style="transition-delay: 0.2s;">
                     <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp (0978390622)</span>
+                    <span>Contact Rapide</span>
+                    <p style="margin-top: 10px; color: var(--text-light);">WhatsApp (+243 978390622)</p>
                 </a>
                 
-                <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-item">
+                <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-item visible" style="transition-delay: 0.3s;">
                     <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
+                    <span>Mon Profil Réseau</span>
+                    <p style="margin-top: 10px; color: var(--text-light);">LinkedIn</p>
                 </a>
                 
-                <a href="https://www.facebook.com/gamaliel.kalambo" target="_blank" class="contact-item">
+                <a href="https://www.facebook.com/gamaliel.kalambo" target="_blank" class="contact-item visible" style="transition-delay: 0.4s;">
                     <i class="fab fa-facebook-f"></i>
-                    <span>Facebook</span>
+                    <span>Autres réseaux</span>
+                    <p style="margin-top: 10px; color: var(--text-light);">Facebook</p>
                 </a>
             </div>
         </div>
@@ -933,7 +765,8 @@
                     <ul class="footer-links">
                         <li><a href="#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
                         <li><a href="#expertise"><i class="fas fa-chevron-right"></i> Expertise</a></li>
-                        <li><a href="#valeur-ajoutee"><i class="fas fa-chevron-right"></i> Processus</a></li>
+                        <li><a href="#competences"><i class="fas fa-chevron-right"></i> Compétences</a></li>
+                        <li><a href="#valeur-ajoutee"><i class="fas fa-chevron-right"></i> Approche</a></li>
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
@@ -952,7 +785,7 @@
                     <h3>Contact</h3>
                     <p><i class="fas fa-envelope"></i> gamalielkb011@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +243 97 839 0622</p>
-                    <p><i class="fas fa-map-marker-alt"></i> République Démocratique du Congo</p>
+                    <p><i class="fas fa-map-marker-alt"></i> RDC</p>
                 </div>
             </div>
             
@@ -962,13 +795,13 @@
         </div>
     </footer>
 
-    <a href="#" class="scroll-to-top">
+    <a href="#accueil" class="scroll-to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Gestion du menu mobile
+            // Gestion du menu mobile (inchangé)
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -979,17 +812,16 @@
                     : '<i class="fas fa-bars"></i>';
             });
             
-            // Fermer le menu mobile en cliquant sur un lien
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
-            
+
             // Observer pour les animations au défilement
             const observerOptions = {
-                threshold: 0.1,
+                threshold: 0.15, // Déclencher plus tôt
                 rootMargin: '0px 0px -50px 0px'
             };
 
@@ -1002,27 +834,31 @@
                 });
             }, observerOptions);
 
-            // Cibles pour l'animation
+            // Cibles pour l'animation (ajout des nouvelles classes)
             const targets = document.querySelectorAll(
-                '.section-title, .expertise-intro, .expertise-card, .valeur-box, .contact-item, .hero-text, .hero-image'
+                '.section-title, .expertise-card, .valeur-box, .contact-item, .skill-category'
             );
-            targets.forEach(target => {
-                observer.observe(target);
-            });
-            
-            // Navbar au défilement
+            targets.forEach(target => observer.observe(target));
+
+            // Animation spéciale pour la section HERO
+            const heroText = document.querySelector('.hero-text');
+            const heroImage = document.querySelector('.hero-image');
+            observer.observe(heroText);
+            observer.observe(heroImage);
+
+            // Gestion de la barre de navigation et du bouton Scroll-to-top
             const navbar = document.querySelector('.navbar');
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            
             window.addEventListener('scroll', () => {
+                // Barre de navigation
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
-            });
-            
-            // Bouton de retour en haut
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            window.addEventListener('scroll', () => {
+
+                // Bouton Scroll-to-top
                 if (window.scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
@@ -1030,22 +866,31 @@
                 }
             });
             
-            // Animation fluide pour les ancres
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
+            // Gestion du lien de navigation actif
+            const sections = document.querySelectorAll('section');
+            const navLinksActive = document.querySelectorAll('.nav-link');
+            
+            const linkObserverOptions = {
+                root: null,
+                rootMargin: '0px 0px -50% 0px', // Déclencher au milieu de la section
+                threshold: 0
+            };
+            
+            const linkObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinksActive.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active');
+                            }
                         });
                     }
                 });
+            }, linkObserverOptions);
+
+            sections.forEach(section => {
+                linkObserver.observe(section);
             });
         });
     </script>
