@@ -7,21 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Variables CSS pour un design moderne et facile à modifier */
+        /* --- VARIABLES & BASE --- */
         :root {
             --dark-bg: #1a1a1a;
             --code-green: #00ffc8;
             --text-light: #e0e0e0;
             --accent-blue: #00bcd4;
-            --gradient-1: linear-gradient(135deg, #00BCD4 0%, #0097a7 100%);
-            --gradient-2: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            --gradient-main: linear-gradient(45deg, #1a1a1a 0%, #2c3e50 100%);
             --font-main: 'Montserrat', sans-serif;
             --font-code: 'Fira Code', monospace;
             --transition-speed: 0.5s;
             --spacing-unit: 1rem;
         }
 
-        /* Reset et Base */
         * {
             margin: 0;
             padding: 0;
@@ -32,21 +30,19 @@
 
         html, body {
             height: 100%;
-            overflow: hidden; /* Empêche le défilement natif */
+            overflow: hidden; /* Crucial pour simuler le défilement "Reel" */
             background-color: var(--dark-bg);
         }
 
-        /* Conteneur principal simulant le "Reel" */
+        /* --- STRUCTURE REEL --- */
         .reel-container {
             width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            position: relative;
         }
 
-        /* Chaque "slide" */
         .reel-slide {
             flex-shrink: 0;
             width: 100%;
@@ -55,189 +51,131 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: calc(4 * var(--spacing-unit)); /* Plus de padding pour le "look video" */
+            padding: calc(4 * var(--spacing-unit));
             text-align: center;
             position: relative;
             transform: translateY(0);
             transition: transform var(--transition-speed) ease-in-out;
-            background-color: var(--dark-bg); /* Fond par défaut */
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
-            border-bottom: 1px solid rgba(255,255,255,0.05); /* Séparateur subtil */
+            background: var(--gradient-main);
         }
 
-        /* Fonds de slide spécifiques */
-        .slide-1 { background: var(--gradient-2); }
-        .slide-2 { background: var(--dark-bg); }
-        .slide-3 { background: var(--gradient-2); }
-        .slide-4 { background: var(--dark-bg); }
-        .slide-5 { background: var(--gradient-2); }
-
-        /* Styles de texte spécifiques */
+        /* --- TYPOGRAPHIE ET TITRES --- */
         .reel-slide h1 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: calc(0.5 * var(--spacing-unit));
             line-height: 1.1;
-            background: var(--gradient-1);
+            background: linear-gradient(45deg, var(--code-green), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInText 1s ease-out forwards;
         }
 
         .reel-slide h2 {
             font-size: 2.2rem;
             font-weight: 600;
             margin-bottom: calc(2 * var(--spacing-unit));
-            color: var(--accent-blue);
-            animation: fadeInText 1.2s ease-out forwards;
+            color: var(--code-green);
         }
 
         .reel-slide p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto calc(2 * var(--spacing-unit));
             color: var(--text-light);
-            animation: fadeInText 1.4s ease-out forwards;
         }
 
-        .reel-slide .sub-heading {
-            font-family: var(--font-code);
-            font-size: 1.1rem;
-            color: var(--code-green);
-            margin-bottom: calc(2 * var(--spacing-unit));
-        }
-
-        /* --- Contenu Spécifique aux Slides --- */
-
-        /* Slide 1: Welcome */
-        .slide-1 .profile-pic-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: calc(2 * var(--spacing-unit));
-            box-shadow: 0 0 0 5px var(--code-green), 0 0 0 10px var(--accent-blue);
-            animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        .slide-1 .profile-pic {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Slide 2: Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: calc(2 * var(--spacing-unit));
-            max-width: 90%;
-            margin-top: calc(2 * var(--spacing-unit));
-        }
-        .project-card {
-            background-color: rgba(255,255,255,0.05);
+        /* --- DESIGN DEVS/CARTES (fusionné du premier code) --- */
+        .card-content {
+            background-color: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
-            padding: calc(1.5 * var(--spacing-unit));
-            text-align: left;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: 1px solid rgba(0,255,200,0.1);
-        }
-        .project-card:hover {
-            transform: translateY(-8px);
-            background-color: rgba(255,255,255,0.1);
-        }
-        .project-card i {
-            font-size: 2.5rem;
-            color: var(--code-green);
-            margin-bottom: calc(0.5 * var(--spacing-unit));
-        }
-        .project-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: calc(0.5 * var(--spacing-unit));
-            color: var(--accent-blue);
-        }
-        .project-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 0;
+            padding: 25px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 200, 0.1);
         }
 
-        /* Slide 3: Who is Gamaliel */
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: calc(2 * var(--spacing-unit));
+        /* Accroche/Introduction */
+        .accroche {
+            font-family: var(--font-code);
+            font-style: italic;
+            font-size: 1.15rem;
+            padding: 20px;
+            margin: 20px auto 40px;
+            background-color: rgba(0, 255, 200, 0.05);
+            border-left: 5px solid var(--code-green);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
             max-width: 900px;
         }
-        .about-item {
-            display: flex;
-            align-items: flex-start;
-            text-align: left;
-            width: 100%;
-            background-color: rgba(255,255,255,0.05);
-            padding: calc(1.5 * var(--spacing-unit));
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(0,255,200,0.1);
-        }
-        .about-item i {
-            font-size: 2.5rem;
-            color: var(--code-green);
-            margin-right: calc(1.5 * var(--spacing-unit));
-            min-width: 40px;
-        }
-        .about-item h3 {
-            font-size: 1.4rem;
-            color: var(--accent-blue);
-            margin-bottom: calc(0.5 * var(--spacing-unit));
-        }
-        .about-item p {
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
 
-        /* Slide 4: Skills & Tools */
-        .skills-grid {
+        /* Grille des Rôles (Double Casquette) */
+        .roles-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: calc(2 * var(--spacing-unit));
-            max-width: 800px;
-            margin-top: calc(2 * var(--spacing-unit));
-            width: 90%;
-        }
-        .skill-item {
-            background-color: rgba(255,255,255,0.05);
-            padding: calc(1.5 * var(--spacing-unit));
-            border-radius: 12px;
-            text-align: left;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(0,255,200,0.1);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .skill-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--code-green);
-        }
-        .skill-item .skill-number {
-            font-family: var(--font-code);
-            font-size: 2.5rem;
-            color: var(--code-green);
-            margin-bottom: calc(0.5 * var(--spacing-unit));
-        }
-        .skill-item h3 {
-            font-size: 1.3rem;
-            color: var(--accent-blue);
-            margin-bottom: calc(0.5 * var(--spacing-unit));
-        }
-        .skill-item p {
-            font-size: 0.95rem;
-            margin-bottom: 0;
-            color: var(--text-light);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        /* Slide 5: Contact */
+        .role-item {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .role-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .role-item i {
+            font-size: 3em;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .role-item h3 {
+            font-size: 1.4em;
+            color: var(--code-green);
+        }
+
+        /* Liste de Compétences Opérationnelles */
+        .competences-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .competences-list li {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-left: 5px solid var(--code-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.4s ease;
+        }
+
+        .competences-list li:hover {
+            background-color: rgba(0, 255, 200, 0.08);
+        }
+
+        .competences-list i {
+            color: var(--accent-blue);
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* --- CONTACT/FOOTER --- */
         .contact-grid {
             display: flex;
             flex-wrap: wrap;
@@ -245,6 +183,7 @@
             gap: calc(2 * var(--spacing-unit));
             margin-top: calc(2 * var(--spacing-unit));
         }
+        
         .contact-item {
             text-decoration: none;
             display: flex;
@@ -258,46 +197,19 @@
             border: 1px solid rgba(0,255,200,0.1);
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
         }
+
         .contact-item:hover {
             transform: translateY(-8px);
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(0, 255, 200, 0.08);
             border-color: var(--code-green);
         }
+        
         .contact-item i {
             font-size: 3rem;
             color: var(--code-green);
         }
-        .contact-item span {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-weight: 600;
-        }
 
-        /* Indicateurs de défilement (comme TikTok/Reels) */
-        .scroll-indicator {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 100;
-        }
-        .scroll-dot {
-            width: 8px;
-            height: 8px;
-            background-color: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .scroll-dot.active {
-            background-color: var(--code-green);
-            transform: scale(1.5);
-            box-shadow: 0 0 10px var(--code-green);
-        }
-
-        /* Boutons de navigation (Déplacer vers le haut/bas) */
+        /* --- NAVIGUATION (Code Reel) --- */
         .nav-buttons {
             position: fixed;
             bottom: 20px;
@@ -307,6 +219,7 @@
             gap: 20px;
             z-index: 100;
         }
+        
         .nav-button {
             background-color: var(--accent-blue);
             color: white;
@@ -315,168 +228,85 @@
             width: 50px;
             height: 50px;
             font-size: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            /* ... (autres styles comme précédemment) ... */
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .nav-button:hover {
+        
+        .nav-button:hover:not(:disabled) {
             background-color: var(--code-green);
             transform: translateY(-5px) scale(1.05);
         }
+        
         .nav-button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
-            background-color: var(--accent-blue); /* Garde la couleur mais en opaque */
         }
-
-        /* Animations */
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Media Queries pour le responsive */
+        
+        /* Ajoutez ici d'autres styles et media queries du code Reel si besoin */
+        
         @media (max-width: 768px) {
-            .reel-slide {
-                padding: calc(2 * var(--spacing-unit));
-            }
-            .reel-slide h1 {
-                font-size: 2.5rem;
-            }
-            .reel-slide h2 {
-                font-size: 1.8rem;
-            }
-            .reel-slide p {
-                font-size: 1rem;
-            }
-            .profile-pic-container {
-                width: 120px;
-                height: 120px;
-            }
-            .projects-grid, .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-item {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-            .about-item i {
-                margin-right: 0;
-                margin-bottom: calc(0.5 * var(--spacing-unit));
-            }
-            .scroll-indicator {
-                right: 10px;
-            }
-            .nav-buttons {
-                bottom: 10px;
-                gap: 10px;
-            }
-            .nav-button {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
+            .reel-slide h1 { font-size: 2.5rem; }
+            .reel-slide h2 { font-size: 1.8rem; }
+            .roles-grid, .competences-list { grid-template-columns: 1fr; }
+            .reel-slide { padding: 20px; }
+            .contact-item { width: 45%; }
         }
+
     </style>
 </head>
 <body>
 
     <div class="reel-container">
-        <div class="reel-slide slide-1" data-slide-index="0">
-            <div class="profile-pic-container">
-                <img src="https://placehold.co/300x300/1a1a1a/00ffc8?text=GK" alt="Gamaliel KALAMBO" class="profile-pic">
-            </div>
-            <h1>Gamaliel KALAMBO</h1>
-            <p class="sub-heading">Ingénieur Logiciel Spécialisé en Gestion</p>
-            <p>
+        
+        <div class="reel-slide" data-slide-index="0">
+            <h1 style="font-size: 4rem;">Gamaliel KALAMBO</h1>
+            <h2 style="font-family: var(--font-code); font-size: 1.5rem;">Ingénieur Logiciel Spécialisé en Gestion</h2>
+            
+            <section class="accroche">
                 « Je conçois et pilote des solutions progicielles sur mesure. Ma double expertise d'**Analyste Programmeur** et de **Manager des Systèmes d'Information (SIG)** garantit l'alignement parfait entre la performance technique et la stratégie métier. »
-            </p>
+            </section>
         </div>
 
-        <div class="reel-slide slide-2" data-slide-index="1">
-            <h2><i class="fas fa-project-diagram"></i> Mes Réalisations Clés</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <i class="fas fa-cogs"></i>
-                    <h3>ERP Modulaire sur Mesure</h3>
-                    <p>Développement d'un système ERP adaptable pour la gestion de la comptabilité, des stocks et des RH.</p>
-                </div>
-                <div class="project-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Outil de Reporting Financier</h3>
-                    <p>Conception d'une plateforme d'analyse et de visualisation des données pour une prise de décision éclairée.</p>
-                </div>
-                <div class="project-card">
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Gestion RH Intégrée</h3>
-                    <p>Mise en place d'une solution de gestion des ressources humaines, de la paie au suivi de carrière.</p>
-                </div>
-            </div>
-            <p style="margin-top: calc(2 * var(--spacing-unit)); font-style: italic;">Découvrez d'autres projets sur mon GitHub...</p>
-        </div>
-
-        <div class="reel-slide slide-3" data-slide-index="2">
-            <h2><i class="fas fa-question-circle"></i> Qui est Gamaliel ?</h2>
-            <div class="about-content">
-                <p>
-                    En tant qu'**Ingénieur Logiciel en Gestion**, mon rôle est de créer des ponts entre la technologie et les impératifs business. Je m'assure que chaque ligne de code contribue directement à l'efficacité opérationnelle et à la stratégie de croissance.
-                </p>
-                <div class="about-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <div>
+        <div class="reel-slide" data-slide-index="1">
+            <div class="card-content">
+                <h2><i class="fas fa-user-tie"></i> Double Casquette & Expertise</h2>
+                <div class="roles-grid">
+                    
+                    <div class="role-item">
+                        <i class="fas fa-code"></i>
                         <h3>Analyste Programmeur</h3>
-                        <p>De l'analyse fonctionnelle à l'implémentation, je maîtrise le cycle de vie du développement pour produire des logiciels robustes et performants.</p>
+                        <p>Mise en œuvre technique, écriture de code propre et performant, de l'analyse fonctionnelle à la livraison du produit final.</p>
                     </div>
-                </div>
-                <div class="about-item">
-                    <i class="fas fa-network-wired"></i>
-                    <div>
-                        <h3>Manager des Systèmes d’Informations de Gestion (SIG)</h3>
-                        <p>J'optimise l'architecture des SIG pour garantir une intégration fluide, une sécurité maximale et une évolutivité constante des systèmes d'entreprise.</p>
+                    
+                    <div class="role-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Manager des Systèmes d’Informations de Gestion</h3>
+                        <p>Pilotage de l'intégration des systèmes d'information, optimisation des processus de gestion et veille stratégique IT.</p>
                     </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="reel-slide slide-4" data-slide-index="3">
-            <h2><i class="fas fa-tools"></i> Compétences & Tech Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <span class="skill-number">01</span>
-                    <h3>Développement Logiciel</h3>
-                    <p>Java/Spring, Python/Django, Node.js, C#, SQL/NoSQL. Architectures Microservices, DDD.</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-number">02</span>
-                    <h3>Conception & Modélisation</h3>
-                    <p>UML, Modélisation de données (Merise, MCD), Design Patterns. Outils de wireframing et maquettage.</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-number">03</span>
-                    <h3>Progiciels de Gestion</h3>
-                    <p>Exploitation, paramétrage et intégration d'ERP (ex: SAP, Odoo), CRM et SCM.</p>
-                </div>
-                <div class="skill-item">
-                    <span class="skill-number">04</span>
-                    <h3>Conseil & Stratégie IT</h3>
-                    <p>Audit, préconisation et implémentation de solutions logicielles adaptées aux besoins métier.</p>
-                </div>
+        <div class="reel-slide" data-slide-index="2">
+            <div class="card-content">
+                <h2><i class="fas fa-tools"></i> Domaines d'Intervention & Savoir-faire Opérationnel</h2>
+                <ul class="competences-list">
+                    
+                    <li><i class="fas fa-file-invoice-dollar"></i>Développer un logiciel de gestion dans tout domaine (Comptabilité, RH, Stocks).</li>
+                    <li><i class="fas fa-toolbox"></i>Utiliser des outils avancés (UML, Modélisation) dans la conception de logiciels de gestion.</li>
+                    <li><i class="fas fa-puzzle-piece"></i>Exploiter et paramétrer un Progiciel de Gestion Intégré (ERP/PGI).</li>
+                    <li><i class="fas fa-lightbulb"></i>Conseiller stratégiquement sur l'emploi optimal de solutions logicielles de gestion.</li>
+                </ul>
             </div>
         </div>
 
-        <div class="reel-slide slide-5" data-slide-index="4">
+        <div class="reel-slide" data-slide-index="3">
             <h2><i class="fas fa-envelope-open-text"></i> Me Contacter</h2>
-            <p>Prêt pour une collaboration innovante ? Je suis à l'écoute de vos projets.</p>
+            <p style="margin-bottom: 30px;">Prêt pour une collaboration innovante ? Je suis à l'écoute de vos projets.</p>
             <div class="contact-grid">
                 <a href="mailto:gamaliel.kalambo@example.com" class="contact-item">
                     <i class="fas fa-envelope"></i>
@@ -498,14 +328,6 @@
         </div>
     </div>
 
-    <div class="scroll-indicator">
-        <div class="scroll-dot active" data-dot-index="0"></div>
-        <div class="scroll-dot" data-dot-index="1"></div>
-        <div class="scroll-dot" data-dot-index="2"></div>
-        <div class="scroll-dot" data-dot-index="3"></div>
-        <div class="scroll-dot" data-dot-index="4"></div>
-    </div>
-
     <div class="nav-buttons">
         <button id="prevSlide" class="nav-button" disabled><i class="fas fa-chevron-up"></i></button>
         <button id="nextSlide" class="nav-button"><i class="fas fa-chevron-down"></i></button>
@@ -517,25 +339,15 @@
             const slides = document.querySelectorAll('.reel-slide');
             const totalSlides = slides.length;
             let currentSlideIndex = 0;
-
-            const scrollDots = document.querySelectorAll('.scroll-dot');
             const prevButton = document.getElementById('prevSlide');
             const nextButton = document.getElementById('nextSlide');
+            let isScrolling = false; 
 
             // Fonction pour mettre à jour l'affichage des slides
             function updateSlideDisplay() {
                 const translateYValue = -currentSlideIndex * 100;
                 slides.forEach(slide => {
                     slide.style.transform = `translateY(${translateYValue}%)`;
-                });
-
-                // Mettre à jour les indicateurs de défilement
-                scrollDots.forEach((dot, index) => {
-                    if (index === currentSlideIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
                 });
 
                 // Mettre à jour l'état des boutons de navigation
@@ -560,12 +372,11 @@
             }
 
             // Gestion du défilement avec la molette de la souris
-            let isScrolling = false; // Pour éviter les défilements multiples rapides
             reelContainer.addEventListener('wheel', (event) => {
                 if (isScrolling) return;
 
                 isScrolling = true;
-                setTimeout(() => { isScrolling = false; }, 800); // Délai pour permettre la fin de l'animation
+                setTimeout(() => { isScrolling = false; }, 800); // Délai pour l'animation
 
                 if (event.deltaY > 0) { // Défilement vers le bas
                     goToNextSlide();
@@ -580,14 +391,13 @@
                 touchStartY = event.touches[0].clientY;
             });
             reelContainer.addEventListener('touchmove', (event) => {
-                // Empêche le défilement par défaut de la page
-                event.preventDefault(); 
-            }, { passive: false }); // 'passive: false' est crucial pour preventDefault sur touchmove
+                event.preventDefault(); // Empêche le défilement par défaut
+            }, { passive: false });
             reelContainer.addEventListener('touchend', (event) => {
                 const touchEndY = event.changedTouches[0].clientY;
-                if (touchEndY < touchStartY - 50) { // Glisser vers le haut (pour aller à la slide suivante)
+                if (touchEndY < touchStartY - 50) { // Glisser vers le haut
                     goToNextSlide();
-                } else if (touchEndY > touchStartY + 50) { // Glisser vers le bas (pour aller à la slide précédente)
+                } else if (touchEndY > touchStartY + 50) { // Glisser vers le bas
                     goToPrevSlide();
                 }
             });
@@ -595,14 +405,6 @@
             // Gestion des clics sur les boutons de navigation
             prevButton.addEventListener('click', goToPrevSlide);
             nextButton.addEventListener('click', goToNextSlide);
-
-            // Gestion des clics sur les indicateurs de défilement
-            scrollDots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    currentSlideIndex = parseInt(dot.dataset.dotIndex);
-                    updateSlideDisplay();
-                });
-            });
 
             // Initialisation de l'affichage
             updateSlideDisplay();
