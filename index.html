@@ -182,35 +182,52 @@
             z-index: 1;
         }
 
-        .hero h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
+        /* Presentation Section with Scrolling Text */
+        .presentation-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 100px 0;
         }
 
-        .hero h1 span { 
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .scrolling-text-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            height: 500px;
+            overflow: hidden;
             position: relative;
         }
 
-        .hero p { 
-            font-size: 1.3rem; 
-            margin-bottom: 2.5rem; 
-            color: #4a5568;
-            font-weight: 400;
+        .scrolling-text {
+            animation: scrollText 20s linear infinite;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        @keyframes scrollText {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
         }
 
-        /* Carrousel */
-        .carousel-container {
+        .scrolling-text h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .scrolling-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Photo Carousel */
+        .photo-carousel-container {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
@@ -227,44 +244,18 @@
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            padding: 2rem;
-            background: var(--card-bg);
+            align-items: center;
         }
 
         .carousel-slide.active {
             opacity: 1;
         }
 
-        .carousel-slide:nth-child(1) {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        .carousel-slide:nth-child(2) {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-        }
-
-        .carousel-slide:nth-child(3) {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-        }
-
-        .carousel-content {
-            max-width: 90%;
-        }
-
-        .carousel-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .carousel-content p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #4a5568;
-            margin-bottom: 1.5rem;
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .carousel-indicators {
@@ -281,7 +272,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: var(--transition);
         }
@@ -323,12 +314,31 @@
             right: 20px;
         }
 
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: var(--shadow-hover);
+        .hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span { 
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero p { 
+            font-size: 1.3rem; 
+            margin-bottom: 2.5rem; 
+            color: #4a5568;
+            font-weight: 400;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -426,14 +436,6 @@
             width: 100%;
             height: 5px;
             background: var(--gradient-primary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .specialite-card:hover:before {
-            transform: scaleX(1);
         }
 
         .specialite-card:hover {
@@ -442,99 +444,34 @@
         }
 
         .specialite-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
+            color: var(--secondary);
             margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .specialite-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary);
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .specialite-card p {
-            color: #718096;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Competences Section */
-        .competences {
-            background-color: var(--light);
-        }
-
-        .competences-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .competence-category {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .competence-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .competence-category h3 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .competence-category h3 i {
-            color: var(--secondary);
-            font-size: 1.5rem;
-        }
-
-        .competence-list {
-            list-style: none;
-        }
-
-        .competence-list li {
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .competence-list li i {
-            color: var(--secondary);
-            font-size: 0.9rem;
         }
 
         /* Projets Section */
         .projets {
-            background-color: var(--card-bg);
+            background: var(--gradient-light);
         }
 
         .projets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .projet-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border-radius: 16px;
             overflow: hidden;
-            transition: var(--transition);
             box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .projet-card:hover {
@@ -542,123 +479,77 @@
             box-shadow: var(--shadow-hover);
         }
 
-        .projet-image {
-            height: 220px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .projet-image:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .projet-img {
+            height: 200px;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
 
-        .projet-info {
+        .projet-content {
             padding: 2rem;
         }
 
-        .projet-info h3 {
+        .projet-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            font-size: 1.3rem;
-        }
-
-        .projet-info p {
-            color: #718096;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
         }
 
         .projet-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            margin: 1rem 0;
         }
 
         .projet-tag {
-            background-color: rgba(0, 188, 212, 0.1);
-            color: var(--secondary);
-            font-weight: 500;
-            border-radius: 50px;
-            padding: 6px 12px;
+            background: var(--gradient-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
             font-size: 0.8rem;
-            transition: var(--transition);
-            border: 1px solid rgba(0, 188, 212, 0.2);
-        }
-
-        .projet-tag:hover {
-            background-color: var(--secondary);
-            color: white;
+            font-weight: 500;
         }
 
         /* Contact Section */
         .contact {
-            background-color: var(--light);
+            background-color: var(--card-bg);
         }
 
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
-            align-items: flex-start;
         }
 
         .contact-info {
-            padding: 2.5rem;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .contact-item {
             display: flex;
+            gap: 1rem;
             align-items: flex-start;
-            margin-bottom: 2rem;
         }
 
         .contact-icon {
-            background: var(--gradient-primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            min-width: 40px;
+        }
+
+        .contact-text h4 {
             font-size: 1.2rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
-        .contact-item h3 {
-            font-weight: 600;
-            color: var(--primary);
             margin-bottom: 0.3rem;
-        }
-
-        .contact-item p {
-            color: #718096;
-            font-size: 0.95rem;
+            color: var(--primary);
         }
 
         .contact-form {
-            background-color: var(--card-bg);
+            background: var(--gradient-light);
             padding: 2.5rem;
             border-radius: 16px;
-            box-shadow: var(--shadow);
         }
 
         .form-group {
@@ -668,35 +559,30 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            transition: var(--transition);
-            font-size: 1rem;
-            background-color: var(--light);
-        }
-
         .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group textarea:focus {
             border-color: var(--secondary);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1);
-            background-color: white;
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
         }
 
         /* Footer */
@@ -706,76 +592,56 @@
             padding: 4rem 0 2rem;
         }
 
-        .footer-container {
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-logo i {
-            color: var(--secondary);
-        }
-
-        .footer-logo span {
-            color: var(--secondary);
-        }
-
-        .footer-about p {
-            color: #a0aec0;
+        .footer-section h3 {
+            font-size: 1.4rem;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            position: relative;
+            padding-bottom: 0.8rem;
         }
 
-        .footer-links h4,
-        .footer-contact h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            font-size: 1.2rem;
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
         }
 
         .footer-links a {
-            display: block;
             color: #a0aec0;
             text-decoration: none;
-            margin-bottom: 0.8rem;
             transition: var(--transition);
         }
 
         .footer-links a:hover {
             color: var(--secondary);
-            transform: translateX(5px);
+            padding-left: 5px;
         }
 
-        .footer-contact p {
-            color: #a0aec0;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .footer-contact i {
-            color: var(--secondary);
-            width: 20px;
-        }
-
-        .footer-social {
+        .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
         }
 
-        .footer-social a {
+        .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -784,624 +650,473 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             color: var(--text-light);
-            font-size: 1.2rem;
             transition: var(--transition);
         }
 
-        .footer-social a:hover {
+        .social-link:hover {
             background: var(--secondary);
             transform: translateY(-5px);
         }
 
-        .footer-bottom {
+        .copyright {
             text-align: center;
-            margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
             color: #a0aec0;
+            font-size: 0.9rem;
         }
 
-        /* Animations */
-        .card-staggered {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .contact-container {
+            .hero-container,
+            .presentation-section {
                 grid-template-columns: 1fr;
             }
             
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .carousel-container {
+            .scrolling-text-container,
+            .photo-carousel-container {
                 height: 400px;
             }
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
             .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                background-color: white;
-                flex-direction: column;
-                width: 280px;
                 height: 100vh;
-                padding: 100px 2rem 2rem;
+                width: 70%;
+                background: var(--card-bg);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 transition: var(--transition);
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
             }
-            
+
             .nav-links.active {
                 right: 0;
             }
-            
-            .nav-links a {
-                margin: 0.8rem 0;
-                font-size: 1.1rem;
+
+            .menu-toggle {
+                display: block;
             }
-            
-            .hero {
-                padding: 150px 0 80px;
-                text-align: center;
-            }
-            
-            .hero h1 {
+
+            .hero h1,
+            .section-title {
                 font-size: 2.5rem;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-btns {
-                justify-content: center;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .specialites-grid,
-            .competences-container,
-            .projets-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-social {
-                justify-content: center;
-            }
-            
-            .carousel-container {
+
+            .scrolling-text-container,
+            .photo-carousel-container {
                 height: 350px;
             }
-            
-            .carousel-content h2 {
-                font-size: 1.8rem;
+
+            .hero-btns {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
 
         @media (max-width: 576px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-            
-            .btn {
-                padding: 12px 24px;
-                width: 100%;
-                justify-content: center;
+
+            .hero p {
+                font-size: 1.1rem;
             }
-            
-            .hero-btns {
-                flex-direction: column;
+
+            section {
+                padding: 60px 0;
             }
-            
-            .carousel-container {
+
+            .scrolling-text-container,
+            .photo-carousel-container {
                 height: 300px;
-            }
-            
-            .carousel-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .carousel-content p {
-                font-size: 1rem;
             }
         }
     </style>
 </head>
-
 <body>
-
-<header id="header">
-    <div class="container">
-        <nav>
-            <div class="logo"><i class="fas fa-laptop-code"></i> Ingénieur <span>Logiciel</span></div>
-            <ul class="nav-links">
-                <li><a href="#accueil" class="active">Accueil</a></li>
-                <li><a href="specialites/index.html">Spécialités</a></li>
-                <li><a href="competences/index.html">Compétences</a></li>
-                <li><a href="projets/index.html">Projets</a></li>
-                <li><a href="contacts/index.html">Contact</a></li>
-            </ul>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-        </nav>
-    </div>
-</header>
-
-<section id="accueil" class="hero visible">
-    <div class="container">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Conception et Optimisation de <span>Systèmes de Gestion</span></h1>
-                <p>Ingénieur Logiciel spécialisé dans la transformation numérique et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
-                <div class="hero-btns">
-                    <a href="projets/index.html" class="btn">Voir mes projets <i class="fas fa-arrow-right"></i></a>
-                    <a href="contacts/index.html" class="btn btn-outline">Discutons de votre projet</a>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>Dev</span>Portfolio
                 </div>
-            </div>
-            
-            <!-- Carrousel de présentation -->
-            <div class="carousel-container">
-                <div class="carousel-slide active">
-                    <div class="carousel-content">
-                        <h2>Expérience & Expertise</h2>
-                        <p>Plus de 8 ans d'expérience dans le développement de solutions logicielles d'entreprise. Spécialiste des systèmes ERP, CRM et des plateformes de gestion intégrée.</p>
-                        <p>J'accompagne les entreprises dans leur transformation digitale avec des solutions sur mesure et évolutives.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-content">
-                        <h2>Approche & Méthodologie</h2>
-                        <p>Je privilégie une approche agile centrée sur l'utilisateur final. Chaque projet est l'occasion de créer une solution qui répond parfaitement aux besoins métier.</p>
-                        <p>De l'analyse des besoins à la mise en production, je garantis un processus transparent et collaboratif.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-content">
-                        <h2>Valeurs & Engagement</h2>
-                        <p>Qualité, performance et maintenabilité sont au cœur de mon travail. Je m'engage à fournir un code propre, documenté et testé.</p>
-                        <p>Je suis constamment à la pointe des nouvelles technologies pour proposer les solutions les plus adaptées et innovantes.</p>
-                    </div>
-                </div>
-                
-                <!-- Indicateurs du carrousel -->
-                <div class="carousel-indicators">
-                    <div class="carousel-indicator active" data-slide="0"></div>
-                    <div class="carousel-indicator" data-slide="1"></div>
-                    <div class="carousel-indicator" data-slide="2"></div>
-                </div>
-                
-                <!-- Navigation du carrousel -->
-                <button class="carousel-nav carousel-prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-nav carousel-next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="specialites" class="specialites">
-    <div class="container">
-        <h2 class="section-title">Domaines d'Expertise</h2>
-        <div class="specialites-grid">
-            <div class="specialite-card card-staggered">
-                <div class="specialite-icon">
-                    <i class="fas fa-cubes"></i>
-                </div>
-                <h3>Intégration ERP & PGI</h3>
-                <p>Mise en place, personnalisation et intégration de Progiciels de Gestion Intégrés (SAP, Odoo, Dynamics 365) pour unifier les opérations.</p>
-                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
-            </div>
-            <div class="specialite-card card-staggered">
-                <div class="specialite-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Business Intelligence (BI)</h3>
-                <p>Développement de tableaux de bord, d'outils de reporting et d'analyse de données pour éclairer la prise de décision stratégique.</p>
-                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
-            </div>
-            <div class="specialite-card card-staggered">
-                <div class="specialite-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <h3>Développement sur Mesure</h3>
-                <p>Création d'applications métier spécifiques (facturation, RH, logistique) adaptées aux besoins uniques de votre entreprise.</p>
-                <a href="specialites/index.html" class="btn" style="margin-top: 1rem; padding: 10px 20px;">En savoir plus</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="competences" class="competences">
-    <div class="container">
-        <h2 class="section-title">Compétences Techniques</h2>
-        <div class="competences-container">
-            <div class="competence-category card-staggered">
-                <h3><i class="fas fa-code"></i> Langages & Frameworks</h3>
-                <ul class="competence-list">
-                    <li><i class="fas fa-check-circle"></i> <strong>C# (.NET)</strong>, Java (Spring Boot)</li>
-                    <li><i class="fas fa-check-circle"></i> Python (Django, Pandas, Flask)</li>
-                    <li><i class="fas fa-check-circle"></i> JavaScript (React, Node.js, Vue.js)</li>
-                    <li><i class="fas fa-check-circle"></i> TypeScript, HTML5, CSS3/SASS</li>
+                <ul class="nav-links">
+                    <li><a href="#accueil" class="active">Accueil</a></li>
+                    <li><a href="#specialites">Spécialités</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
-            </div>
-            <div class="competence-category card-staggered">
-                <h3><i class="fas fa-database"></i> Bases de Données & Cloud</h3>
-                <ul class="competence-list">
-                    <li><i class="fas fa-check-circle"></i> SQL Server, PostgreSQL, MySQL</li>
-                    <li><i class="fas fa-check-circle"></i> MongoDB, Redis, Elasticsearch</li>
-                    <li><i class="fas fa-check-circle"></i> Modélisation OLAP et Data Warehouse</li>
-                    <li><i class="fas fa-check-circle"></i> Cloud (Azure, AWS) & Docker</li>
-                </ul>
-                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
-            </div>
-            <div class="competence-category card-staggered">
-                <h3><i class="fas fa-tools"></i> Méthodes & Outils</h3>
-                <ul class="competence-list">
-                    <li><i class="fas fa-check-circle"></i> Méthodologies Agiles (Scrum/Kanban)</li>
-                    <li><i class="fas fa-check-circle"></i> UML, Merise, BPMN, Design Patterns</li>
-                    <li><i class="fas fa-check-circle"></i> Git, CI/CD, JIRA, Confluence</li>
-                    <li><i class="fas fa-check-circle"></i> Tests unitaires et d'intégration</li>
-                </ul>
-                <a href="competences/index.html" class="btn" style="margin-top: 1.5rem; padding: 10px 20px;">Toutes mes compétences</a>
-            </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
         </div>
-    </div>
-</section>
+    </header>
 
-<section id="projets" class="projets">
-    <div class="container">
-        <h2 class="section-title">Dernières Réalisations</h2>
-        <div class="projets-grid">
-            <div class="projet-card card-staggered">
-                <div class="projet-image">
-                    <i class="fas fa-money-check-alt"></i>
-                </div>
-                <div class="projet-info">
-                    <h3>Module de Paiement Sécurisé</h3>
-                    <p>Refonte d'un système de transactions financières en microservices C# pour la conformité PSD2 avec intégration de passerelles de paiement multiples.</p>
-                    <div class="projet-tags">
-                        <span class="projet-tag">C#/.NET</span>
-                        <span class="projet-tag">Microservices</span>
-                        <span class="projet-tag">Azure</span>
-                        <span class="projet-tag">SQL Server</span>
+    <!-- Hero Section avec Présentation -->
+    <section id="accueil" class="hero">
+        <div class="container">
+            <div class="presentation-section">
+                <!-- Scrolling Text Presentation -->
+                <div class="scrolling-text-container">
+                    <div class="scrolling-text">
+                        <h2>Présentation</h2>
+                        <p>Ingénieur Logiciel spécialisé dans la transformation numérique et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
+                        <p>Conception et Optimisation de Systèmes de Gestion</p>
+                        <p>Avec une expertise approfondie en développement logiciel, j'accompagne les entreprises dans leur transition numérique en concevant des solutions sur mesure qui répondent à leurs besoins spécifiques.</p>
+                        <p>Ma passion pour l'innovation technologique me pousse à explorer continuellement les dernières tendances en matière de développement logiciel, d'intelligence artificielle et de transformation digitale.</p>
+                        <p>Je mets mon expertise au service de la création de systèmes robustes, sécurisés et évolutifs qui permettent aux organisations de maximiser leur efficacité opérationnelle.</p>
+                        <p>Mon approche centrée sur l'utilisateur garantit des solutions intuitives et adaptées aux réalités du marché contemporain.</p>
+                        <p>Grâce à une méthodologie agile et collaborative, je conçois des architectures logicielles modulaires qui s'adaptent facilement aux évolutions technologiques et aux besoins changeants des entreprises.</p>
+                        <p>Mon expertise couvre également l'optimisation des performances, la sécurité des données et l'intégration de systèmes hétérogènes pour une transformation digitale réussie.</p>
+                        <h2>Présentation</h2>
+                        <p>Ingénieur Logiciel spécialisé dans la transformation numérique et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
+                        <p>Conception et Optimisation de Systèmes de Gestion</p>
+                        <p>Avec une expertise approfondie en développement logiciel, j'accompagne les entreprises dans leur transition numérique en concevant des solutions sur mesure qui répondent à leurs besoins spécifiques.</p>
+                        <p>Ma passion pour l'innovation technologique me pousse à explorer continuellement les dernières tendances en matière de développement logiciel, d'intelligence artificielle et de transformation digitale.</p>
+                        <p>Je mets mon expertise au service de la création de systèmes robustes, sécurisés et évolutifs qui permettent aux organisations de maximiser leur efficacité opérationnelle.</p>
+                        <p>Mon approche centrée sur l'utilisateur garantit des solutions intuitives et adaptées aux réalités du marché contemporain.</p>
+                        <p>Grâce à une méthodologie agile et collaborative, je conçois des architectures logicielles modulaires qui s'adaptent facilement aux évolutions technologiques et aux besoins changeants des entreprises.</p>
+                        <p>Mon expertise couvre également l'optimisation des performances, la sécurité des données et l'intégration de systèmes hétérogènes pour une transformation digitale réussie.</p>
                     </div>
-                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
                 </div>
-            </div>
-            <div class="projet-card card-staggered">
-                <div class="projet-image">
-                    <i class="fas fa-truck-loading"></i>
-                </div>
-                <div class="projet-info">
-                    <h3>Optimiseur de Chaîne Logistique</h3>
-                    <p>Application Python qui utilise l'IA pour prédire les besoins en stock et optimiser les trajets de livraison, réduisant les coûts de 18%.</p>
-                    <div class="projet-tags">
-                        <span class="projet-tag">Python</span>
-                        <span class="projet-tag">TensorFlow</span>
-                        <span class="projet-tag">PostgreSQL</span>
-                        <span class="projet-tag">Django</span>
-                    </div>
-                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-            <div class="projet-card card-staggered">
-                <div class="projet-image">
-                    <i class="fas fa-users-cog"></i>
-                </div>
-                <div class="projet-info">
-                    <h3>Portail Client RH (SaaS)</h3>
-                    <p>Plateforme web moderne (React/Node) permettant aux PME de gérer les dossiers et les demandes de congés des employés avec workflow d'approbation.</p>
-                    <div class="projet-tags">
-                        <span class="projet-tag">React</span>
-                        <span class="projet-tag">Node.js</span>
-                        <span class="projet-tag">MongoDB</span>
-                        <span class="projet-tag">AWS</span>
-                    </div>
-                    <a href="projets/index.html" class="btn">Détails <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="projets/index.html" class="btn btn-outline">Voir tous mes projets</a>
-        </div>
-    </div>
-</section>
 
-<section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title">Me Contacter</h2>
-        <div class="contact-container">
-            <div class="contact-info card-staggered">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
+                <!-- Photo Carousel -->
+                <div class="photo-carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="https://placehold.co/600x500/00bcd4/ffffff?text=Photo+1" alt="Photo 1" class="carousel-image">
                     </div>
-                    <div>
-                        <h3>Localisation</h3>
-                        <p>Paris, France (Disponible en remote)</p>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/600x500/0097a7/ffffff?text=Photo+2" alt="Photo 2" class="carousel-image">
                     </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
+                    <div class="carousel-slide">
+                        <img src="https://placehold.co/600x500/1a1a2e/ffffff?text=Photo+3" alt="Photo 3" class="carousel-image">
                     </div>
-                    <div>
-                        <h3>Téléphone</h3>
-                        <p>+33 6 XX XX XX XX</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h3>Email Professionnel</h3>
-                        <p>prenom.nom@professionnel.fr</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h3>Disponibilité</h3>
-                        <p>Réponse sous 24h</p>
-                    </div>
-                </div>
-                <a href="contacts/index.html" class="btn" style="width: 100%; justify-content: center; margin-top: 1rem;">Page de contact complète</a>
-            </div>
-            <div class="contact-form card-staggered">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Votre Nom</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Votre Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Votre Projet Concerne...</label>
-                        <select id="subject" required>
-                            <option value="">Sélectionnez un domaine</option>
-                            <option value="devis">Intégration ERP/PGI</option>
-                            <option value="conseil">Développement sur Mesure</option>
-                            <option value="development">Consulting BI/Reporting</option>
-                            <option value="autre">Autre</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message détaillé</label>
-                        <textarea id="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Envoyer la demande <i class="fas fa-paper-plane"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <div class="footer-container">
-            <div class="footer-about">
-                <div class="footer-logo"><i class="fas fa-laptop-code"></i> Ingénieur <span>Logiciel</span></div>
-                <p>Conception de solutions logicielles fiables, performantes et adaptées aux réalités métiers modernes. Expertise en systèmes de gestion d'entreprise.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-medium-m"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Navigation</h4>
-                <a href="#accueil">Accueil</a>
-                <a href="specialites/index.html">Spécialités</a>
-                <a href="competences/index.html">Compétences</a>
-                <a href="projets/index.html">Projets</a>
-                <a href="contacts/index.html">Contact</a>
-            </div>
-            <div class="footer-contact">
-                <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
-                <p><i class="fas fa-phone"></i> +33 6 XX XX XX XX</p>
-                <p><i class="fas fa-envelope"></i> prenom.nom@professionnel.fr</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Ingénieur Logiciel – Tous droits réservés.</p>
-        </div>
-    </div>
-</footer>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Menu mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            menuToggle.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Fermer le menu en cliquant sur un lien
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Navigation active state
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-links a');
-        
-        window.addEventListener('scroll', function() {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href').substring(1) === current) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Animation d'apparition des sections
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
                     
-                    // Animation des cartes dans la section
-                    const cards = entry.target.querySelectorAll('.card-staggered');
-                    cards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, index * 150);
-                    });
+                    <!-- Carousel Navigation -->
+                    <button class="carousel-nav carousel-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav carousel-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators">
+                        <div class="carousel-indicator active" data-slide="0"></div>
+                        <div class="carousel-indicator" data-slide="1"></div>
+                        <div class="carousel-indicator" data-slide="2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialites Section -->
+    <section id="specialites" class="specialites">
+        <div class="container">
+            <h2 class="section-title">Mes Spécialités</h2>
+            <div class="specialites-grid">
+                <div class="specialite-card">
+                    <div class="specialite-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Développement Web</h3>
+                    <p>Applications web modernes avec les dernières technologies front-end et back-end.</p>
+                </div>
+                <div class="specialite-card">
+                    <div class="specialite-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Applications Mobiles</h3>
+                    <p>Applications mobiles performantes pour iOS et Android.</p>
+                </div>
+                <div class="specialite-card">
+                    <div class="specialite-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Architecture Systèmes</h3>
+                    <p>Conception d'architectures logicielles robustes et évolutives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projets" class="projets">
+        <div class="container">
+            <h2 class="section-title">Mes Projets</h2>
+            <div class="projets-grid">
+                <div class="projet-card">
+                    <img src="https://placehold.co/600x400/00bcd4/ffffff?text=Projet+1" alt="Projet 1" class="projet-img">
+                    <div class="projet-content">
+                        <h3>Système de Gestion ERP</h3>
+                        <p>Solution complète de gestion des ressources d'entreprise pour PME.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">React</span>
+                            <span class="projet-tag">Node.js</span>
+                            <span class="projet-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="projet-card">
+                    <img src="https://placehold.co/600x400/0097a7/ffffff?text=Projet+2" alt="Projet 2" class="projet-img">
+                    <div class="projet-content">
+                        <h3>Application Mobile E-commerce</h3>
+                        <p>Plateforme de vente en ligne avec système de paiement intégré.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">React Native</span>
+                            <span class="projet-tag">Firebase</span>
+                            <span class="projet-tag">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="projet-card">
+                    <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Projet+3" alt="Projet 3" class="projet-img">
+                    <div class="projet-content">
+                        <h3>Plateforme d'Analyse Big Data</h3>
+                        <p>Solution d'analyse et de visualisation de données en temps réel.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">Python</span>
+                            <span class="projet-tag">Django</span>
+                            <span class="projet-tag">D3.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Localisation</h4>
+                            <p>Paris, France</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>contact@exemple.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Téléphone</h4>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DevPortfolio</h3>
+                    <p>Ingénieur logiciel passionné par la création de solutions technologiques innovantes et performantes.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#specialites">Spécialités</a></li>
+                        <li><a href="#projets">Projets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Développement Web</a></li>
+                        <li><a href="#">Applications Mobiles</a></li>
+                        <li><a href="#">Architecture Systèmes</a></li>
+                        <li><a href="#">Consultation Tech</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 DevPortfolio. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            let currentSlide = 0;
+            let slideInterval;
+
+            // Show slide function
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            // Next slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Previous slide
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Start automatic sliding
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            // Stop automatic sliding
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            });
+
+            // Start the slideshow
+            startSlideShow();
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
             });
-        }, { threshold: 0.15 });
 
-        sections.forEach(section => {
-            if (section.id !== 'accueil') {
-                sectionObserver.observe(section);
-            }
-        });
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
 
-        // Gestion du formulaire de contact
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            
-            // Simulation d'envoi
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert(`Merci ${name} ! Votre message a été envoyé. Je vous recontacterai rapidement.`);
-                contactForm.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-
-        // Initialisation des animations des cartes
-        document.querySelectorAll('.card-staggered').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-        });
-
-        // Carrousel functionality
-        const carouselSlides = document.querySelectorAll('.carousel-slide');
-        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
-        const prevButton = document.querySelector('.carousel-prev');
-        const nextButton = document.querySelector('.carousel-next');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            // Masquer toutes les slides
-            carouselSlides.forEach(slide => {
-                slide.classList.remove('active');
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             });
-            
-            // Désactiver tous les indicateurs
-            carouselIndicators.forEach(indicator => {
-                indicator.classList.remove('active');
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
             });
-            
-            // Afficher la slide courante
-            carouselSlides[index].classList.add('active');
-            carouselIndicators[index].classList.add('active');
-            currentSlide = index;
-        }
 
-        function nextSlide() {
-            let nextIndex = (currentSlide + 1) % carouselSlides.length;
-            showSlide(nextIndex);
-        }
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
-        function prevSlide() {
-            let prevIndex = (currentSlide - 1 + carouselSlides.length) % carouselSlides.length;
-            showSlide(prevIndex);
-        }
+            // Section animation on scroll
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        // Événements pour les boutons de navigation
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-
-        // Événements pour les indicateurs
-        carouselIndicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                showSlide(index);
+            sections.forEach(section => {
+                observer.observe(section);
             });
         });
-
-        // Défilement automatique
-        let carouselInterval = setInterval(nextSlide, 5000);
-
-        // Arrêter le défilement automatique au survol
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => {
-            clearInterval(carouselInterval);
-        });
-
-        carouselContainer.addEventListener('mouseleave', () => {
-            carouselInterval = setInterval(nextSlide, 5000);
-        });
-    });
-</script>
+    </script>
 </body>
 </html>
