@@ -3,995 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevPortfolio | Ingénieur en  systemes d'informations</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* 🎨 Variables CSS Modernes */
+        /* CSS intégré pour la simplicité (meilleures pratiques recommandent un fichier style.css séparé) */
         :root {
-            --primary: #1a1a2e; /* Bleu Nuit Profond (Fond sombre potentiel) */
-            --secondary: #00bcd4; /* Cyan Vif (Accent principal) */
-            --accent: #0097a7; /* Cyan Sombre (Variante d'accentuation) */
-            --light: #f8f9fa; /* Blanc cassé / Gris clair (Arrière-plan principal) */
-            --dark: #16213e; /* Bleu Très Sombre */
-            --text-color: #2d3748; /* Gris Charbon pour le texte principal */
-            --text-light: #e2e8f0; /* Gris Clair pour le texte sur fond sombre */
+            --primary-color: #2c3e50; /* Bleu foncé pour le texte/titres */
+            --accent-color: #3498db; /* Bleu vif pour les accents */
+            --bg-gradient: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%); /* Dégradé de fond subtil */
             --card-bg: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 15px 40px rgba(0, 188, 212, 0.15);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --font-main: 'Poppins', sans-serif;
-            --gradient-primary: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            --gradient-light: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        /* 💻 Reset et Base */
-        * {
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box;
-            font-family: var(--font-main);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition-time: 0.3s;
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text-color);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            color: var(--primary-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
+        /* --- Animations et Dégradés --- */
+        .header-section {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .header-section p {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Section principale */
         .container {
-            width: 90%;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* 🔝 Header & Navigation */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0; 
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px); /* Effet moderne "glassmorphism" */
-            transition: var(--transition);
-        }
-
-        nav {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-        }
-
-        .logo {
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo i {
-            color: var(--secondary);
-            font-size: 1.8rem;
-        }
-
-        .logo span { 
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover:after,
-        .nav-links a.active:after {
-            width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--secondary);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--primary);
-            z-index: 1001;
-        }
-
-        /* 🌟 Hero Section (Accueil) */
-        .hero {
-            background: var(--gradient-light);
-            padding: 180px 0 120px;
-            position: relative;
-        }
-
-        .presentation-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem; /* Augmentation de l'espace pour l'esthétique */
-            align-items: center;
-        }
-
-        /* 📜 Conteneur du Texte à Défilement Lent */
-        .scrolling-text-container {
+        /* Design des cartes (compétences, rôles) */
+        .card {
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            height: 550px; /* Hauteur plus importante pour l'effet de vitrine */
-            overflow: hidden;
-            position: relative;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-light);
+            transition: transform var(--transition-time) ease, box-shadow var(--transition-time) ease;
         }
 
-        /* La zone de contenu à animer */
-        .scrolling-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            /* L'animation est gérée par JS pour un contrôle précis */
-            position: absolute;
-            width: calc(100% - 5rem); /* Taille du padding */
-        }
-        
-        /* Contenu du texte pour l'esthétique */
-        .scrolling-content h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 10px;
-        }
-
-        .scrolling-content p {
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        /* 🖼️ Photo / Écran de Code / Maquette */
-        .photo-carousel-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 0 10px rgba(0, 188, 212, 0.1), var(--shadow-hover); /* Double shadow moderne */
-            height: 550px;
-            background-color: var(--dark);
-        }
-
-        .carousel-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-        }
-
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Amélioration de l'indicateur pour un look plus pro */
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            z-index: 20;
-        }
-
-        .carousel-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            border: 2px solid var(--secondary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .carousel-indicator.active {
-            background: var(--secondary);
-            transform: scale(1.4);
-            box-shadow: 0 0 10px rgba(0, 188, 212, 0.8);
-        }
-
-        /* Titre et Boutons du Hero (Déplacés si besoin, mais laissés là pour l'exemple) */
-        .hero h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .hero h1 span { 
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p { 
-            font-size: 1.3rem; 
-            margin-bottom: 2.5rem; 
-            color: #4a5568;
-            font-weight: 400;
-            text-align: center;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-        .btn {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn:hover {
+        .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--primary);
-            box-shadow: none;
-            padding: 12px 30px;
-        }
-
-        .btn-outline:hover {
-            background: var(--secondary);
-            color: white;
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
-        }
-
-        /* 🧱 Section Styles */
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
+        h2 {
             text-align: center;
-            margin-bottom: 4rem;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            position: relative;
-            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 2em;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            width: 100%;
+            animation: slideInUp 0.8s ease-out;
         }
 
-        .section-title span {
-             background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background: var(--gradient-primary);
-            margin: 15px auto 0;
-            border-radius: 3px;
-        }
-
-        /* 💡 Specialites Section */
-        .specialites-grid {
+        /* Mise en page des doubles casquettes */
+        .roles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
-        .specialite-card {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
+        .role-item {
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #e9ecef;
         }
 
-        .specialite-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+        .role-item i {
+            font-size: 3em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            transition: color var(--transition-time);
         }
 
-        .specialite-icon {
-            font-size: 3.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
+        .role-item:hover i {
+            color: var(--primary-color);
+        }
+
+        .role-item h3 {
+            margin-top: 0;
+            font-size: 1.4em;
+            border-bottom: 2px solid var(--primary-color);
             display: inline-block;
-            transition: var(--transition);
-        }
-        
-        .specialite-card:hover .specialite-icon {
-            transform: rotateY(360deg);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
         }
 
-        .specialite-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .specialite-card p {
-            color: #4a5568;
-        }
-
-        /* 📂 Projets Section */
-        .projets {
-            background: var(--gradient-light);
-        }
-
-        .projets-grid {
+        /* Compétences opérationnelles */
+        .competences-list {
+            list-style: none;
+            padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        .projet-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid #e9ecef;
-        }
-
-        .projet-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
-        }
-
-        .projet-img {
-            height: 250px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .projet-content {
-            padding: 2rem;
-        }
-
-        .projet-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .projet-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            margin: 1rem 0 0;
-        }
-
-        .projet-tag {
-            background: var(--secondary);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            box-shadow: 0 2px 5px rgba(0, 188, 212, 0.2);
-        }
-
-        /* 📧 Contact Section */
-        .contact {
-            background-color: var(--card-bg);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr; /* Le formulaire prend plus de place */
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .contact-icon {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            min-width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(0, 188, 212, 0.1);
+        .competences-list li {
+            background: #f7f9fa;
+            padding: 15px 20px;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
+            transition: background-color 0.4s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .contact-text h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-            color: var(--primary);
-            font-weight: 700;
+        .competences-list li:hover {
+            background-color: #e8f3fa;
         }
 
-        .contact-form {
-            background: var(--gradient-light);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+        .competences-list i {
+            color: var(--accent-color);
+            margin-right: 15px;
+            font-size: 1.2em;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-family: var(--font-main);
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: white;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.2);
-        }
-
-        .form-group textarea {
-            min-height: 180px;
-            resize: vertical;
-        }
-
-        /* 🦶 Footer */
+        /* Footer pour les contacts */
         footer {
-            background: var(--gradient-dark);
-            color: var(--text-light);
-            padding: 4rem 0 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
         }
 
-        .footer-section h3 {
-            color: var(--secondary);
+        /* Animations Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Styles Responsive (Conservés et légèrement ajustés) */
-        @media (max-width: 992px) {
-            .presentation-section {
-                grid-template-columns: 1fr;
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
             }
-            .scrolling-text-container,
-            .photo-carousel-container {
-                height: 450px;
-            }
-            .contact-container {
-                grid-template-columns: 1fr;
+            to {
+                transform: translateY(0);
+                opacity: 1;
             }
         }
 
+        /* Petite amélioration pour l'accroche */
+        .accroche {
+            font-style: italic;
+            font-size: 1.1em;
+            padding: 20px;
+            margin: 20px 0;
+            background: #eaf5ff;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Media Queries pour le responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                /* ... menu mobile ... */
+            .header-section h1 {
+                font-size: 2em;
             }
-
-            .menu-toggle {
-                display: block;
+            .header-section p {
+                font-size: 1em;
             }
-
-            .hero {
-                padding: 150px 0 80px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .scrolling-text-container,
-            .photo-carousel-container {
-                height: 350px;
+            .roles-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <i class="fas fa-terminal"></i>
-                    <span>Dev</span>Portfolio
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#accueil" class="active">Accueil</a></li>
-                    <li><a href="#specialites">Spécialités</a></li>
-                    <li><a href="#projets">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
+
+    <header class="header-section">
+        <p class="fade-in-on-load" style="font-weight: bold; font-size: 1.5em;">
+            INGÉNIEUR LOGICIEL SPÉCIALISÉ EN GESTION
+        </p>
+        <h1>Gamaliel KALAMBO</h1>
     </header>
 
-    <section id="accueil" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>
-                    Hello, je suis <span class="typing-text">Gamaliel</span>
-                </h1>
-                <p>
-                    Ingénieur Logiciel Spécialisé en Systèmes de Gestion & Transformation Digitale.
-                </p>
-            </div>
-            
-            <div class="presentation-section">
-                <div class="scrolling-text-container">
-                    <div class="scrolling-content">
-                        <h2>Mon Pitch (Défilement Lent)</h2>
-                        <p><strong>Ingénieur Logiciel</strong> spécialisé dans la **transformation numérique** et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
-                        <p>🔥 Mon expertise se concentre sur la **Conception et l'Optimisation de Systèmes de Gestion (ERP, CRM, SCM)**, pour des processus métiers fluides et automatisés.</p>
-                        <p>J'accompagne les entreprises dans leur transition numérique en concevant des solutions sur mesure qui répondent à leurs besoins spécifiques, en mettant l'accent sur la **scalabilité et la sécurité**.</p>
-                        <p>Ma passion pour l'innovation technologique me pousse à explorer continuellement les dernières tendances en matière de **développement logiciel, d'architecture Microservices et de Cloud Computing**.</p>
-                        <p>Je crée des systèmes robustes et évolutifs qui permettent aux organisations de **maximiser leur efficacité opérationnelle** et d'obtenir un avantage concurrentiel.</p>
-                        <p>Mon approche **centrée sur l'utilisateur (UX/UI)** garantit des solutions intuitives, modernes et adaptées aux réalités du marché contemporain.</p>
-                        <p>Grâce à une **méthodologie Agile (Scrum/Kanban)** et collaborative, je conçois des architectures logicielles modulaires qui s'adaptent facilement aux évolutions technologiques.</p>
-                        <p>Mon expertise couvre également l'**optimisation des performances, la sécurité des données (OWASP Top 10)** et l'intégration de systèmes hétérogènes.</p>
-                        <br><br><br> 
-                        <h2>Mon Pitch (Défilement Lent) - Suite</h2>
-                        <p><strong>Ingénieur Logiciel</strong> spécialisé dans la **transformation numérique** et l'intégration de solutions d'entreprise intelligentes, performantes et évolutives.</p>
-                        <p>🔥 Mon expertise se concentre sur la **Conception et l'Optimisation de Systèmes de Gestion (ERP, CRM, SCM)**, pour des processus métiers fluides et automatisés.</p>
-                        <p>J'accompagne les entreprises dans leur transition numérique en concevant des solutions sur mesure qui répondent à leurs besoins spécifiques, en mettant l'accent sur la **scalabilité et la sécurité**.</p>
-                        <p>Ma passion pour l'innovation technologique me pousse à explorer continuellement les dernières tendances en matière de **développement logiciel, d'architecture Microservices et de Cloud Computing**.</p>
-                        <p>Je crée des systèmes robustes et évolutifs qui permettent aux organisations de **maximiser leur efficacité opérationnelle** et d'obtenir un avantage concurrentiel.</p>
-                        <p>Mon approche **centrée sur l'utilisateur (UX/UI)** garantit des solutions intuitives, modernes et adaptées aux réalités du marché contemporain.</p>
-                        <p>Grâce à une **méthodologie Agile (Scrum/Kanban)** et collaborative, je conçois des architectures logicielles modulaires qui s'adaptent facilement aux évolutions technologiques.</p>
-                        <p>Mon expertise couvre également l'**optimisation des performances, la sécurité des données (OWASP Top 10)** et l'intégration de systèmes hétérogènes.</p>
-                    </div>
+    <div class="container">
+
+        <section class="accroche">
+            « Ingénieur Logiciel spécialisé en Gestion, je conçois et pilote des solutions progicielles sur mesure. Ma double expertise d'**Analyste Programmeur** et de **Manager des Systèmes d'Information (SIG)** garantit l'alignement parfait entre la performance technique et la stratégie métier. »
+        </section>
+
+        <div class="card">
+            <h2><i class="fas fa-user-tie"></i> Double Casquette & Expertise</h2>
+            <div class="roles-grid">
+                
+                <div class="role-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Analyste Programmeur</h3>
+                    <p>Mise en œuvre technique, écriture de code propre et performant, de l'analyse fonctionnelle à la livraison du produit final.</p>
+                </div>
+                
+                <div class="role-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Manager des Systèmes d’Informations de Gestion</h3>
+                    <p>Pilotage de l'intégration des systèmes d'information, optimisation des processus de gestion et veille stratégique IT.</p>
                 </div>
 
-                <div class="photo-carousel-container">
-                    <div class="carousel-slide active">
-                        <img src="https://placehold.co/600x500/1a1a2e/00bcd4?text=UI%2FUX+Web+Moderne" alt="UI/UX Web Moderne" class="carousel-image">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/600x500/16213e/00bcd4?text=Code+Clean+Architecture" alt="Code Clean Architecture" class="carousel-image">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="https://placehold.co/600x500/0097a7/1a1a2e?text=Devops+%2F+Cloud+Infra" alt="Devops / Cloud Infra" class="carousel-image">
-                    </div>
-                    
-                    <div class="carousel-indicators">
-                        <div class="carousel-indicator active" data-slide="0"></div>
-                        <div class="carousel-indicator" data-slide="1"></div>
-                        <div class="carousel-indicator" data-slide="2"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-btns">
-                <a href="#projets" class="btn">
-                    <i class="fas fa-rocket"></i> Voir mes Projets
-                </a>
-                <a href="CV-Votre-Nom.pdf" class="btn btn-outline" download>
-                    <i class="fas fa-download"></i> Télécharger CV
-                </a>
             </div>
         </div>
-    </section>
-    
-    <hr>
-    
-    <section id="specialites" class="specialites">
-        <div class="container">
-            <h2 class="section-title">Tech <span>Stack</span> & Spécialités</h2>
-            <div class="specialites-grid">
-                <div class="specialite-card">
-                    <div class="specialite-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3>Architecture Logicielle</h3>
-                    <p>Microservices, Clean Architecture, Design Patterns (MVC, DDD, CQRS). J'assure une base solide et évolutive.</p>
-                </div>
-                <div class="specialite-card">
-                    <div class="specialite-icon">
-                        <i class="fas fa-code-branch"></i>
-                    </div>
-                    <h3>Développement Back-end</h3>
-                    <p>Expertise en Node.js, Python/Django/Flask et Java/Spring. Création d'API RESTful robustes et performantes.</p>
-                </div>
-                <div class="specialite-card">
-                    <div class="specialite-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Développement Front-end</h3>
-                    <p>Maîtrise de React, Vue.js et Next.js. Interfaces utilisateur modernes, réactives et optimisées pour le SEO.</p>
-                </div>
-                <div class="specialite-card">
-                    <div class="specialite-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>DevOps & Cloud</h3>
-                    <p>Docker, Kubernetes, CI/CD (GitHub Actions/GitLab CI). Déploiement automatisé sur AWS, Azure ou GCP.</p>
-                </div>
-            </div>
+
+        <div class="card">
+            <h2><i class="fas fa-cogs"></i> Domaines d'Intervention & Savoir-faire Opérationnel</h2>
+            <ul class="competences-list">
+                
+                <li class="animated-item"><i class="fas fa-file-invoice-dollar"></i>Développer un logiciel de gestion dans tout domaine (Comptabilité, RH, Stocks).</li>
+                <li class="animated-item"><i class="fas fa-toolbox"></i>Utiliser des outils avancés (UML, Modélisation) dans la conception de logiciels de gestion.</li>
+                <li class="animated-item"><i class="fas fa-puzzle-piece"></i>Exploiter et paramétrer un Progiciel de Gestion Intégré (ERP/PGI).</li>
+                <li class="animated-item"><i class="fas fa-lightbulb"></i>Conseiller stratégiquement sur l'emploi optimal de solutions logicielles de gestion.</li>
+            </ul>
         </div>
-    </section>
-
-    <hr>
-
-    <section id="projets" class="projets">
-        <div class="container">
-            <h2 class="section-title">Mes Derniers <span>Projets</span></h2>
-            <div class="projets-grid">
-                <div class="projet-card">
-                    <img src="https://placehold.co/600x400/00bcd4/ffffff?text=ERP+Modulaire" alt="Système de Gestion ERP" class="projet-img">
-                    <div class="projet-content">
-                        <h3>Système ERP Modulaire</h3>
-                        <p>Solution complète de gestion des ressources d'entreprise pour PME avec modules Finance et Logistique.</p>
-                        <div class="projet-tags">
-                            <span class="projet-tag">React</span>
-                            <span class="projet-tag">Node.js</span>
-                            <span class="projet-tag">PostgreSQL</span>
-                            <span class="projet-tag">Docker</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="projet-card">
-                    <img src="https://placehold.co/600x400/0097a7/ffffff?text=App+Mobile+Commerce" alt="Application Mobile E-commerce" class="projet-img">
-                    <div class="projet-content">
-                        <h3>App Mobile E-commerce B2B</h3>
-                        <p>Plateforme mobile de commande pour professionnels, intégrant un système de catalogue dynamique.</p>
-                        <div class="projet-tags">
-                            <span class="projet-tag">React Native</span>
-                            <span class="projet-tag">NestJS</span>
-                            <span class="projet-tag">Microservices</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="projet-card">
-                    <img src="https://placehold.co/600x400/1a1a2e/00bcd4?text=Plateforme+Data+Viz" alt="Plateforme d'Analyse Big Data" class="projet-img">
-                    <div class="projet-content">
-                        <h3>Plateforme de Data Visualization</h3>
-                        <p>Tableau de bord interactif pour l'analyse et la visualisation de métriques en temps réel.</p>
-                        <div class="projet-tags">
-                            <span class="projet-tag">Python/Flask</span>
-                            <span class="projet-tag">D3.js</span>
-                            <span class="projet-tag">AWS Lambda</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Entrons en <span>Contact</span></h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Localisation</h4>
-                            <p>Paris, France & Remote Worldwide</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>contact@votredomaine.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Téléphone</h4>
-                            <p>Disponible sur demande</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nom Complet</label>
-                            <input type="text" id="name" required placeholder="Votre nom...">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Adresse Email</label>
-                            <input type="email" id="email" required placeholder="contact@entreprise.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Sujet</label>
-                            <input type="text" id="subject" required placeholder="Intéressé par votre projet...">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message détaillé</label>
-                            <textarea id="message" required placeholder="Décrivez votre projet ici..."></textarea>
-                        </div>
-                        <button type="submit" class="btn">
-                            <i class="fas fa-paper-plane"></i> Envoyer le Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr>
+        
+    </div>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Dev<span>Portfolio</span></h3>
-                    <p>Création de solutions logicielles qui définissent l'avenir du numérique. Je suis disponible pour des missions complexes et innovantes.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" title="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Liens Rapides</h3>
-                    <ul class="footer-links">
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#specialites">Spécialités</a></li>
-                        <li><a href="#projets">Projets</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Technologies Clés</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">React / Next.js</a></li>
-                        <li><a href="#">Node.js / Python</a></li>
-                        <li><a href="#">Microservices & DDD</a></li>
-                        <li><a href="#">AWS / Azure</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 - DevPortfolio | Conçu et Codé par un passionné.
-            </div>
-        </div>
+        <p>&copy; Gamaliel KALAMBO - Ingénieur Logiciel</p>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- 1. Menu Mobile Toggle ---
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedItems = document.querySelectorAll('.animated-item');
 
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                menuToggle.querySelector('i').classList.toggle('fa-bars');
-                menuToggle.querySelector('i').classList.toggle('fa-times'); // Icône X
-            });
-
-            // --- 2. Scroll Animation (Fade-in des Sections) ---
-            const sections = document.querySelectorAll('section');
-
-            const observer = new IntersectionObserver(entries => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); 
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                        observer.unobserve(entry.target); // Arrête l'observation après la première animation
                     }
                 });
             }, {
-                rootMargin: '0px',
-                threshold: 0.2 // Déclenche à 20% de visibilité
+                threshold: 0.2 // Déclenchement quand 20% de l'élément est visible
             });
 
-            sections.forEach(section => {
-                observer.observe(section);
+            animatedItems.forEach(item => {
+                // Style initial caché
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(20px)';
+                observer.observe(item);
             });
 
-            // --- 3. Carrousel de Photos Automatique ---
-            const slides = document.querySelectorAll('.carousel-slide');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            let currentSlide = 0;
-
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    indicators[i].classList.remove('active');
+            // Animation subtile des rôles au survol
+            const roleItems = document.querySelectorAll('.role-item');
+            roleItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.querySelector('i').style.transform = 'scale(1.1) rotate(5deg)';
+                    item.querySelector('i').style.transition = 'transform 0.4s ease';
                 });
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-
-            // Démarrage du carrousel automatique (changement toutes les 5 secondes)
-            setInterval(nextSlide, 5000); 
-
-            // Navigation manuelle (Précédent/Suivant et Indicateurs)
-            document.querySelector('.carousel-prev').addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(currentSlide);
-            });
-
-            document.querySelector('.carousel-next').addEventListener('click', () => {
-                nextSlide();
-            });
-
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentSlide = index;
-                    showSlide(currentSlide);
+                item.addEventListener('mouseleave', () => {
+                    item.querySelector('i').style.transform = 'scale(1) rotate(0deg)';
                 });
             });
-
-            // --- 4. Animation de Défilement de Texte en Boucle Lente (La demande clé) ---
-            const scrollingTextContainer = document.querySelector('.scrolling-text-container');
-            const scrollingContent = document.querySelector('.scrolling-content');
-            let scrollPosition = scrollingTextContainer.clientHeight; // Commence juste en dessous du conteneur
-            
-            // Calculer la hauteur totale du contenu visible et invisible
-            const contentHeight = scrollingContent.scrollHeight; 
-            const containerHeight = scrollingTextContainer.clientHeight;
-            
-            // La vitesse de défilement (plus le nombre est grand, plus c'est lent)
-            const scrollSpeed = 0.5; // Pixels par frame
-            const totalDuration = contentHeight / scrollSpeed / 60; // Durée estimée en secondes pour un défilement complet (60fps)
-
-            scrollingContent.style.transition = 'none'; // Désactiver les transitions CSS au début
-            scrollingContent.style.transform = `translateY(${containerHeight}px)`;
-
-            // Fonction de défilement pour une boucle lente et fluide
-            function slowScrollLoop() {
-                // Si le contenu est complètement sorti par le haut
-                if (scrollPosition <= -contentHeight) {
-                    // Réinitialiser la position en bas du conteneur pour la boucle
-                    scrollPosition = containerHeight; 
-                }
-
-                scrollPosition -= scrollSpeed; // Déplacement lent vers le haut
-                scrollingContent.style.transform = `translateY(${scrollPosition}px)`;
-                
-                requestAnimationFrame(slowScrollLoop);
-            }
-            
-            // Démarrer l'animation après un court délai pour le chargement initial
-            setTimeout(() => {
-                 requestAnimationFrame(slowScrollLoop);
-            }, 500); 
-            
-            
-            // Ajout d'une pseudo-animation de texte tapé pour le titre
-            const typingTextElement = document.querySelector('.typing-text');
-            const textToType = "Omar Sylla"; 
-            let charIndex = 0;
-
-            function typeText() {
-                if (charIndex < textToType.length) {
-                    typingTextElement.textContent += textToType.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeText, 100); // Vitesse de frappe
-                }
-            }
-            
-            // typeText(); // Décommenter pour activer l'effet de frappe
-            typingTextElement.textContent = "Votre Nom"; // Valeur par défaut si l'effet n'est pas utilisé.
-
         });
     </script>
 </body>
