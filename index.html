@@ -9,22 +9,20 @@
     
     <style>
         /* ========================================= */
-        /* == STYLES CSS MINIMALISTES ET MODERNES == */
+        /* == STYLES CSS DARK MODE GRAPHIQUE == */
         /* ========================================= */
 
         /* VARIABLES ET RESET */
         :root {
-            /* Nouvelle Palette: Sombre, clair et accent moderne (Cyan Électrique) */
-            --primary: #1c1c1c; /* Noir très foncé pour le fond et les titres */
-            --secondary: #00bcd4; /* Cyan Électrique moderne pour l'Accent */
-            --accent: #0097a7; /* Cyan un peu plus foncé */
-            --light: #f4f4f4; /* Blanc cassé / Gris très clair pour le fond des sections */
-            --dark: #0d0d0d;
-            --text-color: #333;
-            --text-light: #ecf0f1;
-            --card-bg: white;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Ombre très légère */
-            --transition: all 0.3s ease-out;
+            /* Nouvelle Palette: Dark Mode / Orange Vif (inspirée par Nemo) */
+            --primary: #FF5722; /* Orange Vif pour l'Accent */
+            --secondary: #E64A19; /* Orange un peu plus foncé */
+            --dark-bg: #111111; /* Fond très sombre */
+            --dark-card: #1c1c1c; /* Fond des cartes/sections */
+            --text-light: #f4f4f4; /* Texte clair */
+            --text-muted: #aaaaaa; /* Texte secondaire/gris */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             --font-main: 'Poppins', sans-serif;
         }
 
@@ -40,8 +38,8 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--text-color);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
             line-height: 1.7;
             overflow-x: hidden;
         }
@@ -67,27 +65,29 @@
         .section-title {
             text-align: center;
             margin-bottom: 4rem;
-            color: var(--primary);
+            color: var(--text-light);
             font-size: 2.8rem;
             font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase; /* Comme dans les exemples graphiques */
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 3px;
-            background-color: var(--secondary);
+            background-color: var(--primary);
             margin: 15px auto 0;
             border-radius: 2px;
         }
 
         .btn {
             display: inline-block;
-            background-color: var(--secondary);
-            color: var(--primary); /* Texte sombre sur le bouton clair */
+            background-color: var(--primary);
+            color: var(--dark-card); 
             padding: 14px 40px;
-            border-radius: 50px;
+            border-radius: 8px; /* Forme carrée/moderne */
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
@@ -95,259 +95,297 @@
             cursor: pointer;
             text-align: center;
             letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
         }
 
         .btn:hover {
-            background-color: var(--accent);
+            background-color: var(--secondary);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.5);
-            color: white; /* Texte blanc au survol */
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.6);
+            color: white; 
         }
 
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--secondary);
+            border: 2px solid var(--primary);
             color: var(--primary);
         }
 
         .btn-outline:hover {
-            background-color: var(--secondary);
-            color: white;
+            background-color: var(--primary);
+            color: var(--dark-bg);
         }
 
         /* HEADER */
         header {
-            background-color: var(--card-bg); /* En-tête blanc/clair */
+            background-color: var(--dark-card);
             padding: 0.8rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
-            color: var(--primary);
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
         }
         .logo span {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .nav-links a {
-            color: var(--primary);
+            color: var(--text-light);
         }
 
         .nav-links a:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         /* HERO SECTION */
         .hero {
-            background: var(--card-bg); /* Section Hero blanche */
-            color: var(--primary);
+            background: var(--dark-bg); 
+            color: var(--text-light);
             padding: 200px 0 160px;
-            margin-top: 0;
             text-align: left;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .hero-content {
-            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
+        .hero-text {
+            max-width: 60%;
+        }
+
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             margin-bottom: 0.5rem;
             font-weight: 900;
             line-height: 1.1;
+            letter-spacing: -1px;
         }
         .hero h1 span {
-            color: var(--secondary); /* Mise en évidence du rôle */
+            color: var(--primary);
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        .hero h2 span {
+            color: var(--primary);
+            border-bottom: 5px solid var(--primary);
+            padding-bottom: 5px;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 3rem;
-            color: #555;
+            color: var(--text-muted);
             font-weight: 300;
+            line-height: 1.8;
         }
-        
-        /* SPECIALITES & PROJETS - CARTES */
-        .specialites {
-            background-color: var(--light);
+
+        .hero-image {
+            width: 35%;
+            text-align: center;
+            position: relative;
         }
-        .specialites-grid, .projets-grid, .competences-container {
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 50%;
+            border: 8px solid var(--primary); /* L'anneau orange de Nemo */
+            box-shadow: 0 0 50px rgba(255, 87, 34, 0.5);
+        }
+        /* Style pour l'image fictive (remplacez par votre photo/avatar) */
+        .hero-image .placeholder {
+            width: 300px;
+            height: 300px;
+            background-color: #333;
+            border-radius: 50%;
+            border: 8px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 0 auto;
+            box-shadow: 0 0 50px rgba(255, 87, 34, 0.5);
+        }
+
+        /* SPECIALITES & COMPETENCES - CARTES */
+        .section-cards {
+            background-color: var(--dark-card);
+        }
+
+        .specialites-grid, .competences-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
-        .specialite-card, .projet-card, .competence-category {
-            background-color: var(--card-bg);
+        .specialite-card, .competence-card {
+            background-color: var(--dark-bg);
             padding: 2.5rem;
             border-radius: 12px;
             transition: var(--transition);
             box-shadow: var(--shadow);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0; /* Pour l'animation JS */
             transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
         }
 
-        .specialite-card:hover, .projet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--secondary); /* Bordure accentuée au survol */
+        .specialite-card:hover, .competence-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border-color: var(--primary);
         }
 
-        .specialite-icon {
+        /* L'icône et le texte sont empilés pour un design moderne */
+        .card-icon {
             font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
             line-height: 1;
         }
 
-        .specialite-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+        .specialite-card h3, .competence-card h3 {
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
             font-weight: 600;
+            font-size: 1.4rem;
         }
-        .specialite-card p {
-            color: #666;
+        .specialite-card p, .competence-card p {
+            color: var(--text-muted);
             font-size: 0.95rem;
-        }
-
-        /* COMPETENCES */
-        .competences {
-            background-color: var(--card-bg);
         }
         
-        .competence-category {
-            padding: 2rem;
-            text-align: left;
+        /* COMPETENCES GRAPHIQUES (Style Nemo) */
+        .competences-grid {
+            grid-template-columns: 1fr 1fr; /* 2 colonnes larges */
         }
-        .competence-category h3 {
+        .competence-card {
+            padding: 3rem;
+        }
+        .competence-list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        .competence-list-item i {
             color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            border-bottom: 2px solid var(--light);
-            padding-bottom: 10px;
+            font-size: 1.5rem;
+            margin-right: 15px;
         }
-        .competence-category h3 i {
-            color: var(--secondary);
-            margin-right: 10px;
+        
+        /* PROJETS (Style Graphique - Cartes carrées) */
+        .projets {
+            background-color: var(--dark-bg);
         }
-        .competence-list {
-            list-style: none;
+        .projets-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        .competence-list li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        .competence-list li i {
-            color: var(--secondary);
-            margin-right: 8px;
-        }
-
-        /* PROJETS */
         .projet-card {
+            background-color: var(--dark-card);
             padding: 0;
             overflow: hidden;
-            text-align: left;
+            border-radius: 12px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            opacity: 0; /* Pour l'animation JS */
+            transform: scale(0.95);
+        }
+        .projet-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(255, 87, 34, 0.2);
         }
 
         .projet-image {
-            height: 220px;
-            /* Gradient subtil pour la modernité */
-            background: linear-gradient(135deg, var(--secondary) 0%, #a5f3e4 100%);
+            height: 200px;
+            /* Placeholder pour l'image */
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
+            color: var(--dark-bg);
             font-size: 3rem;
             overflow: hidden;
-            border-bottom: 3px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .projet-card:hover .projet-image {
+            opacity: 0.85;
         }
 
         .projet-info {
             padding: 1.5rem;
         }
         .projet-info h3 {
-            color: var(--primary);
+            color: var(--text-light);
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         .projet-tags {
             margin-top: 10px;
             margin-bottom: 15px;
         }
         .projet-tag {
-            background-color: var(--light);
-            color: var(--secondary);
+            background-color: rgba(255, 87, 34, 0.1);
+            color: var(--primary);
             font-weight: 500;
             border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            transition: var(--transition);
-            border: 1px solid var(--secondary);
-            margin-right: 5px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
             display: inline-block;
+            margin-right: 5px;
         }
 
-        /* CONTACT */
+        /* CONTACT (Minimaliste et Centré) */
         .contact {
-            background-color: var(--light);
-        }
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: flex-start;
-        }
-        .contact-info {
-            padding: 2rem;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        .contact-icon {
-            background-color: var(--secondary);
-            color: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-right: 15px;
-        }
-        .contact-item h3 {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 2px;
-        }
-        .contact-item p {
-            color: #666;
-            font-size: 0.9rem;
+            background-color: var(--dark-card);
+            text-align: center;
         }
         .contact-form {
-            background-color: var(--card-bg);
-            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--dark-bg);
+            padding: 3rem;
             border-radius: 12px;
             box-shadow: var(--shadow);
+            opacity: 0; /* Pour l'animation JS */
+            transform: translateY(20px);
         }
+
         .form-group {
             margin-bottom: 1.5rem;
+            text-align: left;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
+            margin-bottom: 8px;
+            font-weight: 500;
             color: var(--primary);
             font-size: 0.95rem;
         }
@@ -355,67 +393,77 @@
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #333;
+            border-radius: 6px;
             transition: border-color 0.3s;
             font-size: 1rem;
-            background-color: var(--light); /* Fond de champ clair */
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
+            background-color: #222;
+            color: var(--text-light);
         }
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: var(--secondary);
+            border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1);
-            background-color: white;
+            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.2);
+            background-color: #111;
         }
 
         /* FOOTER */
         footer {
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 4rem 0 2rem;
+            background-color: var(--dark-bg);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid #333;
         }
         .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+            margin-bottom: 1rem;
         }
-        .footer-logo i {
-            color: var(--secondary);
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: var(--transition);
         }
-        .footer-logo span {
-            color: var(--text-light);
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #666;
         }
 
-        /* Les styles du footer ont été simplifiés dans le code ci-dessous */
-        
         /* RESPONSIVE */
-        @media (max-width: 768px) {
-            /* ... (Styles responsives inchangés) ... */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+            .hero-image {
+                width: 70%;
+            }
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
-            .hero p {
-                font-size: 1.1rem;
-            }
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
+            .hero h2 {
                 font-size: 2rem;
             }
+            .competences-grid {
+                grid-template-columns: 1fr;
+            }
         }
-
-        /* Animations spécifiques (utilisées par JS) */
-        .card-staggered {
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        @media (max-width: 500px) {
+            .hero-image .placeholder {
+                width: 250px;
+                height: 250px;
+            }
         }
-
     </style>
 </head>
 <body>
@@ -424,12 +472,11 @@
             <nav style="display: flex; justify-content: space-between; align-items: center;">
                 <div class="logo">
                     <i class="fas fa-laptop-code"></i>
-                    <span>Ingénieur </span><span style="color: var(--secondary);">Logiciel</span>
+                    <span>MON </span><span>PORTFOLIO</span>
                 </div>
                 <ul class="nav-links" style="display: flex; list-style: none;">
                     <li><a href="#accueil" style="margin-left: 2rem; text-decoration: none;">Accueil</a></li>
-                    <li><a href="#specialites" style="margin-left: 2rem; text-decoration: none;">Spécialités</a></li>
-                    <li><a href="#competences" style="margin-left: 2rem; text-decoration: none;">Compétences</a></li>
+                    <li><a href="#specialites" style="margin-left: 2rem; text-decoration: none;">Services</a></li>
                     <li><a href="#projets" style="margin-left: 2rem; text-decoration: none;">Projets</a></li>
                     <li><a href="#contact" style="margin-left: 2rem; text-decoration: none;">Contact</a></li>
                 </ul>
@@ -443,71 +490,68 @@
     <section id="accueil" class="hero visible" style="padding-top: 140px; opacity: 1; transform: translateY(0);">
         <div class="container">
             <div class="hero-content">
-                <h1>Conception et Optimisation de <span>Systèmes de Gestion</span> d'Entreprise.</h1>
-                <p>Ingénieur Logiciel expérimenté, spécialisé dans la transformation numérique des processus métier critiques (ERP, CRM, Finance).</p>
-                <div class="hero-btns">
-                    <a href="#projets" class="btn">Voir mes projets <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
-                    <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Discutons de votre projet</a>
+                <div class="hero-text">
+                    <h1><span>HELLO, IT'S ME</span>[Votre Nom/Prénom]</h1>
+                    <h2>I'M A <span id="role-text">SOFTWARE ENGINEER</span></h2>
+                    <p>Conception et déploiement de solutions logicielles d'entreprise, spécialisé dans l'optimisation des systèmes de gestion (ERP, CRM, Finance) avec une approche centrée sur l'utilisateur et la performance.</p>
+                    <div class="hero-btns">
+                        <a href="#projets" class="btn">Mon Portfolio <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="placeholder"><i class="fas fa-user"></i></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="specialites" class="specialites">
+    <section id="specialites" class="section-cards">
         <div class="container">
-            <h2 class="section-title">Domaines d'Expertise</h2>
+            <h2 class="section-title">Mes Services</h2>
             <div class="specialites-grid">
                 <div class="specialite-card card-staggered">
-                    <div class="specialite-icon">
+                    <div class="card-icon">
                         <i class="fas fa-cubes"></i>
                     </div>
                     <h3>Intégration ERP & PGI</h3>
-                    <p>Mise en place, personnalisation et intégration de Progiciels de Gestion Intégrés (SAP, Odoo, Dynamics 365) pour unifier les opérations.</p>
+                    <p>Expertise dans l'analyse des processus métier, la personnalisation et le déploiement de solutions ERP pour maximiser l'efficacité opérationnelle.</p>
                 </div>
                 <div class="specialite-card card-staggered">
-                    <div class="specialite-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <h3>Business Intelligence (BI)</h3>
-                    <p>Développement de tableaux de bord, d'outils de reporting et d'analyse de données pour éclairer la prise de décision stratégique.</p>
+                    <h3>Développement Sur Mesure</h3>
+                    <p>Création d'applications métier robustes, performantes et évolutives en utilisant des technologies modernes (C#, Java, Python) pour répondre à des besoins spécifiques.</p>
                 </div>
                 <div class="specialite-card card-staggered">
-                    <div class="specialite-icon">
-                        <i class="fas fa-user-tie"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h3>Développement sur Mesure</h3>
-                    <p>Création d'applications métier spécifiques (facturation, RH, logistique) adaptées aux besoins uniques de votre entreprise.</p>
+                    <h3>Architecture SI & Cloud</h3>
+                    <p>Conception d'architectures de systèmes d'information fiables, sécurisées et évolutives, avec une spécialisation en migration vers le Cloud (Azure/AWS).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="competences" class="competences">
+    <section id="competences">
         <div class="container">
-            <h2 class="section-title">Compétences Techniques</h2>
-            <div class="competences-container">
-                <div class="competence-category card-staggered">
-                    <h3><i class="fas fa-code"></i> Langages & Frameworks</h3>
-                    <ul class="competence-list">
-                        <li><i class="fas fa-check-circle"></i> **C# (.NET)**, Java (Spring Boot)</li>
-                        <li><i class="fas fa-check-circle"></i> Python (Django, Pandas)</li>
-                        <li><i class="fas fa-check-circle"></i> JavaScript (React, Node.js)</li>
+            <h2 class="section-title">Compétences & Outils</h2>
+            <div class="competences-grid">
+                <div class="competence-card card-staggered">
+                    <h3><i class="fas fa-laptop-code"></i> Compétences Techniques</h3>
+                    <ul>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **Langages** : C# (.NET), Python, Java, SQL</li>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **DB** : SQL Server, PostgreSQL, DWH Design</li>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **Cloud** : Microsoft Azure, Services AWS essentiels</li>
                     </ul>
                 </div>
-                <div class="competence-category card-staggered">
-                    <h3><i class="fas fa-database"></i> Bases de Données & Cloud</h3>
-                    <ul class="competence-list">
-                        <li><i class="fas fa-check-circle"></i> SQL Server, PostgreSQL, MongoDB</li>
-                        <li><i class="fas fa-check-circle"></i> Modélisation OLAP et DWH</li>
-                        <li><i class="fas fa-check-circle"></i> Cloud (Azure, AWS) & Docker</li>
-                    </ul>
-                </div>
-                <div class="competence-category card-staggered">
-                    <h3><i class="fas fa-tools"></i> Méthodes & Outils</h3>
-                    <ul class="competence-list">
-                        <li><i class="fas fa-check-circle"></i> Méthodologies Agiles (Scrum/Kanban)</li>
-                        <li><i class="fas fa-check-circle"></i> UML, Merise, BPMN</li>
-                        <li><i class="fas fa-check-circle"></i> Git, CI/CD, JIRA</li>
+                <div class="competence-card card-staggered">
+                    <h3><i class="fas fa-user-check"></i> Compétences Métier & Soft Skills</h3>
+                    <ul>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **Analyse Fonctionnelle** & Modélisation UML/Merise</li>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **Gestion de Projet Agile** (Scrum/Kanban)</li>
+                        <li class="competence-list-item"><i class="fas fa-chevron-right"></i> **Résolution de Problèmes** complexes et structurée</li>
                     </ul>
                 </div>
             </div>
@@ -516,51 +560,51 @@
 
     <section id="projets" class="projets">
         <div class="container">
-            <h2 class="section-title">Dernières Réalisations</h2>
+            <h2 class="section-title">Derniers Projets</h2>
             <div class="projets-grid">
                 <div class="projet-card card-staggered">
                     <div class="projet-image">
-                        <i class="fas fa-money-check-alt"></i>
+                        <i class="fas fa-file-invoice-dollar"></i>
                     </div>
                     <div class="projet-info">
-                        <h3>Module de Paiement Sécurisé</h3>
-                        <p>Refonte d'un système de transactions financières en microservices C# pour la conformité PSD2.</p>
+                        <h3>ERP Comptable (Refonte)</h3>
+                        <p>Migration complète du système comptable vers une architecture microservices sécurisée.</p>
                         <div class="projet-tags">
                             <span class="projet-tag">C#/.NET</span>
                             <span class="projet-tag">Microservices</span>
-                            <span class="projet-tag">Azure</span>
+                            <span class="projet-tag">SQL Server</span>
                         </div>
-                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
+                        <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Voir l'étude</a>
                     </div>
                 </div>
                 <div class="projet-card card-staggered">
                     <div class="projet-image">
-                        <i class="fas fa-truck-loading"></i>
+                        <i class="fas fa-warehouse"></i>
                     </div>
                     <div class="projet-info">
-                        <h3>Optimiseur de Chaîne Logistique</h3>
-                        <p>Application Python qui utilise l'IA pour prédire les besoins en stock et optimiser les trajets de livraison.</p>
+                        <h3>WMS (Warehouse Mgmt System)</h3>
+                        <p>Développement d'une application mobile pour la gestion des stocks et l'optimisation des picking listes.</p>
+                        <div class="projet-tags">
+                            <span class="projet-tag">Java</span>
+                            <span class="projet-tag">Android</span>
+                            <span class="projet-tag">REST API</span>
+                        </div>
+                        <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Voir l'étude</a>
+                    </div>
+                </div>
+                <div class="projet-card card-staggered">
+                    <div class="projet-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="projet-info">
+                        <h3>Tableau de Bord BI</h3>
+                        <p>Création d'un Data Warehouse et de rapports Power BI pour le suivi de la performance financière.</p>
                         <div class="projet-tags">
                             <span class="projet-tag">Python</span>
-                            <span class="projet-tag">TensorFlow</span>
-                            <span class="projet-tag">PostgreSQL</span>
+                            <span class="projet-tag">ETL</span>
+                            <span class="projet-tag">Power BI</span>
                         </div>
-                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
-                    </div>
-                </div>
-                <div class="projet-card card-staggered">
-                    <div class="projet-image">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <div class="projet-info">
-                        <h3>Portail Client RH (SaaS)</h3>
-                        <p>Plateforme web moderne (React/Node) permettant aux PME de gérer les dossiers et les demandes de congés des employés.</p>
-                        <div class="projet-tags">
-                            <span class="projet-tag">React</span>
-                            <span class="projet-tag">Node.js</span>
-                            <span class="projet-tag">MongoDB</span>
-                        </div>
-                        <a href="#" class="btn" style="padding: 10px 20px;">Détails <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
+                        <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Voir l'étude</a>
                     </div>
                 </div>
             </div>
@@ -569,113 +613,94 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Me Contacter</h2>
-            <div class="contact-container">
-                <div class="contact-info card-staggered">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Localisation</h3>
-                            <p>Paris, France (Disponible en remote)</p>
-                        </div>
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-form card-staggered">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" required>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Téléphone</h3>
-                            <p>+33 6 XX XX XX XX</p>
-                        </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email Professionnel</h3>
-                            <p>prenom.nom@professionnel.fr</p>
-                        </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet de la demande</label>
+                        <select id="subject" required>
+                            <option value="">Sélectionnez un sujet</option>
+                            <option value="devis">Projet ERP/Intégration</option>
+                            <option value="conseil">Consulting / Architecture</option>
+                            <option value="development">Développement Sur Mesure</option>
+                            <option value="autre">Autre</option>
+                        </select>
                     </div>
-                </div>
-                <div class="contact-form card-staggered">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Votre Nom</label>
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Votre Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Votre Projet Concerne...</label>
-                            <select id="subject" required>
-                                <option value="">Sélectionnez un domaine</option>
-                                <option value="devis">Intégration ERP/PGI</option>
-                                <option value="conseil">Développement sur Mesure</option>
-                                <option value="development">Consulting BI/Reporting</option>
-                                <option value="autre">Autre</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message détaillé</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Envoyer la demande</button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="message">Votre message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">ENVOYER</button>
+                </form>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <div class="container">
             <div class="footer-logo">
                 <i class="fas fa-laptop-code"></i>
-                <span>Ingénieur </span><span style="color: var(--secondary);">Logiciel</span>
+                <span>MON </span><span>PORTFOLIO</span>
             </div>
-            <div class="social-links" style="margin-top: 15px;">
-                <a href="#" title="LinkedIn" style="color: white; margin-left: 15px;"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" title="GitHub" style="color: white; margin-left: 15px;"><i class="fab fa-github"></i></a>
-                <a href="#" title="Twitter" style="color: white; margin-left: 15px;"><i class="fab fa-twitter"></i></a>
+            <div class="social-links">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="Dribbble (pour l'inspiration!)"><i class="fab fa-dribbble"></i></a>
             </div>
-        </div>
-        <div class="footer-bottom" style="text-align: center; margin-top: 30px; font-size: 0.85rem; color: #aaa;">
-            <p>&copy; 2024 Portfolio IT. Tous droits réservés.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 [Votre Nom]. Inspiré par le design graphique.</p>
+            </div>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. Gestion du menu mobile (inchangé)
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-            });
+            // 1. TYPING EFFECT (Similaire à l'animation du rôle dans la vidéo Nemo)
+            const roleElement = document.getElementById('role-text');
+            const roles = ["SOFTWARE ENGINEER", "ERP CONSULTANT", "SYSTEM ARCHITECT", "BUSINESS ANALYST"];
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function typeRole() {
+                const currentRole = roles[roleIndex];
+                
+                if (isDeleting) {
+                    roleElement.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    roleElement.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
 
-            // 2. Navigation fluide (Scroll)
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, 
-                            behavior: 'smooth'
-                        });
-                        navLinks.classList.remove('active'); // Fermer le menu après le clic
-                    }
-                });
-            });
+                let typingSpeed = 100;
 
-            // 3. Animation au défilement (IntersectionObserver pour un "fade-in" général et "staggered" pour les cartes)
+                if (isDeleting) {
+                    typingSpeed /= 2; // Efface plus vite
+                }
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    typingSpeed = 2000; // Pause après avoir fini d'écrire
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length; // Passe au rôle suivant
+                    typingSpeed = 500; // Petite pause avant de commencer à écrire le nouveau rôle
+                }
+
+                setTimeout(typeRole, typingSpeed);
+            }
+            typeRole(); // Lance l'effet
+
+            // 2. ANIMATION AU DÉFILEMENT (Staggered Fade-In)
             const observerOptions = {
                 threshold: 0.15,
                 rootMargin: '0px 0px -50px 0px'
@@ -688,33 +713,68 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Appliquer l'animation "staggered" uniquement aux cartes dans cette section
+                        // Appliquer l'animation "staggered" (décalée) aux cartes
                         const cards = entry.target.querySelectorAll('.card-staggered');
                         cards.forEach((card, index) => {
-                            // S'assurer que les cartes commencent masquées pour l'effet
                             card.style.opacity = '0';
                             card.style.transform = 'translateY(20px)';
                             
-                            // Appliquer l'animation après un délai basé sur l'index
                             setTimeout(() => {
                                 card.style.opacity = '1';
                                 card.style.transform = 'translateY(0)';
-                            }, index * 150 + 50); // Délai de 150ms entre les cartes
+                                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                            }, index * 150 + 50); 
                         });
-
+                        
+                        // Animer le formulaire de contact aussi
+                        const contactForm = entry.target.querySelector('.contact-form.card-staggered');
+                        if (contactForm) {
+                            contactForm.style.opacity = '0';
+                            contactForm.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                contactForm.style.opacity = '1';
+                                contactForm.style.transform = 'translateY(0)';
+                                contactForm.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                            }, 50);
+                        }
+                        
                         observer.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
             
-            // Observez toutes les sections (sauf la section 'accueil' qui est déjà visible)
             sections.forEach(el => {
                 if(el.id !== 'accueil') {
                     sectionObserver.observe(el);
                 }
             });
 
-            // 4. Gestion du formulaire de contact (Simulation)
+            // 3. Gestion du menu mobile (inchangé)
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // 4. Navigation fluide (Scroll)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, 
+                            behavior: 'smooth'
+                        });
+                        navLinks.classList.remove('active'); 
+                    }
+                });
+            });
+
+            // 5. Gestion du formulaire de contact (Simulation)
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
