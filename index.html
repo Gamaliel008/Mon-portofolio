@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion | Portfolio</title>
+    <title>Gamaliel KALAMBO - Ingénieur Logiciel en Gestion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ========================================= */
-        /* --- VARIABLES & BASE ---        */
-        /* ========================================= */
+        /* --- VARIABLES & BASE --- */
         :root {
-            --primary-color: #007bff;     /* Bleu Professionnel */
-            --primary-dark: #0056b3;
-            --secondary-color: #212529;   /* Noir/Gris très foncé */
-            --secondary-light: #343a40;
-            --text-color: #495057;
-            --text-light: #6c757d;
-            --light-bg: #f8f9fa;          /* Fond très clair */
-            --mid-bg: #e9ecef;
+            --primary-color: #2563eb;   /* Bleu moderne */
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary-color: #1e293b; /* Bleu marine foncé */
+            --secondary-light: #334155;
+            --accent-color: #f59e0b;    /* Jaune doré */
+            --text-color: #334155;
+            --text-light: #64748b;
+            --light-bg: #f8fafc;
             --white: #ffffff;
-            --gradient-main: linear-gradient(135deg, var(--white) 0%, var(--mid-bg) 100%); 
-            --gradient-dark: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-light) 100%);
-            --font-main: 'Roboto', sans-serif;
-            --font-title: 'Montserrat', sans-serif;
-            --transition-time: 0.3s;
-            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
-            --border-radius: 10px;
+            --gradient-main: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --gradient-dark: linear-gradient(135deg, var(--secondary-color) 0%, #0f172a 100%);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            --font-main: 'Inter', sans-serif;
+            --transition-time: 0.4s;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
         }
 
         * {
@@ -44,19 +45,108 @@
             font-family: var(--font-main);
             color: var(--text-color);
             line-height: 1.6;
-            background: var(--light-bg);
+            background: var(--gradient-main);
             overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-light);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-time);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 50px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .logo-text {
+            font-family: var(--font-main);
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--secondary-color);
+        }
+
+        .logo-dot {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-time);
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width var(--transition-time);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            cursor: pointer;
+            z-index: 1001;
         }
 
         /* --- CONTENEURS GÉNERAUX --- */
         .section {
-            padding: 120px 50px; /* Plus d'espace vertical pour la propreté */
-            /* min-height: 100vh; */ /* Retiré pour plus de flexibilité, sauf sur #accueil */
-        }
-
-        #accueil {
+            padding: 120px 50px;
             min-height: 100vh;
-            padding-top: 80px; /* Ajustement pour la barre de navigation fixe */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .container {
@@ -66,16 +156,16 @@
         }
 
         .section-title {
-            font-family: var(--font-title);
-            font-size: 3em;
+            font-family: var(--font-main);
+            font-size: 2.8em;
             color: var(--secondary-color);
             margin-bottom: 60px;
             text-align: center;
             font-weight: 800;
             position: relative;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
         
         .section-title.visible {
@@ -85,132 +175,19 @@
 
         .section-title::after {
             content: '';
-            width: 100px;
-            height: 5px;
-            background-color: var(--primary-color);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
             position: absolute;
             bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
-        /* --- BOUTONS --- */
-        .btn {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 14px 30px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 700;
-            transition: all var(--transition-time);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Ombre colorée */
-        }
-
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--secondary-color);
-            border: 2px solid var(--secondary-color);
-            box-shadow: none;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(33, 37, 41, 0.2);
-        }
-
-        /* ========================================= */
-        /* --- NAVIGATION BAR ---          */
-        /* ========================================= */
-        .navbar {
-            background-color: var(--white);
-            box-shadow: var(--shadow-medium);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all var(--transition-time);
-        }
-
-        .navbar.scrolled {
-            padding: 12px 50px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo {
-            font-family: var(--font-title);
-            font-size: 1.6em;
-            font-weight: 800;
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-
-        .logo-dot {
-            color: var(--primary-color);
-            font-size: 1.2em; /* Point plus visible */
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            color: var(--secondary-light);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05em;
-            padding: 5px 0;
-            position: relative;
-            transition: color var(--transition-time);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px; /* Soulignement plus épais */
-            background-color: var(--primary-color);
-            transition: width var(--transition-time);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            /* Reste inchangé */
-        }
-
-        /* ========================================= */
-        /* --- SECTION ACCUEIL (HERO) ---  */
-        /* ========================================= */
+        /* --- SECTION ACCUEIL (HERO) --- */
         #accueil {
-            background: var(--gradient-main);
+            background-color: var(--white);
             position: relative;
             overflow: hidden;
         }
@@ -218,15 +195,14 @@
         #accueil::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 45%; /* Zone d'accentuation */
-            height: 100%;
-            background-color: var(--white); 
+            top: -50%;
+            right: -10%;
+            width: 70%;
+            height: 200%;
+            background: var(--gradient-main);
             z-index: 0;
-            transform: skewX(-8deg); /* Angle léger */
-            transform-origin: top right;
-            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.05);
+            transform: rotate(-12deg);
+            border-radius: 30px;
         }
 
         .hero-content {
@@ -239,11 +215,11 @@
         }
 
         .hero-text {
-            flex: 2;
+            flex: 1;
             text-align: left;
             opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 1s 0.2s ease-out, transform 1s 0.2s ease-out;
+            transform: translateX(-30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .hero-text.visible {
@@ -252,33 +228,49 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25em;
+            font-size: 1.1em;
             color: var(--primary-color);
             margin-bottom: 15px;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
         }
 
         .hero-title {
-            font-family: var(--font-title);
-            font-size: 4em; /* Titre plus percutant */
+            font-family: var(--font-main);
+            font-size: 3.8em;
             font-weight: 800;
             color: var(--secondary-color);
             margin-bottom: 25px;
             line-height: 1.1;
         }
 
-        .hero-title strong {
+        .highlight {
             color: var(--primary-color);
-            text-shadow: 1px 1px 3px rgba(0, 123, 255, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(37, 99, 235, 0.2);
+            z-index: -1;
         }
 
         .hero-description {
-            font-size: 1.15em;
+            font-size: 1.2em;
             margin-bottom: 40px;
             color: var(--text-light);
-            max-width: 650px;
+            max-width: 600px;
         }
 
         .hero-cta {
@@ -288,13 +280,46 @@
             flex-wrap: wrap;
         }
 
+        .btn {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 14px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-time);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            box-shadow: var(--shadow-light);
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
             opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 1s 0.4s ease-out, transform 1s 0.4s ease-out;
+            transform: translateX(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .hero-image.visible {
@@ -302,54 +327,72 @@
             transform: translateX(0);
         }
 
+        .profile-img-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
         .profile-img {
-            width: 320px; /* Taille légèrement augmentée */
-            height: 320px;
-            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius-lg);
             object-fit: cover;
-            border: 8px solid var(--white); /* Bordure blanche plus prononcée */
-            box-shadow: var(--shadow-medium);
+            box-shadow: var(--shadow-heavy);
             position: relative;
             z-index: 2;
-            transition: transform var(--transition-time);
         }
 
-        .profile-img:hover {
-            transform: scale(1.02);
+        .profile-img-bg {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-lg);
+            z-index: 1;
         }
 
-        /* ========================================= */
-        /* --- SECTION EXPERTISE ---       */
-        /* ========================================= */
+        /* --- SECTION EXPERTISE --- */
         #expertise {
-            background-color: var(--white);
+            background: var(--gradient-main);
             padding-bottom: 120px;
         }
-        
+
         .expertise-intro {
-            /* Reste inchangé */
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.2em;
+            color: var(--text-light);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
-        
+
         .expertise-intro.visible {
-            /* Reste inchangé */
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .expertise-grid {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cartes légèrement plus larges */
-            gap: 40px;
-            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .expertise-card {
-            background-color: var(--light-bg); /* Changement de fond */
-            padding: 40px;
+            background-color: var(--white);
+            padding: 40px 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
             transition: all var(--transition-time);
-            text-align: left; /* Aligné à gauche pour un look plus pro */
-            border-left: 5px solid var(--primary-color); /* Bordure latérale */
+            text-align: center;
+            border-top: 5px solid var(--primary-color);
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             position: relative;
             overflow: hidden;
         }
@@ -358,11 +401,12 @@
             content: '';
             position: absolute;
             top: 0;
-            right: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(0, 123, 255, 0.05); /* Effet de couleur subtil */
-            transition: width var(--transition-time);
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            transition: height var(--transition-time);
             z-index: 0;
         }
 
@@ -372,213 +416,415 @@
         }
 
         .expertise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--primary-dark);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
         }
 
         .expertise-card:hover::before {
-            width: 100%;
+            height: 100%;
+        }
+
+        .expertise-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .expertise-card i {
-            font-size: 2.5em;
+            font-size: 3.5em;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            float: left; /* Icône à gauche du titre */
-            margin-right: 15px;
+            margin-bottom: 25px;
+            transition: color var(--transition-time);
         }
 
         .expertise-card h3 {
-            font-family: var(--font-title);
+            font-family: var(--font-main);
             font-size: 1.6em;
             color: var(--secondary-color);
-            margin-bottom: 10px;
-            overflow: hidden; /* Nettoie le float */
+            margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .expertise-card p {
             color: var(--text-light);
-            clear: both; /* Assure que le paragraphe commence sous l'icône */
+            line-height: 1.7;
         }
 
-        /* ========================================= */
-        /* --- SECTION COMPÉTENCES ---     */
-        /* ========================================= */
-        #competences {
-            background-color: var(--mid-bg);
-            padding-top: 60px;
-            padding-bottom: 120px;
+        /* --- SECTION VALEUR AJOUTÉE --- */
+        #valeur-ajoutee {
+            background: var(--gradient-dark);
+            color: var(--white);
+            position: relative;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        #valeur-ajoutee::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,192C672,181,768,139,864,138.7C960,139,1056,181,1152,181.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
         }
 
-        .skill-category {
-            background-color: var(--white);
-            padding: 30px;
+        #valeur-ajoutee .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #valeur-ajoutee .section-title {
+            color: var(--white);
+        }
+
+        #valeur-ajoutee .section-title::after {
+            background: var(--gradient-primary);
+        }
+
+        .valeur-content {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .valeur-box {
+            flex: 1;
+            padding: 40px 30px;
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            border-top: 4px solid var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: all var(--transition-time);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         
-        .skill-category.visible {
+        .valeur-box.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .skill-category h4 {
-            font-family: var(--font-title);
+        .valeur-box:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .valeur-box h4 {
+            color: var(--accent-color);
             font-size: 1.4em;
-            color: var(--secondary-color);
             margin-bottom: 20px;
             font-weight: 700;
-            border-bottom: 1px solid var(--mid-bg);
-            padding-bottom: 10px;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            font-size: 1em;
-            color: var(--text-color);
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 500;
+            gap: 12px;
         }
 
-        .skill-list li i {
-            color: var(--primary-color);
-            font-size: 1.1em;
+        .valeur-box h4 i {
+            font-size: 1.3em;
         }
 
+        .valeur-box p {
+            color: #e2e8f0;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
 
-        /* ========================================= */
-        /* --- SECTION VALEUR AJOUTÉE ---     */
-        /* ========================================= */
-        /* Reste largement inchangé car le design est déjà bon (contraste élevé, effet de verre) */
-        #valeur-ajoutee {
-            padding-top: 120px;
-            padding-bottom: 120px;
-        }
-        
-        #valeur-ajoutee .section-title::after {
-            background-color: var(--white); /* Surligneur blanc sur fond sombre */
-        }
-        
-        /* ========================================= */
-        /* --- FOOTER / CONTACT ---          */
-        /* ========================================= */
+        /* --- SECTION CONTACT --- */
         #contact {
-            background-color: var(--light-bg);
-            padding-bottom: 120px; /* Plus d'espace au-dessus du footer */
+            background-color: var(--white);
+            text-align: center;
+            padding-bottom: 80px;
         }
 
         .contact-grid {
-            gap: 40px; /* Espace augmenté */
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
         }
 
         .contact-item {
-            width: 250px; /* Taille fixée pour l'uniformité */
-            padding: 30px 20px;
-            background-color: var(--white);
-            box-shadow: var(--shadow-medium);
-            border-bottom: 5px solid var(--primary-color);
+            text-decoration: none;
+            color: var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 25px;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-time);
+            background-color: var(--light-bg);
+            box-shadow: var(--shadow-light);
+            width: 220px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .contact-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            background-color: var(--white);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            color: var(--primary-color);
+            transform: translateY(-8px) scale(1.05);
+            background-color: #e8f0f7;
+            box-shadow: var(--shadow-medium);
         }
 
         .contact-item i {
-            font-size: 3em;
-            color: var(--primary-dark);
+            font-size: 2.8em;
+            margin-bottom: 20px;
         }
         
+        .contact-item span {
+            font-size: 1em;
+            font-weight: 600;
+        }
+
         /* --- FOOTER --- */
         footer {
             background-color: var(--secondary-color);
-            /* Reste inchangé */
+            color: #cbd5e1;
+            padding: 60px 0 20px;
         }
-        
-        /* ========================================= */
-        /* --- Media Queries (Responsive) ---  */
-        /* ========================================= */
-        @media (max-width: 1024px) {
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-family: var(--font-main);
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .footer-column p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            color: #94a3b8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color var(--transition-time);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            text-decoration: none;
+            transition: all var(--transition-time);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+
+        /* --- SCROLL TO TOP BUTTON --- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-medium);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-time);
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- Media Queries (Responsive) --- */
+        @media (max-width: 1100px) {
+            .section {
+                padding: 100px 30px;
+            }
+            
+            .navbar {
+                padding: 15px 30px;
+            }
+            
             .hero-title {
-                font-size: 3.5em;
+                font-size: 3.2em;
+            }
+            
+            .profile-img-container {
+                width: 350px;
+                height: 350px;
             }
         }
 
         @media (max-width: 900px) {
-            .section {
-                padding: 80px 30px;
+            .navbar {
+                padding: 15px 20px;
             }
+            
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-medium);
+                gap: 15px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
             .hero-content {
                 flex-direction: column;
+                text-align: center;
                 gap: 40px;
             }
-            #accueil::before {
-                width: 100%;
-                height: 50%;
-                transform: skewX(0);
-                bottom: 0;
-                top: auto;
-                box-shadow: none;
-            }
+            
             .hero-text {
                 text-align: center;
-                flex: none;
             }
-            .hero-image {
-                order: -1;
-                margin-bottom: 0;
-            }
+            
             .hero-cta {
                 justify-content: center;
             }
+            
+            .valeur-content {
+                flex-direction: column;
+            }
+            
             .contact-item {
-                width: 48%; /* Deux colonnes sur tablette */
+                width: 45%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
             }
         }
 
         @media (max-width: 600px) {
             .section {
-                padding: 60px 20px;
+                padding: 80px 20px;
             }
-            .section-title {
-                font-size: 2.2em;
-            }
+            
             .hero-title {
                 font-size: 2.5em;
             }
-            .hero-subtitle {
-                font-size: 1.1em;
+            
+            .section-title {
+                font-size: 2.2em;
             }
-            .expertise-card {
-                text-align: center;
-                padding-left: 20px;
-                border-left: none;
-                border-top: 5px solid var(--primary-color);
-            }
-            .expertise-card i {
-                float: none;
-                margin-right: 0;
-            }
+            
             .contact-item {
                 width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-img-container {
+                width: 280px;
+                height: 280px;
             }
         }
     </style>
@@ -586,12 +832,15 @@
 <body>
 
     <nav class="navbar">
-        <a href="#accueil" class="logo">Gamaliel KALAMBO<span class="logo-dot">.</span></a>
+        <a href="#accueil" class="logo-container">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="GK" class="logo-img">
+            <span class="logo-text">Gamaliel KALAMBO<span class="logo-dot">.</span></span>
+        </a>
         <div class="nav-links">
-            <a href="#accueil" class="nav-link">Accueil</a>
-            <a href="#expertise" class="nav-link">Expertise</a>
-            <a href="#competences" class="nav-link">Compétences</a> <a href="#valeur-ajoutee" class="nav-link">Approche</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#accueil">Accueil</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#valeur-ajoutee">Processus</a>
+            <a href="#contact">Contact</a>
         </div>
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
@@ -603,28 +852,31 @@
             <div class="hero-text">
                 <p class="hero-subtitle">Ingénieur Logiciel en Gestion | Consultant Technique</p>
                 <h1 class="hero-title">
-                    Je suis <strong>Gamaliel KALAMBO</strong>, Architecte de vos solutions de gestion numérique.
+                    Je suis <span class="highlight">Gamaliel KALAMBO</span>, j'œuvre pour toutes vos solutions de gestion numérique.
                 </h1>
                 <p class="hero-description">
                     De l'analyse des besoins métiers à la conception d'architectures logicielles (Analyste Programmeur), je construis des Systèmes d'Information (SIG) robustes, sécurisés et alignés sur vos objectifs stratégiques (Manager SIG).
                 </p>
                 <div class="hero-cta">
                     <a href="#expertise" class="btn">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-chart-line"></i>
                         Voir mon Expertise
                     </a>
                     <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-paper-plane"></i>
+                        <i class="fas fa-comments"></i>
                         Discutons d'un Projet
                     </a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://placehold.co/320x320/007bff/ffffff?text=G+K" alt="Portrait professionnel de Gamaliel KALAMBO" class="profile-img"> 
+                <div class="profile-img-container">
+                    <div class="profile-img-bg"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Portrait professionnel de Gamaliel KALAMBO" class="profile-img">
+                </div>
             </div>
         </div>
     </section>
-    
+
     <section id="expertise" class="section">
         <div class="container">
             <h2 class="section-title">Mon Expertise</h2>
@@ -634,54 +886,19 @@
 
             <div class="expertise-grid">
                 <div class="expertise-card">
-                    <i class="fas fa-database"></i>
+                    <i class="fas fa-code"></i>
                     <h3>Analyste Programmeur</h3>
-                    <p>Conception et développement de logiciels de gestion sur mesure (Comptabilité, RH, Stocks). Je garantis un code de qualité, performant et optimisé.</p>
+                    <p>Conception et développement de logiciels de gestion dans tout domaine (Comptabilité, RH, Stocks). Utilisation d'outils avancés et code de qualité.</p>
                 </div>
                 <div class="expertise-card">
-                    <i class="fas fa-sitemap"></i>
+                    <i class="fas fa-project-diagram"></i>
                     <h3>Manager des Systèmes d'Information de Gestion (SIG)</h3>
-                    <p>Conseil stratégique, exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). Je maximise la valeur de vos systèmes existants.</p>
+                    <p>Exploitation et intégration des Progiciels de Gestion Intégrés (ERP/PGI). Conseil stratégique sur l'emploi optimal des solutions logicielles.</p>
                 </div>
                 <div class="expertise-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Architecture Logicielle & Sécurité</h3>
-                    <p>Définition de l'architecture technique, modélisation (UML) et mise en place de systèmes sécurisés, évolutifs et robustes pour une croissance durable.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="competences" class="section">
-        <div class="container">
-            <h2 class="section-title">Compétences Techniques</h2>
-            <div class="skills-grid">
-                <div class="skill-category visible" style="transition-delay: 0.1s;">
-                    <h4><i class="fas fa-laptop-code"></i> Langages & Frameworks</h4>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> **PHP / Laravel** (Back-end)</li>
-                        <li><i class="fas fa-check-circle"></i> **JavaScript / Vue.js** (Front-end)</li>
-                        <li><i class="fas fa-check-circle"></i> Python, C#, Java (Notions avancées)</li>
-                        <li><i class="fas fa-check-circle"></i> HTML5, CSS3, SASS/LESS</li>
-                    </ul>
-                </div>
-                <div class="skill-category visible" style="transition-delay: 0.2s;">
-                    <h4><i class="fas fa-database"></i> Bases de Données & Outils</h4>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> **SQL / MySQL & PostgreSQL**</li>
-                        <li><i class="fas fa-check-circle"></i> Modélisation de données (Merise, UML)</li>
-                        <li><i class="fas fa-check-circle"></i> **Git / GitHub** (Gestion de version)</li>
-                        <li><i class="fas fa-check-circle"></i> Docker (Conteneurisation)</li>
-                    </ul>
-                </div>
-                <div class="skill-category visible" style="transition-delay: 0.3s;">
-                    <h4><i class="fas fa-chart-line"></i> Gestion & Méthodologies</h4>
-                    <ul class="skill-list">
-                        <li><i class="fas fa-check-circle"></i> **ERP/PGI** (Intégration et Consulting)</li>
-                        <li><i class="fas fa-check-circle"></i> Méthodes Agiles (Scrum, Kanban)</li>
-                        <li><i class="fas fa-check-circle"></i> Analyse Fonctionnelle et Technique</li>
-                        <li><i class="fas fa-check-circle"></i> Gestion de Projet (Cycle en V)</li>
-                    </ul>
+                    <i class="fas fa-cogs"></i>
+                    <h3>Architecture Logicielle</h3>
+                    <p>Définition de l'architecture technique, modélisation (UML) et garantie de l'évolutivité des systèmes pour la croissance de l'entreprise.</p>
                 </div>
             </div>
         </div>
@@ -689,20 +906,20 @@
 
     <section id="valeur-ajoutee" class="section">
         <div class="container">
-            <h2 class="section-title">Mon Approche : Le Secret de la Réussite</h2>
+            <h2 class="section-title">Mon Approche</h2>
             
             <div class="valeur-content">
-                <div class="valeur-box visible" style="transition-delay: 0.1s;">
-                    <h4><i class="fas fa-bullseye"></i> Processus : Valeur Métier avant tout.</h4>
+                <div class="valeur-box">
+                    <h4><i class="fas fa-bullseye"></i>Processus : Valeur Métier avant tout.</h4>
                     <p>
                         Je ne code pas seulement ; je résous des problèmes de business complexes. Mon processus commence par une analyse stratégique approfondie pour garantir que chaque ligne de code contribue directement à vos objectifs de gestion et d'efficacité.
                     </p>
                 </div>
 
-                <div class="valeur-box visible" style="transition-delay: 0.3s;">
-                    <h4><i class="fas fa-balance-scale"></i> Philosophie : Alignement parfait.</h4>
+                <div class="valeur-box">
+                    <h4><i class="fas fa-balance-scale"></i>Philosophie : Alignement parfait.</h4>
                     <p>
-                        J'allie qualité du code, sécurité et alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
+                        Je suis ébloui par la qualité du code, la sécurité et l'alignement fonctionnel. Mes solutions sont conçues pour être maintenables à long terme et pour s'adapter à l'évolution rapide des besoins de gestion sans friction.
                     </p>
                 </div>
             </div>
@@ -714,28 +931,24 @@
             <h2 class="section-title">Contactez-moi</h2>
             
             <div class="contact-grid">
-                <a href="mailto:gamalielkb011@gmail.com" class="contact-item visible" style="transition-delay: 0.1s;">
+                <a href="mailto:gamalielkb011@gmail.com" class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <span>E-mail professionnel</span>
-                    <p style="margin-top: 10px; color: var(--text-light);">gamalielkb011@gmail.com</p>
+                    <span>gamalielkb011@gmail.com</span>
                 </a>
                 
-                <a href="https://wa.me/243978390622" target="_blank" class="contact-item visible" style="transition-delay: 0.2s;">
+                <a href="https://wa.me/243978390622" target="_blank" class="contact-item">
                     <i class="fab fa-whatsapp"></i>
-                    <span>Contact Rapide</span>
-                    <p style="margin-top: 10px; color: var(--text-light);">WhatsApp (+243 978390622)</p>
+                    <span>WhatsApp</span>
                 </a>
                 
-                <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-item visible" style="transition-delay: 0.3s;">
+                <a href="https://www.linkedin.com/in/gamaliel-kalambo-280b78264?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-item">
                     <i class="fab fa-linkedin"></i>
-                    <span>Mon Profil Réseau</span>
-                    <p style="margin-top: 10px; color: var(--text-light);">LinkedIn</p>
+                    <span>LinkedIn</span>
                 </a>
                 
-                <a href="https://www.facebook.com/gamaliel.kalambo" target="_blank" class="contact-item visible" style="transition-delay: 0.4s;">
+                <a href="https://www.facebook.com/gamaliel.kalambo" target="_blank" class="contact-item">
                     <i class="fab fa-facebook-f"></i>
-                    <span>Autres réseaux</span>
-                    <p style="margin-top: 10px; color: var(--text-light);">Facebook</p>
+                    <span>Facebook</span>
                 </a>
             </div>
         </div>
@@ -765,8 +978,7 @@
                     <ul class="footer-links">
                         <li><a href="#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
                         <li><a href="#expertise"><i class="fas fa-chevron-right"></i> Expertise</a></li>
-                        <li><a href="#competences"><i class="fas fa-chevron-right"></i> Compétences</a></li>
-                        <li><a href="#valeur-ajoutee"><i class="fas fa-chevron-right"></i> Approche</a></li>
+                        <li><a href="#valeur-ajoutee"><i class="fas fa-chevron-right"></i> Processus</a></li>
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
@@ -785,7 +997,7 @@
                     <h3>Contact</h3>
                     <p><i class="fas fa-envelope"></i> gamalielkb011@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +243 97 839 0622</p>
-                    <p><i class="fas fa-map-marker-alt"></i> RDC</p>
+                    <p><i class="fas fa-map-marker-alt"></i> République Démocratique du Congo</p>
                 </div>
             </div>
             
@@ -795,13 +1007,13 @@
         </div>
     </footer>
 
-    <a href="#accueil" class="scroll-to-top">
+    <a href="#" class="scroll-to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Gestion du menu mobile (inchangé)
+            // Gestion du menu mobile
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -812,16 +1024,17 @@
                     : '<i class="fas fa-bars"></i>';
             });
             
+            // Fermer le menu mobile en cliquant sur un lien
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
-
+            
             // Observer pour les animations au défilement
             const observerOptions = {
-                threshold: 0.15, // Déclencher plus tôt
+                threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
 
@@ -834,31 +1047,27 @@
                 });
             }, observerOptions);
 
-            // Cibles pour l'animation (ajout des nouvelles classes)
+            // Cibles pour l'animation
             const targets = document.querySelectorAll(
-                '.section-title, .expertise-card, .valeur-box, .contact-item, .skill-category'
+                '.section-title, .expertise-intro, .expertise-card, .valeur-box, .contact-item, .hero-text, .hero-image'
             );
-            targets.forEach(target => observer.observe(target));
-
-            // Animation spéciale pour la section HERO
-            const heroText = document.querySelector('.hero-text');
-            const heroImage = document.querySelector('.hero-image');
-            observer.observe(heroText);
-            observer.observe(heroImage);
-
-            // Gestion de la barre de navigation et du bouton Scroll-to-top
-            const navbar = document.querySelector('.navbar');
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            targets.forEach(target => {
+                observer.observe(target);
+            });
             
+            // Navbar au défilement
+            const navbar = document.querySelector('.navbar');
             window.addEventListener('scroll', () => {
-                // Barre de navigation
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
-
-                // Bouton Scroll-to-top
+            });
+            
+            // Bouton de retour en haut
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
@@ -866,31 +1075,22 @@
                 }
             });
             
-            // Gestion du lien de navigation actif
-            const sections = document.querySelectorAll('section');
-            const navLinksActive = document.querySelectorAll('.nav-link');
-            
-            const linkObserverOptions = {
-                root: null,
-                rootMargin: '0px 0px -50% 0px', // Déclencher au milieu de la section
-                threshold: 0
-            };
-            
-            const linkObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinksActive.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                link.classList.add('active');
-                            }
+            // Animation fluide pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
                         });
                     }
                 });
-            }, linkObserverOptions);
-
-            sections.forEach(section => {
-                linkObserver.observe(section);
             });
         });
     </script>
