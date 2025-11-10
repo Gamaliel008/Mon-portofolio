@@ -51,6 +51,14 @@
             padding: 0 20px;
         }
 
+        /* UTILITY CLASS pour le Header et le Footer */
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* SECTION GÉNÉRIQUE */
         section {
             padding: 100px 0;
             opacity: 0; /* Pour l'animation JS */
@@ -69,7 +77,7 @@
             font-size: 2.8rem;
             font-weight: 700;
             letter-spacing: 1px;
-            text-transform: uppercase; /* Comme dans les exemples graphiques */
+            text-transform: uppercase;
         }
 
         .section-title::after {
@@ -82,6 +90,7 @@
             border-radius: 2px;
         }
 
+        /* BOUTONS */
         .btn {
             display: inline-block;
             background-color: var(--primary);
@@ -105,18 +114,7 @@
             color: white; 
         }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--dark-bg);
-        }
-
-        /* HEADER */
+        /* HEADER & NAVIGATION */
         header {
             background-color: var(--dark-card);
             padding: 0.8rem 0;
@@ -136,10 +134,16 @@
             color: var(--primary);
         }
 
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
         .nav-links a {
             color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: var(--transition);
         }
-
         .nav-links a:hover {
             color: var(--primary);
         }
@@ -207,15 +211,6 @@
             text-align: center;
             position: relative;
         }
-        .hero-image img {
-            width: 100%;
-            max-width: 350px;
-            height: auto;
-            border-radius: 50%;
-            border: 8px solid var(--primary); /* L'anneau orange de Nemo */
-            box-shadow: 0 0 50px rgba(255, 87, 34, 0.5);
-        }
-        /* Style pour l'image fictive (remplacez par votre photo/avatar) */
         .hero-image .placeholder {
             width: 300px;
             height: 300px;
@@ -236,12 +231,18 @@
             background-color: var(--dark-card);
         }
 
-        .specialites-grid, .competences-grid {
+        .specialites-grid, .projets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
-        .specialite-card, .competence-card {
+        .competences-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colonnes larges */
+            gap: 2rem;
+        }
+        
+        .specialite-card, .competence-card, .projet-card {
             background-color: var(--dark-bg);
             padding: 2.5rem;
             border-radius: 12px;
@@ -260,7 +261,7 @@
             border-color: var(--primary);
         }
 
-        /* L'icône et le texte sont empilés pour un design moderne */
+        /* Styles spécifiques Cartes */
         .card-icon {
             font-size: 3rem;
             color: var(--primary);
@@ -279,10 +280,7 @@
             font-size: 0.95rem;
         }
         
-        /* COMPETENCES GRAPHIQUES (Style Nemo) */
-        .competences-grid {
-            grid-template-columns: 1fr 1fr; /* 2 colonnes larges */
-        }
+        /* COMPETENCES GRAPHIQUES */
         .competence-card {
             padding: 3rem;
         }
@@ -299,22 +297,12 @@
             margin-right: 15px;
         }
         
-        /* PROJETS (Style Graphique - Cartes carrées) */
+        /* PROJETS (Cartes carrées) */
         .projets {
             background-color: var(--dark-bg);
         }
-        .projets-grid {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
         .projet-card {
-            background-color: var(--dark-card);
             padding: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            opacity: 0; /* Pour l'animation JS */
             transform: scale(0.95);
         }
         .projet-card:hover {
@@ -434,9 +422,20 @@
             font-size: 0.8rem;
             color: #666;
         }
+        
+        /* GESTION MOBILE (Hamburger Menu) */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .menu-toggle i {
+            color: var(--primary);
+        }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE MEDIA QUERIES */
         @media (max-width: 900px) {
+            /* Hero Section */
             .hero-content {
                 flex-direction: column;
                 text-align: center;
@@ -454,8 +453,43 @@
             .hero h2 {
                 font-size: 2rem;
             }
+
+            /* Compétences */
             .competences-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Navigation Mobile */
+            .menu-toggle {
+                display: block; /* Afficher l'icône hamburger */
+            }
+            .nav-links {
+                display: none; /* Masquer les liens par défaut */
+                flex-direction: column;
+                position: absolute;
+                top: 60px; /* Sous le header */
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-card);
+                border-top: 1px solid #333;
+                padding: 1rem 0;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            }
+            .nav-links.active {
+                display: flex; /* Afficher quand la classe 'active' est là */
+            }
+            .nav-links li {
+                text-align: center;
+                margin: 0;
+            }
+            .nav-links a {
+                display: block;
+                padding: 10px 0;
+                margin: 0;
+                border-bottom: 1px solid #222;
+            }
+            .nav-links li:last-child a {
+                border-bottom: none;
             }
         }
         @media (max-width: 500px) {
@@ -469,25 +503,25 @@
 <body>
     <header>
         <div class="container">
-            <nav style="display: flex; justify-content: space-between; align-items: center;">
+            <nav class="flex-between">
                 <div class="logo">
                     <i class="fas fa-laptop-code"></i>
                     <span>MON </span><span>PORTFOLIO</span>
                 </div>
-                <ul class="nav-links" style="display: flex; list-style: none;">
-                    <li><a href="#accueil" style="margin-left: 2rem; text-decoration: none;">Accueil</a></li>
-                    <li><a href="#specialites" style="margin-left: 2rem; text-decoration: none;">Services</a></li>
-                    <li><a href="#projets" style="margin-left: 2rem; text-decoration: none;">Projets</a></li>
-                    <li><a href="#contact" style="margin-left: 2rem; text-decoration: none;">Contact</a></li>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#specialites">Services</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-                <div class="menu-toggle" style="display: none; cursor: pointer; font-size: 1.5rem;">
+                <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
         </div>
     </header>
 
-    <section id="accueil" class="hero visible" style="padding-top: 140px; opacity: 1; transform: translateY(0);">
+    <section id="accueil" class="hero visible">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -663,7 +697,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 1. TYPING EFFECT (Similaire à l'animation du rôle dans la vidéo Nemo)
+            // 1. TYPING EFFECT 
             const roleElement = document.getElementById('role-text');
             const roles = ["SOFTWARE ENGINEER", "ERP CONSULTANT", "SYSTEM ARCHITECT", "BUSINESS ANALYST"];
             let roleIndex = 0;
@@ -684,21 +718,21 @@
                 let typingSpeed = 100;
 
                 if (isDeleting) {
-                    typingSpeed /= 2; // Efface plus vite
+                    typingSpeed /= 2;
                 }
 
                 if (!isDeleting && charIndex === currentRole.length) {
-                    typingSpeed = 2000; // Pause après avoir fini d'écrire
+                    typingSpeed = 2000; 
                     isDeleting = true;
                 } else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length; // Passe au rôle suivant
-                    typingSpeed = 500; // Petite pause avant de commencer à écrire le nouveau rôle
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typingSpeed = 500;
                 }
 
                 setTimeout(typeRole, typingSpeed);
             }
-            typeRole(); // Lance l'effet
+            typeRole(); 
 
             // 2. ANIMATION AU DÉFILEMENT (Staggered Fade-In)
             const observerOptions = {
@@ -728,7 +762,8 @@
                         
                         // Animer le formulaire de contact aussi
                         const contactForm = entry.target.querySelector('.contact-form.card-staggered');
-                        if (contactForm) {
+                        if (contactForm && !contactForm.classList.contains('animated')) {
+                            contactForm.classList.add('animated');
                             contactForm.style.opacity = '0';
                             contactForm.style.transform = 'translateY(20px)';
                             setTimeout(() => {
@@ -749,11 +784,19 @@
                 }
             });
 
-            // 3. Gestion du menu mobile (inchangé)
+            // 3. Gestion du menu mobile (Hamburger)
             const menuToggle = document.querySelector('.menu-toggle');
             const navLinks = document.querySelector('.nav-links');
             menuToggle.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
+            });
+            // Fermer le menu après un clic sur un lien
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
             });
 
             // 4. Navigation fluide (Scroll)
@@ -769,7 +812,6 @@
                             top: targetElement.offsetTop - 80, 
                             behavior: 'smooth'
                         });
-                        navLinks.classList.remove('active'); 
                     }
                 });
             });
